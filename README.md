@@ -2,6 +2,8 @@
 
 Team Kirk aims to solve the issue of scheduling events in groups of people via  **[PLAN.IT](https://github.com/Kirk-Blue-Ocean/planit "PLAN.IT")**.
 
+### Installation:
+
 Clone the project and run the following commands:
 1. `yarn` to download all of the required dependancies
 2. `yarn dev` to deploy the application in development mode
