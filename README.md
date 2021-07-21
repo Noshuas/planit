@@ -1,6 +1,6 @@
 # PLAN.IT
 
-Team Kirk aims to solve the issue of scheduling events in groups of people via  **[Plan.It](https://github.com/Kirk-Blue-Ocean/planit "PLAN.IT")**.
+Team Kirk aims to solve the issue of scheduling events in groups of people via  **[PLAN.IT](https://github.com/Kirk-Blue-Ocean/planit "PLAN.IT")**.
 
 Clone the project and run the following commands:
 1. `yarn` to download all of the required dependancies
