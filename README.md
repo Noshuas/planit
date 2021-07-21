@@ -1,15 +1,15 @@
-# Planit
+# PLAN.IT
 
-Team Kirk aims to solve the issue of scheduling events in groups of people via  **[Plan.It](https://github.com/Kirk-Blue-Ocean/planit "Plan.It")**.
+Team Kirk aims to solve the issue of scheduling events in groups of people via  **[Plan.It](https://github.com/Kirk-Blue-Ocean/planit "PLAN.IT")**.
 
 Clone the project and run the following commands:
 1. `yarn` to download all of the required dependancies
 2. `yarn dev` to deploy the application in development mode
 
-Optionally, the following commands may be useful
+Optionally, the following commands may be useful:
 - `yarn seed` to populate some sample data into the database
 
-### Running a production build
+### Running a Production Build:
 
 1. Delete the contents of the `.next/` directory
 2. Set `dev` to `false` in `server/app.js`
