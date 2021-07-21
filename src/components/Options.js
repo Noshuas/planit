@@ -20,7 +20,7 @@ const Options = (props) => {
   if (availability[rsvpNum]) {
     return (
       <>
-      <span className={style.info}>All RSVPers can attend at: </span>
+      <span className={styles.info}>All RSVPers can attend at: </span>
       <div className={styles.buttonlist}>
         {availability[rsvpNum].map( (time, key) => {
         return <OptionsButton time={time} key={key} handleSetTime={props.handleSetTime}/>
