@@ -54,7 +54,7 @@ const Event = (props) => {
       />}
       <CardContent className={classes.cardContent}>
         <Typography
-          variant="h6"
+          variant="h4"
           color="inherit"
         >{name}</Typography>
       </CardContent>

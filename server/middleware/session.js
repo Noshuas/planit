@@ -2,7 +2,7 @@ const session = require('express-session');
 const cookie = require('cookie-parser');
 const { v4: uuidv4 } = require('uuid');
 
-const sessions = {};
+// const sessions = {};
 
 const sessionParser = session({
   secret: 'ivanswrld',

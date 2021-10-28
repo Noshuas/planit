@@ -1,17 +1,17 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { fetchUser } = require('../../database/controllers/userController.js');
-const { deleteSession, addSession } = require('../../database/controllers/sessionController.js')
-const { Session } = require('../../database/models/sessionSchema');
+// const { deleteSession, addSession } = require('../../database/controllers/sessionController.js')
+// const { Session } = require('../../database/models/sessionSchema');
 const { User } = require('../../database/models/userSchema');
 
-const loginRequired = (req, res, next) => {
-  if (req.user) {
-    next();
-  } else {
-    res.render('/login');
-  }
-};
+// const loginRequired = (req, res, next) => {
+//   if (req.user) {
+//     next();
+//   } else {
+//     res.render('/login');
+//   }
+// };
 
 passport.use('local', new LocalStrategy({
   usernameField: 'email',
