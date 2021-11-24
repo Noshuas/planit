@@ -7,9 +7,9 @@ const fileupload = require('express-fileupload');
 const { parse } = require('url');
 const next = require('next');
 
-const dev = true;
+const dev = false;
 const nextServer = next({ dev });
-const handle = nextServer.getRequestHandler();
+// const handle = nextServer.getRequestHandler();
 
 nextServer.prepare().then(() => {
 
