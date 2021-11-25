@@ -21,6 +21,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import Link from 'next/link'
 
 import styles from '.././styles/Create.module.css';
 
@@ -356,6 +357,7 @@ export default function CreateEvent() {
             <Typography gutterBottom>
               Please send the invitation to your guests now.
             </Typography>
+            <Button><Link href="/home">Return Home</Link></Button>
         </DialogContent>
       </Dialog>
 

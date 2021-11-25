@@ -1,8 +1,8 @@
 const db = require('./index.js');
-const { fetchEvents, addEvent, deleteAllEvents, updateEvent } = require('./controllers/eventController.js');
+const { addEvent, deleteAllEvents } = require('./controllers/eventController.js');
 const { addUser, fetchUser, deleteUser } = require('./controllers/userController.js');
-const { addSession, fetchSession, deleteSession, deleteAllSessions } = require('./controllers/sessionController.js');
-const { mockEvent1, mockEvent2, mockEvent3 } = require('../MockData/EventData.js');
+const { deleteAllSessions } = require('./controllers/sessionController.js');
+const { mockEvent1, mockEvent2, /*mockEvent3*/ } = require('../MockData/EventData.js');
 
 
 
@@ -14,50 +14,50 @@ const mockUser = {
   password: 'bargle'
 }
 
-const mockSession = {
-  session_id: '1',
-  user: '60ec9ccf28c54f891c97b28d'
-}
+// const mockSession = {
+//   session_id: '1',
+//   user: '60ec9ccf28c54f891c97b28d'
+// }
 
-const updateArr = [
-  // {
-  //   where: {
-  //     property: 'owner',
-  //     value: 'Tarrin'
-  //   },
-  //   what: {
-  //     method: '$set', // <-- go to mongodb update methods for more options
-  //     field: 'name',
-  //     value: 'Testing'
-  //   },
-  // },
-  {
-    where: {
-      property: 'owner',
-      value: 'Tarrin'
-    },
-    what: {
-      method: '$push',
-      field: 'rsvps',
-      value: {
-        name: 'Tommy',
-        availability: [
-          {
-            start: 'sometime',
-            end: 'sometime'
-          }
-        ],
-      }
-    },
-  }
-];
-let option = { // <--- this is the options for a get request.
-  count: 1,
-  where: {
-    property: '_id',
-    value: 'j432h1ju4h3k2'
-  }
-}
+// const updateArr = [
+//   // {
+//   //   where: {
+//   //     property: 'owner',
+//   //     value: 'Tarrin'
+//   //   },
+//   //   what: {
+//   //     method: '$set', // <-- go to mongodb update methods for more options
+//   //     field: 'name',
+//   //     value: 'Testing'
+//   //   },
+//   // },
+//   {
+//     where: {
+//       property: 'owner',
+//       value: 'Tarrin'
+//     },
+//     what: {
+//       method: '$push',
+//       field: 'rsvps',
+//       value: {
+//         name: 'Tommy',
+//         availability: [
+//           {
+//             start: 'sometime',
+//             end: 'sometime'
+//           }
+//         ],
+//       }
+//     },
+//   }
+// ];
+// let option = { // <--- this is the options for a get request.
+//   count: 1,
+//   where: {
+//     property: '_id',
+//     value: 'j432h1ju4h3k2'
+//   }
+// }
 
 //create mongodb names "planit"
 
@@ -74,7 +74,7 @@ const seed = async () => {
     let user = await fetchUser({ property: 'email', value: 'tarrinneal@gmail.com'});
     await addEvent(mockEvent1, 'tarrinneal@gmail.com');
     await addEvent(mockEvent2, 'jacobsantala@email.com');
-    await addEvent(mockEvent3, 'tommy@boy.com');
+    // await addEvent(mockEvent3, 'tommy@boy.com');
     // let userbyId = await fetchUser({ property: '_id', value: user[0]._id});
     // console.log(userbyId)
     // console.log('Event added successfully');

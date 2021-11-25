@@ -23,7 +23,6 @@ const SignupForm = () => {
       axios.post('/signup', {email, name, password})
         .then(res => {
           if (res.status === 200) {
-
             // immediately log the use in
             axios.post('/login', {email, password})
               .then(login => {
