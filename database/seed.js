@@ -2,7 +2,7 @@ const db = require('./index.js');
 const { addEvent, deleteAllEvents } = require('./controllers/eventController.js');
 const { addUser, fetchUser, deleteUser } = require('./controllers/userController.js');
 const { deleteAllSessions } = require('./controllers/sessionController.js');
-const { mockEvent1, mockEvent2, mockEvent3 } = require('../MockData/EventData.js');
+const { mockEvent1, mockEvent2, /*mockEvent3*/ } = require('../MockData/EventData.js');
 
 
 
@@ -74,7 +74,7 @@ const seed = async () => {
     let user = await fetchUser({ property: 'email', value: 'tarrinneal@gmail.com'});
     await addEvent(mockEvent1, 'tarrinneal@gmail.com');
     await addEvent(mockEvent2, 'jacobsantala@email.com');
-    await addEvent(mockEvent3, 'tommy@boy.com');
+    // await addEvent(mockEvent3, 'tommy@boy.com');
     // let userbyId = await fetchUser({ property: '_id', value: user[0]._id});
     // console.log(userbyId)
     // console.log('Event added successfully');

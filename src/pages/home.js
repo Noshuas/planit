@@ -106,7 +106,7 @@ const Home = (props) => {
           <Grid item key={Math.random()} xs={6} >
             <Event {...event} />
           </Grid>
-        ))}
+        )).reverse()}
       </Grid>
     </>
   );
