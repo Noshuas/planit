@@ -222,7 +222,7 @@ const InvitePage = function ({
       </Dialog>
 
       <div className={styles.container}>
-        <Script src="https://apis.google.com/js/api" strategy="beforeInteractive" />
+        <Script src="https://apis.google.com/js/api.js" strategy="beforeInteractive" />
         <Image
           src={event.photo_url || sampleImg}
           className={styles.photo}

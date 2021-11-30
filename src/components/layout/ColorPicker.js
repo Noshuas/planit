@@ -59,7 +59,7 @@ const ColorPicker = () => {
       <List>
         {['light', 'dark', 'red', 'orange', 'yellow', 'green', 'blue', 'violet'].map((text, index) => (
           <>
-            <ListItem button key={Math.random()} onClick={() => { setColor(text); }}>
+            <ListItem button key={text} onClick={() => { setColor(text); }}>
               <ListItemIcon>
                 {text === 'light' && <FlareIcon className={classes[text]} fontSize="large" />}
                 {text === 'dark' && <Brightness3Icon className={classes[text]} fontSize="large" />}

@@ -7,7 +7,7 @@ require('../database');
 const { session, cors, login: passport } = require('./middleware');
 const { app: httpServer, initRoutes } = require('./index');
 
-const dev = false;
+const dev = true;
 const nextServer = next({ dev });
 // const handle = nextServer.getRequestHandler();
 

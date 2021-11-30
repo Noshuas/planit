@@ -1,8 +1,8 @@
-import React, { createContext, useState } from 'react';
+import React, { useState } from 'react';
 import Cookie from 'js-cookie';
 import Account from '../accountContext';
 
-const AccountProvider = function ({ children }) {
+const AccountProvider = ({ children }) => {
   // sets up the cookie state which will be passed as context
   const [cookie, setCookie] = useState({});
 
@@ -26,9 +26,9 @@ const AccountProvider = function ({ children }) {
   }, [cookie]);
 
   return (
-    <Account.provider value={cookie}>
+    <Account.Provider value={cookie}>
       {children}
-    </Account.provider>
+    </Account.Provider>
   );
 };
 

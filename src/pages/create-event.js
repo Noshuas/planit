@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-undef */
 // import { useRouter } from 'next/router';
 import React, { useState, useContext } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';

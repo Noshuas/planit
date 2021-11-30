@@ -52,6 +52,8 @@ const DialogTitle = withStyles(styles)((props) => {
   );
 });
 
+console.log('in Availability.js')
+
 const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(2),

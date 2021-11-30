@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable camelcase */
 import {
   Card, CardContent, CardMedia, Typography,
 } from '@material-ui/core';
@@ -32,15 +34,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Event = function (props) {
+const Event = ({
+  name, description, _id, photo_url: photo,
+}) => {
   const router = useRouter();
 
-  const {
-    name, description, owner, location, duration, status, time, window, rsvps, _id, photo_url,
-  } = props;
+  // const {
+  //   name, description, owner, location, duration, status, time, window, rsvps, _id, photo_url,
+  // } = props;
 
-  const photo = photo_url;
-  console.log(props);
   console.log(photo);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
