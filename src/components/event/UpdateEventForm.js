@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 // import TextField from '@material-ui/core/TextField';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import styles from '../styles/Event.module.css';
+import styles from '../../styles/Event.module.css';
 
 const UpdateEventForm = ({ data, refeshData }) => {
   const [open, setOpen] = useState(false);

@@ -101,6 +101,7 @@ const InvitePage = function ({
   });
 
   const onSubmit = (data) => {
+    console.log(avail);
     if (avail.length === 0 && status === 'pending') {
       alert('Please provide your availability!');
     } else {
@@ -163,9 +164,9 @@ const InvitePage = function ({
     setOpen(true);
   };
 
-  const handleClose = (e, timeSlots) => {
+  const handleClose = (e, newAvail) => {
     setOpen(false);
-    setAvail(timeSlots);
+    setAvail(newAvail ?? avail);
   };
 
   const handleRSVPClose = () => {
@@ -319,7 +320,7 @@ export async function getServerSideProps(context) {
 
   const response = await axios(config);
   const { data } = response;
-
+  console.log('the error is on line 323');
   if (!data || data.length === 0) {
     return {
       redirect: {

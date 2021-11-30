@@ -7,7 +7,7 @@
   "extends": [
     "next",
     "next/core-web-vitals",
-    // "airbnb"
+    "airbnb"
   ],
   "rules": {
     "react/jsx-filename-extension": "off",

@@ -1,10 +1,10 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
-const helpers = {};
-helpers.CheckAvail = (window, rsvps, eventLength) => {
+const Helpers = {};
+Helpers.CheckAvail = (window, rsvps, eventLength) => {
   const lengthInMS = eventLength * 60 * 60 * 1000;
   // const rsvpNum = rsvps.length;
-  const startTimes = helpers.allTimes(window, eventLength);
+  const startTimes = Helpers.allTimes(window, eventLength);
   rsvps.forEach((rsvp) => {
     rsvp.availability.forEach((block) => {
       let start = Date.parse(block.start);
@@ -36,7 +36,7 @@ helpers.CheckAvail = (window, rsvps, eventLength) => {
   }
   return results;
 };
-helpers.allTimes = (window) => {
+Helpers.allTimes = (window) => {
   const obj = {};
   let first = Date.parse(window.start);
   const end = Date.parse(window.end);
@@ -46,7 +46,7 @@ helpers.allTimes = (window) => {
   }
   return obj;
 };
-helpers.listRSVPs = (rsvps, emOrName) => {
+Helpers.listRSVPs = (rsvps, emOrName) => {
   const list = [];
   rsvps.forEach((rsvp) => {
     list.push(rsvp[emOrName]);
@@ -54,4 +54,4 @@ helpers.listRSVPs = (rsvps, emOrName) => {
   return list;
 };
 
-export default helpers;
+export default Helpers;

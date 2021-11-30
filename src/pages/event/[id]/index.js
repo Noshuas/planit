@@ -1,25 +1,17 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useRouter } from 'next/router';
+import { useRouter, Image } from 'next';
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
-// import Modal from '@material-ui/core/Modal';
-// import IconButton from '@material-ui/core/IconButton';
-import Paper from '@material-ui/core/Paper';
-// import { shadows } from '@material-ui/system';
-import Image from 'next/image';
 import axios from 'axios';
-// import mockData from '../../../../MockData/EventData';
+import { Button, Paper } from '@material-ui/core';
+import { SetTimeForm, Helpers, UpdateEventForm } from '../../../components/event';
 import styles from '../../../styles/Event.module.css';
 import generalStyles from '../../../styles/invite-page.module.css';
-import SetTimeForm from '../../../components/event/SetTimeForm';
-import UpdateEventForm from '../../../components/UpdateEventForm';
-import helpers from '../../../components/tempHelp';
 
 const testImage = 'https://wallpaperaccess.com/full/632782.jpg';
 
-const Event = function ({ event }) {
+const Event = ({ event }) => {
   const router = useRouter();
   const refeshData = () => {
     router.replace(router.asPath);
@@ -32,7 +24,7 @@ const Event = function ({ event }) {
   const formatedDate = new Date(test.time).toLocaleString();
   const formatedStartWindow = new Date(test.window.start).toLocaleString();
   const formatedEndWindow = new Date(test.window.end).toLocaleString();
-  const rsvpList = helpers.listRSVPs(test.rsvps, 'name');
+  const rsvpList = Helpers.listRSVPs(test.rsvps, 'name');
   const onFileChange = async (event) => {
     const image = event.target.files[0];
 

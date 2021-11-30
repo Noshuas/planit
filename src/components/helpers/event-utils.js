@@ -10,11 +10,11 @@ const withoutTime = (dateTime, hours, minutes) => {
 const startDate = withoutTime(new Date(), 9, 0);
 const endDate = withoutTime(new Date(), 9, 30);
 
-export function createEventId() {
+function createEventId() {
   return String(eventGuid++);
 }
 
-export function cleanData(timeSlots) {
+function cleanData(timeSlots) {
   const availabilty = timeSlots.map((slot) => ({
     start: slot.start.toISOString(),
     end: slot.end.toISOString(),
@@ -23,7 +23,7 @@ export function cleanData(timeSlots) {
   return availabilty;
 }
 
-export const INITIAL_EVENTS = [
+const INITIAL_EVENTS = [
   {
     id: createEventId(),
     title: 'new availability',
@@ -31,3 +31,5 @@ export const INITIAL_EVENTS = [
     end: endDate,
   },
 ];
+
+export { INITIAL_EVENTS, cleanData, createEventId };

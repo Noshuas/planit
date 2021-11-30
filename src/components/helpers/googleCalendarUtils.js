@@ -1,4 +1,5 @@
-const uuidv4 = require('uuid').v4;
+// const uuidv4 = require('uuid').v4;
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * Takes in a broad time range (window) and an array of events representing

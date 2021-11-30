@@ -1,8 +1,7 @@
 import React from 'react';
-// import Button from '@material-ui/core/Button';
 import helpers from './tempHelp';
 import OptionsButton from './OptionsButton';
-import styles from '../styles/Event.module.css';
+import styles from '../../styles/Event.module.css';
 
 const Options = ({ handleSetTime, data }) => {
   const availability = helpers.CheckAvail(data.window, data.rsvps, data.duration / 3600);

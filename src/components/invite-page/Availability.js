@@ -52,7 +52,7 @@ const DialogTitle = withStyles(styles)((props) => {
   );
 });
 
-console.log('in Availability.js')
+console.log('in Availability.js');
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -62,11 +62,7 @@ const DialogContent = withStyles((theme) => ({
 
 // eslint-disable-next-line react/function-component-definition
 export default function Availability({
-  handleClose,
-  open,
-  googleClientId,
-  windowStart,
-  windowEnd,
+  handleClose, open, googleClientId, windowStart, windowEnd,
 }) {
   return (
     <div>

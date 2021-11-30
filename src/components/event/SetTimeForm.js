@@ -1,18 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-// import Modal from '@material-ui/core/Modal';
-import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-// import MuiDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
+import {
+  MuiDialogTitle, MuiDialogContent,
+  makeStyles, withStyles, Button,
+  Dialog, IconButton, Typography,
+} from '@material-ui/core/';
 import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
-// import { useRouter } from 'next/router';
 import axios from 'axios';
-import Options from '../Options';
+import Options from './Options';
 
 const styles = (theme) => ({
   root: {
@@ -39,6 +34,7 @@ makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
 }));
+
 const DialogTitle = withStyles(styles)((props) => {
   const {
     children, classes, onClose, ...other
@@ -54,6 +50,7 @@ const DialogTitle = withStyles(styles)((props) => {
     </MuiDialogTitle>
   );
 });
+
 const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
