@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 mongoose.connect('mongodb://localhost/planit', { useNewUrlParser: true });
 
 const db = mongoose.connection;

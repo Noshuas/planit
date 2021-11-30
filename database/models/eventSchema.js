@@ -22,10 +22,10 @@ const eventSchema = mongoose.Schema({
         {
           start: String,
           end: String,
-        }
+        },
       ],
-    }
-  ]
+    },
+  ],
 });
 
 const Event = mongoose.model('Event', eventSchema);

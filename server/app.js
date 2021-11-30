@@ -1,23 +1,22 @@
-const { app: httpServer, initRoutes } = require('./index.js');
 const express = require('express');
-const { session, cors, login: passport } = require('./middleware');
-const db = require('../database');
 const fileupload = require('express-fileupload');
 
 const { parse } = require('url');
 const next = require('next');
+require('../database');
+const { session, cors, login: passport } = require('./middleware');
+const { app: httpServer, initRoutes } = require('./index');
 
 const dev = false;
 const nextServer = next({ dev });
 // const handle = nextServer.getRequestHandler();
 
 nextServer.prepare().then(() => {
-
   httpServer.use(express.json({ limit: '3MB' }));
-  httpServer.use(express.urlencoded({extended:true}));
-  httpServer.use(fileupload({useTempFiles: true}));
+  httpServer.use(express.urlencoded({ extended: true }));
+  httpServer.use(fileupload({ useTempFiles: true }));
   httpServer.use(cors.corsPolicy);
-  httpServer.use(session.sessionParser)
+  httpServer.use(session.sessionParser);
   httpServer.use(session.cookieParser);
   // httpServer.use(express.bodyParser());
 
@@ -40,7 +39,6 @@ nextServer.prepare().then(() => {
 
   // server-sided rendering
   httpServer.use((req, res, next) => {
-
     const { method } = req;
     // proxy all get requests to render to the virtual
     // next.js server.
@@ -54,11 +52,9 @@ nextServer.prepare().then(() => {
         next();
       }
     }
-  })
-
+  });
 
   httpServer.listen(3000, () => {
     console.log('Listening on localhost:3000');
   });
-
 });

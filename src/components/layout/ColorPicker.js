@@ -1,25 +1,27 @@
-import React, { useContext } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import Button from "@material-ui/core/Button";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import CheckBoxOutlineBlankRoundedIcon from "@material-ui/icons/CheckBoxOutlineBlankRounded";
-import PlanitIcon from '../components/PlanitIcon';
+import React, { useContext } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+// import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import CheckBoxOutlineBlankRoundedIcon from '@material-ui/icons/CheckBoxOutlineBlankRounded';
 import IconButton from '@material-ui/core/IconButton';
-import { red, orange, yellow, green, blue, purple } from '@material-ui/core/colors';
-import Theme from '../themes/theme';
+import {
+  red, orange, yellow, green, blue, purple,
+} from '@material-ui/core/colors';
 import FlareIcon from '@material-ui/icons/Flare';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
+import Theme from '../../themes/theme';
+import PlanitIcon from './PlanitIcon';
 
 const useStyles = makeStyles({
   list: {
-    width: 75
+    width: 75,
   },
   fullList: {
-    width: "auto"
+    width: 'auto',
   },
   light: { fill: '#000' },
   dark: { fill: '#000' },
@@ -31,17 +33,16 @@ const useStyles = makeStyles({
   violet: { fill: purple.A700 },
 });
 
-export default function ColorPicker() {
+// eslint-disable-next-line react/function-component-definition
+const ColorPicker = () => {
   const classes = useStyles();
   const [isOpen, setOpen] = React.useState(false);
   const { setColor } = useContext(Theme);
 
   const toggleDrawer = () => (event) => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
+    if (event
+      && event.type === 'keydown'
+      && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
@@ -51,24 +52,24 @@ export default function ColorPicker() {
   const list = () => (
     <div
       className={classes.list}
-      // role="presentation"
+      role="presentation"
       onClick={toggleDrawer()}
       onKeyDown={toggleDrawer()}
     >
       <List>
         {['light', 'dark', 'red', 'orange', 'yellow', 'green', 'blue', 'violet'].map((text, index) => (
           <>
-            <ListItem button key={text} onClick={() => { setColor(text) }} >
+            <ListItem button key={Math.random()} onClick={() => { setColor(text); }}>
               <ListItemIcon>
-                {text === 'light' && <FlareIcon className={classes[text]} fontSize="large" /> }
+                {text === 'light' && <FlareIcon className={classes[text]} fontSize="large" />}
                 {text === 'dark' && <Brightness3Icon className={classes[text]} fontSize="large" />}
-                {index > 1 && <CheckBoxOutlineBlankRoundedIcon className={classes[text]} fontSize="large"  />}
+                {index > 1 && <CheckBoxOutlineBlankRoundedIcon className={classes[text]} fontSize="large" />}
               </ListItemIcon>
               <br />
               <br />
               <br />
             </ListItem>
-            <Divider varient="middle" light />
+            <Divider varient="middle" key={text} light />
           </>
         ))}
       </List>
@@ -81,7 +82,7 @@ export default function ColorPicker() {
         <PlanitIcon />
       </IconButton>
       <SwipeableDrawer
-        anchor={"left"}
+        anchor="left"
         open={isOpen}
         onClose={toggleDrawer()}
         onOpen={toggleDrawer()}
@@ -91,4 +92,6 @@ export default function ColorPicker() {
       </SwipeableDrawer>
     </div>
   );
-}
+};
+
+export default ColorPicker;

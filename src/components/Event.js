@@ -1,4 +1,6 @@
-import { Container, Card, CardContent, CardMedia, useTheme, Typography, Grid, Button } from '@material-ui/core';
+import {
+  Card, CardContent, CardMedia, Typography,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import CardActions from '@material-ui/core/CardActions';
@@ -7,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditIcon from '@material-ui/icons/Edit';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+// import MoreVertIcon from '@material-ui/icons/MoreVert';
 import React from 'react';
 import { useRouter } from 'next/router';
 
@@ -16,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     width: '800px',
   },
   cardContent: {
-    padding: "1em"
+    padding: '1em',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -30,11 +32,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Event = (props) => {
+const Event = function (props) {
   const router = useRouter();
 
   const {
-    name, description, owner, location, duration, status, time, window, rsvps, _id, photo_url
+    name, description, owner, location, duration, status, time, window, rsvps, _id, photo_url,
   } = props;
 
   const photo = photo_url;
@@ -49,20 +51,24 @@ const Event = (props) => {
 
   return (
     <Card color="primary" className={classes.card}>
-      {photo && <CardMedia
+      {photo && (
+      <CardMedia
         image={photo}
-      />}
+      />
+      )}
       <CardContent className={classes.cardContent}>
         <Typography
           variant="h4"
           color="inherit"
-        >{name}</Typography>
+        >
+          {name}
+        </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="share">
-          <ShareIcon onClick={() => { navigator.clipboard.writeText(`http://localhost:3000/invite-page/${_id}`) }} />
+          <ShareIcon onClick={() => { navigator.clipboard.writeText(`http://localhost:3000/invite-page/${_id}`); }} />
         </IconButton>
-        <IconButton aria-label="edit" onClick={() => { router.push(`/event/${_id}`) }}>
+        <IconButton aria-label="edit" onClick={() => { router.push(`/event/${_id}`); }}>
           <EditIcon />
         </IconButton>
         <IconButton
@@ -83,11 +89,8 @@ const Event = (props) => {
           </Typography>
         </CardContent>
       </Collapse>
-    </Card >
-  )
-}
+    </Card>
+  );
+};
 
 export default Event;
-
-
-

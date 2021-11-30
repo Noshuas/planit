@@ -1,10 +1,11 @@
 const express = require('express');
-const loginRouter = express.Router();
-const passport = require('../middleware/').login;
-const nextServer = require('../app.js');
-const {addUser} = require('../../database/controllers/userController');
 
-loginRouter.get('/', (req, res, next) => {
+const loginRouter = express.Router();
+const passport = require('../middleware').login;
+require('../app');
+const { addUser } = require('../../database/controllers/userController');
+
+loginRouter.get('/', (req, res) => {
   if (req.isAuthenticated()) {
     res.redirect('/home');
   } else {
@@ -27,13 +28,16 @@ loginRouter.get('/login', (req, res, next) => {
   } else {
     next();
   }
-})
-
-loginRouter.post('/login',
-passport.authenticate('local'), (req, res) => {
-  // res.status(200).send('/home');
-  res.redirect('/home')
 });
+
+loginRouter.post(
+  '/login',
+  passport.authenticate('local'),
+  (req, res) => {
+  // res.status(200).send('/home');
+    res.redirect('/home');
+  },
+);
 
 loginRouter.get('/logout', (req, res) => {
   req.logout();
@@ -45,12 +49,12 @@ loginRouter.get('/logout', (req, res) => {
 loginRouter.post('/signup', (req, res) => {
   req.body.events = [];
   addUser(req.body)
-    .then(mongo => {
+    .then(() => {
       res.redirect('/login');
     })
-    .catch(error => {
-      res.send('Error adding user.');
-    })
+    .catch((err) => {
+      res.send(`Error adding user: ${err}`);
+    });
 });
 
 module.exports.loginRouter = loginRouter;

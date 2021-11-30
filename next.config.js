@@ -3,14 +3,12 @@ const withTM = require('next-transpile-modules')([
   '@fullcalendar/interaction',
   '@fullcalendar/react',
   '@fullcalendar/timegrid',
-  '@fullcalendar/daygrid'
+  '@fullcalendar/daygrid',
 ]);
 
 module.exports = withTM({
   reactStrictMode: true,
   images: {
-    domains: ['wallpaperaccess.com', 'res.cloudinary.com']
-  }
-})
-
-
+    domains: ['wallpaperaccess.com', 'res.cloudinary.com'],
+  },
+});

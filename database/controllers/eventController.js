@@ -1,5 +1,5 @@
-const { Event } = require('../models/eventSchema.js');
-const { User } = require('../models/userSchema.js');
+const { Event } = require('../models/eventSchema');
+const { User } = require('../models/userSchema');
 
 /*
 options = {
@@ -11,57 +11,56 @@ options = {
 }
 */
 
-const fetchEvents = async (options = { count: 30, where: null }) => {
-  const { count, where } = options;
+const fetchEvents = async ({ count, where } = { count: 30, where: null }) => {
   if (where) {
-    try{
+    try {
       const { property, value } = where;
-      let data = await Event.find({}).where(property).equals(value).limit(count);
+      const data = await Event.find({}).where(property).equals(value).limit(count);
       return data;
-    } catch(err) {
+    } catch (err) {
       console.error(err);
-      throw err;
+      return err;
     }
   } else {
     try {
-      let data = await Event.find({}).limit(count);
+      const data = await Event.find({}).limit(count);
       return data;
-    } catch(err) {
+    } catch (err) {
       console.error(err);
-      throw err;
+      return err;
     }
   }
-}
+};
 
 const addEvent = async (event, email) => {
   try {
     const { _id } = await Event.create(event);
     const whereParam = { email };
-    const whatParam = { $push: { events: _id }};
+    const whatParam = { $push: { events: _id } };
     await User.updateOne(whereParam, whatParam);
     return {
-      message: "Event Added",
-      event_id: _id
-    }
-  } catch(err) {
+      message: 'Event Added',
+      event_id: _id,
+    };
+  } catch (err) {
     console.error(err);
-    throw err;
+    return err;
   }
-}
+};
 
 const deleteAllEvents = async () => {
   try {
     await Event.deleteMany({});
     return {
-      message: "Events Deleted"
-    }
-  } catch(err) {
+      message: 'Events Deleted',
+    };
+  } catch (err) {
     console.error(err);
-    throw err;
+    return err;
   }
-}
+};
 
-//This will take in an array of options objects, and do all of the updates asynchronously
+// This will take in an array of options objects, and do all of the updates asynchronously
 /*
   [
     {
@@ -79,29 +78,29 @@ const deleteAllEvents = async () => {
 */
 
 const updateEvent = async (updateArr) => {
-  try{
-    await Promise.all(updateArr.map(async (update) => {
+  try {
+    const result = await Promise.all(updateArr.map(async ({ what, where }) => {
       try {
-        let { what, where } = update;
-        let whereParam = {};
+        const whereParam = {};
         whereParam[where.property] = where.value;
-        let whatParam = {};
+        const whatParam = {};
         whatParam[what.method] = {};
         whatParam[what.method][what.field] = what.value;
-        let res = await Event.updateOne(whereParam, whatParam);
-      } catch(err) {
+        return await Event.updateOne(whereParam, whatParam);
+      } catch (err) {
         console.error(err);
-        throw err;
+        return err;
       }
-    }))
+    }));
     return {
-      message: "all updates complete"
-    }
-  } catch(err) {
+      message: 'all updates complete',
+      result,
+    };
+  } catch (err) {
     console.error(err);
-    throw err;
+    return err;
   }
-}
+};
 
 module.exports = {
   fetchEvents,

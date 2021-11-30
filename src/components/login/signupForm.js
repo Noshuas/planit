@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Container, TextField, Input, Button } from '@material-ui/core';
+import React, { useState } from 'react';
+import { TextField, Button } from '@material-ui/core';
 import axios from 'axios';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 const SignupForm = () => {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -13,42 +12,40 @@ const SignupForm = () => {
 
   const handleChange = (setStateFunc) => (e) => {
     setStateFunc(e.currentTarget.value);
-  }
+  };
 
   const createAccount = (e) => {
     e.preventDefault();
     if (email && password && name) {
       setIsProcesseingSignup(true);
       // Submit user credentials to create account
-      axios.post('/signup', {email, name, password})
-        .then(res => {
+      axios.post('/signup', { email, name, password })
+        .then((res) => {
           if (res.status === 200) {
             // immediately log the use in
-            axios.post('/login', {email, password})
-              .then(login => {
+            axios.post('/login', { email, password })
+              .then((login) => {
                 if (login.status === 200) {
-                  router.push('/home')
+                  router.push('/home');
                 }
-              })
-          } else {
-
+              });
           }
         })
-        .catch(err => {
-          console.log('Registration failed');
+        .catch((err) => {
+          console.log('Registration failed:', err);
           setIsProcesseingSignup(false);
         });
     } else {
       console.log('FIELD VALIDATION FAILED');
     }
-  }
+  };
 
   return (
-    <form noValidate autoComplete="off" >
+    <form noValidate autoComplete="off">
       <TextField
         variant="outlined"
-        autoFocus={true}
-        required={true}
+        autoFocus
+        required
         type="email"
         id="email"
         name="email"
@@ -58,7 +55,7 @@ const SignupForm = () => {
       />
       <TextField
         variant="outlined"
-        required={true}
+        required
         type="password"
         id="password"
         name="password"
@@ -68,7 +65,7 @@ const SignupForm = () => {
       />
       <TextField
         variant="outlined"
-        required={true}
+        required
         type="name"
         id="name"
         name="name"

@@ -9,7 +9,6 @@ const uuidv4 = require('uuid').v4;
  * @returns {array} Array of event objects representing the availability of a user. Each event object has a 'start', 'end', 'id', and 'title' property.
  */
 const computeAvailability = (window, events) => {
-
   const availability = [];
   const title = 'Available block';
 
@@ -18,7 +17,7 @@ const computeAvailability = (window, events) => {
   const windowEnd = Date.parse(window.end);
 
   // Iterate through every 30-minute block within the window
-  for (var i = windowStart; i < windowEnd; i+= 1800000) {
+  for (let i = windowStart; i < windowEnd; i += 1800000) {
     let blockStart = i;
     let blockEnd = i + 1800000;
 
@@ -29,10 +28,10 @@ const computeAvailability = (window, events) => {
       if (eventStart < blockStart && eventEnd > blockStart) {
         // event starts before block but extends past blockstart
         return false;
-      } else if (eventStart > blockStart && eventEnd < blockEnd) {
+      } if (eventStart > blockStart && eventEnd < blockEnd) {
         // event starts and ends within block
         return false;
-      } else if (eventEnd > blockEnd && eventStart < blockEnd) {
+      } if (eventEnd > blockEnd && eventStart < blockEnd) {
         // event ends after block but starts before blockend
         return false;
       }

@@ -1,5 +1,4 @@
-import React, { createContext, useState } from 'react';
-import Cookie from 'js-cookie';
+import { createContext } from 'react';
 
 const Account = createContext({});
 

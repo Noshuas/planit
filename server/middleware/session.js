@@ -1,6 +1,6 @@
 const session = require('express-session');
 const cookie = require('cookie-parser');
-const { v4: uuidv4 } = require('uuid');
+// const { v4: uuidv4 } = require('uuid');
 
 // const sessions = {};
 
@@ -9,14 +9,14 @@ const sessionParser = session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 600000
-  }
+    maxAge: 600000,
+  },
 });
 
 const cookieParser = cookie('ivanswrld');
 
 const sessionManager = (req, res, next) => {
-  let { user } = req;
+  const { user } = req;
   res.cookie('logged-in', req.isAuthenticated());
 
   if (user) {
@@ -26,7 +26,7 @@ const sessionManager = (req, res, next) => {
   }
 
   next();
-}
+};
 
 module.exports.sessionParser = sessionParser;
 module.exports.cookieParser = cookieParser;

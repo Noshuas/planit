@@ -2,8 +2,8 @@ const mockEvent1 = {
   name: 'Tarvent',
   description: 'Hey everybody come to my event, it\'s going to be lit!',
   owner: 'Tarrin',
-  owner_email: "tarrinneal@gmail.com",
-  photo_url: "https://res.cloudinary.com/du60eiu3e/image/upload/v1626405959/ekt4pgyc1swdf5kydbzx.jpg",
+  owner_email: 'tarrinneal@gmail.com',
+  photo_url: 'https://res.cloudinary.com/du60eiu3e/image/upload/v1626405959/ekt4pgyc1swdf5kydbzx.jpg',
   location: 'Tarrin\'s house',
   duration: 7200,
   status: 'pending',
@@ -69,15 +69,15 @@ const mockEvent1 = {
         },
       ],
     },
-  ]
-}
+  ],
+};
 
 const mockEvent2 = {
   name: 'Smoked Meat Appreciation',
   description: 'Hey everybody come to my event, It\'s going to be smokin',
   owner: 'Tarrin',
-  owner_email: "jacobsantala@email.com",
-  photo_url: "https://res.cloudinary.com/du60eiu3e/image/upload/v1625849949/sl6taxqhxovgsgufiqlj.jpg",
+  owner_email: 'jacobsantala@email.com',
+  photo_url: 'https://res.cloudinary.com/du60eiu3e/image/upload/v1625849949/sl6taxqhxovgsgufiqlj.jpg',
   location: 'My Place',
   duration: 7200,
   status: 'Confirmed',
@@ -143,63 +143,10 @@ const mockEvent2 = {
         },
       ],
     },
-  ]
-}
-
-const mockEvent3 = {
-  name: 'Brake Pad Sales',
-  description: 'Does this suit make me look fat?',
-  owner: 'Tarrin',
-  owner_email: "tommy@boy.com",
-  photo_url: "",
-  location: 'Tarrin\'s house',
-  duration: 7200,
-  status: 'pending',
-  time: null,
-  window: {
-    start: '2021-07-10T22:30:00.002Z',
-    end: '2021-07-20T22:30:00.002Z',
-  },
-  rsvps: [
-    {
-      name: 'David Spade',
-      email: 'David@spade.com',
-      availability: [
-        {
-          start: '2021-07-10T22:30:00.002Z',
-          end: '2021-07-11T00:30:00.002Z',
-        },
-        {
-          start: '2021-07-10T02:00:00.002Z',
-          end: '2021-07-10T04:00:00.002Z',
-        },
-        {
-          start: '2021-07-10T21:00:00.002Z',
-          end: '2021-07-11T02:30:00.002Z',
-        },
-        {
-          start: '2021-07-12T04:00:00.002Z',
-          end: '2021-07-12T10:00:00.002Z',
-        },
-        {
-          start: '2021-07-15T06:30:00.002Z',
-          end: '2021-07-15T10:30:00.002Z',
-        },
-        {
-          start: '2021-07-16T10:00:00.002Z',
-          end: '2021-07-16T12:00:00.002Z',
-        },
-      ],
-    },
-  ]
-}
-
+  ],
+};
 
 module.exports = {
   mockEvent1,
   mockEvent2,
-  // mockEvent3
-}
-
-// console.log(JSON.stringify(module.exports.SingleEventData, null, 2));
-// console.log(JSON.stringify(module.exports.MultipleEventsData, null, 2))
+};

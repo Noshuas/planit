@@ -1,9 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from '../styles/Login.module.css';
+import styles from '../../styles/Login.module.css';
 
 const LoginNav = ({ currentPage }) => {
-
   const links = [
     {
       href: '/login',
@@ -14,16 +13,16 @@ const LoginNav = ({ currentPage }) => {
       label: 'Sign up',
     }];
 
-  const linksHTML = links.map((link, index) => {
-    if (currentPage === link.href) {
-      return <h3 key={`link_${index}`}>{link.label}</h3>;
-    } else {
-      return (
-        <Link key={`link_${index}`} href={link.href}>
-          <a><h3 >{link.label}</h3></a>
-        </Link>
-      );
+  // map through our array of link info
+  const linksHTML = links.map(({ label, href }) => {
+    if (currentPage === href) {
+      return <h3 key={`link_${label}`}>{label}</h3>;
     }
+    return (
+      <Link key={`link_${label}`} href={href}>
+        <a href={href}><h3>{label}</h3></a>
+      </Link>
+    );
   });
 
   return (

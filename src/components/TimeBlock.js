@@ -1,33 +1,36 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-alert */
+/* eslint-disable no-undef */
 import React, { useState } from 'react';
-import FullCalendar from '@fullcalendar/react'
-import interactionPlugin, { Draggable } from '@fullcalendar/interaction'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import { INITIAL_EVENTS, createEventId, cleanData } from './helpers/event-utils'
-import Button from '@material-ui/core/Button'
-import style from '.././styles/Availability.module.css'
+import FullCalendar from '@fullcalendar/react';
+import interactionPlugin from '@fullcalendar/interaction';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import Button from '@material-ui/core/Button';
+import { INITIAL_EVENTS, createEventId, cleanData } from './helpers/event-utils';
+import style from '../styles/Availability.module.css';
 import FetchGoogleCalendar from './FetchGoogleCalendar';
 
-export default function TimeBlock(props) {
-
+export default function TimeBlock({
+  onClose, googleClientId, windowEnd, windowStart,
+}) {
   const [currentEvents, setCurrentEvents] = useState([]);
-  const [initialEvents, setInitialEvents] = useState(INITIAL_EVENTS);
+  const [initialEvents] = useState(INITIAL_EVENTS);
   const [googEvents, setGoogEvents] = useState([]);
-  const [goog, setGoog] = useState([]);
+  // const [goog, setGoog] = useState([]);
 
   const handleDateSelect = (selectInfo) => {
-    let calendarApi = selectInfo.view.calendar
+    const calendarApi = selectInfo.view.calendar;
 
-    calendarApi.unselect()
+    calendarApi.unselect();
 
     calendarApi.addEvent({
       id: createEventId(),
       title: 'new availability',
       start: selectInfo.startStr,
       end: selectInfo.endStr,
-    })
-
-  }
+    });
+  };
 
   const storeGoogleAvailability = (timeblocks) => {
     // setInitialEvents(timeblocks);
@@ -36,44 +39,44 @@ export default function TimeBlock(props) {
 
   const handleEventClick = (clickInfo) => {
     if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      clickInfo.event.remove()
+      clickInfo.event.remove();
     }
-  }
+  };
 
   const handleEvents = (events) => {
-    setCurrentEvents(events)
-  }
+    setCurrentEvents(events);
+  };
 
   const saveTimeSlots = () => {
     const availability = cleanData(currentEvents);
-    props.onClose(null, availability);
-  }
+    onClose(null, availability);
+  };
 
   return (
     <div>
       <FetchGoogleCalendar
-        googleClientId={props.googleClientId}
+        googleClientId={googleClientId}
         storeGoogleAvailability={storeGoogleAvailability}
-        windowStart={props.windowStart}
-        windowEnd={props.windowEnd}
+        windowStart={windowStart}
+        windowEnd={windowEnd}
       />
       <FullCalendar
         plugins={[interactionPlugin, timeGridPlugin, dayGridPlugin]}
         // key={initialEvents}
-        initialView='timeGridWeek'
+        initialView="timeGridWeek"
         validRange={{
-          start: props.windowStart,
-          end: props.windowEnd,
+          start: windowStart,
+          end: windowEnd,
         }}
-        editable={true}
-        selectable={true}
-        selectMirror={true}
-        nowIndicator={true}
+        editable
+        selectable
+        selectMirror
+        nowIndicator
         initialEvents={initialEvents}
         select={handleDateSelect}
         eventClick={handleEventClick}
         eventsSet={handleEvents}
-        eventColor='#985c9c'
+        eventColor="#985c9c"
         events={googEvents}
       />
       <div className={style.submit}>
@@ -81,7 +84,6 @@ export default function TimeBlock(props) {
           Submit
         </Button>
       </div>
-   </div>
-  )
+    </div>
+  );
 }
-

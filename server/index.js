@@ -1,9 +1,8 @@
 const express = require('express');
-const { eventRouter } = require('./routes/events.js');
-const { loginRouter } = require('./routes/login.js');
+const { eventRouter } = require('./routes/events');
+const { loginRouter } = require('./routes/login');
 
 const app = express();
-
 
 const initRoutes = (httpServer) => {
   httpServer.use('/api/events', eventRouter);

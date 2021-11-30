@@ -1,6 +1,21 @@
 {
   "env": {
-    "jest": true
+    "jest": true,
+    "es6": true,
+    "browser": true
   },
-  "extends": ["next", "next/core-web-vitals"]
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    // "airbnb"
+  ],
+  "rules": {
+    "react/jsx-filename-extension": "off",
+    "react/prop-types": "off",
+    "no-useless-catch": "off",
+    "no-plusplus": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/function-component-definition": "off",
+    "no-console": "off"
+  }
 }

@@ -1,18 +1,18 @@
 module.exports = {
   presets: [
-      '@babel/preset-react'
+    '@babel/preset-react',
   ],
   overrides: [
-      {
-          include: ['./node_modules'],
-          plugins: [
-              [
-                  'babel-plugin-transform-require-ignore',
-                  {
-                      extensions: ['.css']
-                  }
-               ]
-          ]
-      }
-  ]
+    {
+      include: ['./node_modules'],
+      plugins: [
+        [
+          'babel-plugin-transform-require-ignore',
+          {
+            extensions: ['.css'],
+          },
+        ],
+      ],
+    },
+  ],
 };

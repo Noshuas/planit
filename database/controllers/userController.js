@@ -1,6 +1,7 @@
-const { User } = require('../models/userSchema.js');
+const { User } = require('../models/userSchema');
 
-//Takes in an options object that allows you to specify what propert and what value you want to search by
+// Takes in an options object that allows you to specify
+// what propert and what value you want to search by
 /**
  * example:
  * {
@@ -8,44 +9,37 @@ const { User } = require('../models/userSchema.js');
  *    value: '60ecd6fe850cd99c5c552ce4'
  * }
  */
-const fetchUser = ({ property, value }) => {
-  return new Promise((resolve, reject) => {
-    User.find({}).where(property).equals(value)
+const fetchUser = ({ property, value }) => new Promise((resolve) => {
+  User.find({}).where(property).equals(value)
+    .then((response) => {
+      resolve(response);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+
+const addUser = (user) => new Promise((resolve) => {
+  User.create(user)
     .then((response) => {
       resolve(response);
     }).catch((err) => {
       console.error(err);
-      reject(err);
-    })
-  })
-};
-
-const addUser = (user) => {
-  return new Promise((resolve, reject) => {
-    User.create(user)
-    .then((response) => {
-      resolve(response)
-    }).catch((err) => {
-      console.error(err);
-      reject(err);
     });
-  })
-}
+});
 
-const deleteUser = (email) => {
-  return new Promise((resolve, reject) => {
-    User.deleteOne({}).where('email').equals(email)
+const deleteUser = (email) => new Promise((resolve) => {
+  User.deleteOne({}).where('email').equals(email)
     .then((res) => {
       resolve(res);
-    }).catch((err) => {
-      console.error(err);
-      reject(err);
     })
-  })
-}
+    .catch((err) => {
+      console.error(err);
+    });
+});
 
 module.exports = {
   fetchUser,
   addUser,
-  deleteUser
-}
+  deleteUser,
+};

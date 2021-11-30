@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState } from 'react';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
 import Theme from './theme';
@@ -8,7 +8,7 @@ import Theme from './theme';
 const colors = {
   light: {
     primary: { main: '#fff' },
-    background: { default: '#cac4ce' }
+    background: { default: '#cac4ce' },
   },
   dark: {
     primary: { main: '#000' },
@@ -17,29 +17,29 @@ const colors = {
   },
   red: {
     primary: { main: '#c92d39' },
-    background: { default: '#fbd8e2' }
+    background: { default: '#fbd8e2' },
   },
   orange: {
     primary: { main: '#ef8d22' },
-    background: { default: '#faebd7' }
+    background: { default: '#faebd7' },
   },
   yellow: {
     primary: { main: '#e5b53b' },
-    background: { default: '#fff6d6' }
+    background: { default: '#fff6d6' },
   },
   green: {
     primary: { main: '#488a12' },
-    background: { default: '#e2fbcd' }
+    background: { default: '#e2fbcd' },
   },
   blue: {
     primary: { main: '#4262c2' },
-    background: { default: '#d9effb' }
+    background: { default: '#d9effb' },
   },
   violet: {
     primary: { main: '#834187' },
-    background: { default: '#f4e3f5' }
-  }
-}
+    background: { default: '#f4e3f5' },
+  },
+};
 
 const CustomThemeProvider = ({ children }) => {
   const [color, setColor] = useState('violet');
@@ -54,35 +54,35 @@ const CustomThemeProvider = ({ children }) => {
 
   theme.props = {
     MuiTextField: { size: 'small' },
-    MuiButton: { color: 'primary' }
-  }
+    MuiButton: { color: 'primary' },
+  };
 
   theme.overrides = {
     MuiCardMedia: {
       root: {
         height: '150px',
         postion: 'absolute',
-      }
+      },
     },
     MuiTextField: {
       root: {
         margin: '10px',
-      }
+      },
     },
     MuiButton: {
       root: {
         marginTop: '1em',
-      }
+      },
     },
-  }
+  };
 
   return (
-    <Theme.Provider value={{ setColor }} >
+    <Theme.Provider value={{ setColor }}>
       <ThemeProvider theme={theme}>
         {children}
       </ThemeProvider>
     </Theme.Provider>
-  )
-}
+  );
+};
 
 export default CustomThemeProvider;

@@ -1,4 +1,4 @@
-const { Session } = require('../models/sessionSchema.js');
+const { Session } = require('../models/sessionSchema');
 
 // const fetchSession = (email) => {
 //   return new Promise((resolve, reject) => {
@@ -46,21 +46,18 @@ const { Session } = require('../models/sessionSchema.js');
 //   })
 // }
 
-const deleteAllSessions = async () => {
-  return new Promise((resolve, reject) => {
-    Session.deleteMany({})
+const deleteAllSessions = async () => new Promise((resolve) => {
+  Session.deleteMany({})
     .then((response) => {
       resolve(response);
     }).catch((err) => {
       console.error(err);
-      reject(err);
-    })
-  })
-}
+    });
+});
 
 module.exports = {
   // fetchSession,
   // addSession,
   // deleteSession,
-  deleteAllSessions
-}
+  deleteAllSessions,
+};

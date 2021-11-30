@@ -2,14 +2,12 @@ import React, { createContext, useState } from 'react';
 import Cookie from 'js-cookie';
 import Account from '../accountContext';
 
-
-const AccountProvider = ({ children }) => {
-  //sets up the cookie state which will be passed as context
+const AccountProvider = function ({ children }) {
+  // sets up the cookie state which will be passed as context
   const [cookie, setCookie] = useState({});
 
-  //on page render, set cookie state
+  // on page render, set cookie state
   React.useEffect(() => {
-
     // This method updates cookie state
     const updateCookies = () => {
       console.log(Cookie.get());
@@ -19,7 +17,7 @@ const AccountProvider = ({ children }) => {
         'logged-in': Cookie.get('logged-in'),
         update: updateCookies,
       });
-    }
+    };
 
     console.log(cookie);
     if (cookie['logged-in'] === undefined) {
@@ -31,7 +29,7 @@ const AccountProvider = ({ children }) => {
     <Account.provider value={cookie}>
       {children}
     </Account.provider>
-  )
-}
+  );
+};
 
 export default AccountProvider;

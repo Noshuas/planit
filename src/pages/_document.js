@@ -1,7 +1,9 @@
 import React from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, {
+  Html, Head, Main, NextScript,
+} from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
-import theme from '../themes/theme';
+// import theme from '../themes/theme';
 
 export default class MyDocument extends Document {
   render() {
@@ -9,7 +11,7 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* PWA primary color */}
-          <meta name="theme-color" content={"#834187"} />
+          <meta name="theme-color" content="#834187" />
           <meta name="description" content="An app for planning events" />
           <link
             rel="stylesheet"
@@ -53,10 +55,9 @@ MyDocument.getInitialProps = async (ctx) => {
   const sheets = new ServerStyleSheets();
   const originalRenderPage = ctx.renderPage;
 
-  ctx.renderPage = () =>
-    originalRenderPage({
-      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
-    });
+  ctx.renderPage = () => originalRenderPage({
+    enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
+  });
 
   const initialProps = await Document.getInitialProps(ctx);
 

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Container, TextField, Input, Button } from '@material-ui/core';
-import { useRouter } from 'next/router'
+import React, { useState } from 'react';
+import { TextField, Button } from '@material-ui/core';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 
 const LoginForm = () => {
@@ -11,7 +11,7 @@ const LoginForm = () => {
 
   const handleChange = (setStateFunc) => (e) => {
     setStateFunc(e.currentTarget.value);
-  }
+  };
 
   const submitLogin = (e) => {
     e.preventDefault();
@@ -33,14 +33,14 @@ const LoginForm = () => {
     } else {
       // TODO: logic for when login input is invalid
     }
-  }
+  };
 
   return (
-    <form noValidate autoComplete="off" >
+    <form noValidate autoComplete="off">
       <TextField
         variant="outlined"
-        autoFocus={true}
-        required={true}
+        autoFocus
+        required
         type="email"
         id="email"
         name="email"
@@ -50,7 +50,7 @@ const LoginForm = () => {
       />
       <TextField
         variant="outlined"
-        required={true}
+        required
         type="password"
         id="password"
         name="password"

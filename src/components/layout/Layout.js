@@ -6,17 +6,17 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import { SvgIcon } from '@material-ui/icons';
-import PlanitIcon from '../components/PlanitIcon';
+// import IconButton from '@material-ui/core/IconButton';
+// import MenuIcon from '@material-ui/icons/Menu';
+// import { SvgIcon } from '@material-ui/icons';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+// import PlanitIcon from './PlanitIcon';
 import ColorPicker from './ColorPicker';
-import { useRouter } from 'next/router'
-import Link from 'next/link'
 
-import Account from '../accountContext';
+import Account from '../../accountContext';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
@@ -30,32 +30,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// eslint-disable-next-line react/function-component-definition
 export default function ButtonAppBar({ children }) {
   const router = useRouter();
   const classes = useStyles();
   const [cookie, setCookie] = useState({ loggedIn: false });
 
-  //on page render, set cookie state
+  // on page render, set cookie state
   useEffect(() => {
     const updateCookies = () => {
       setCookie({
         name: Cookie.get('name'),
         email: Cookie.get('email'),
-        'loggedIn': Cookie.get('logged-in') === 'true',
+        loggedIn: Cookie.get('logged-in') === 'true',
         update: updateCookies,
       });
-    }
-    if (cookie['update'] === undefined) { updateCookies() }
+    };
+    if (cookie.update === undefined) { updateCookies(); }
   }, [cookie]);
-
-
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           <ColorPicker />
-          <Typography variant="h3" className={classes.title} onClick={() => { router.push('/home') }}>
+          <Typography variant="h3" className={classes.title} onClick={() => { router.push('/home'); }}>
             P L A N . I T
           </Typography>
           {cookie.loggedIn && <Button color="inherit"><Link href="/create-event">Create Event</Link></Button>}
