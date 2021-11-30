@@ -1,29 +1,18 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // import { useRouter } from 'next/router';
-import React, { useState, useContext } from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-// import Box from '@material-ui/core/Box';
-// import { shadows } from '@material-ui/system';
-import Card from '@material-ui/core/Card';
-// import CardActions from '@material-ui/core/CardActions';
-// import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-import ImageIcon from '@material-ui/icons/Image';
-import InputBase from '@material-ui/core/InputBase';
-import CreateIcon from '@material-ui/icons/Create';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Image from 'next/image';
-// import axios from 'axios';
 import DateFnsUtils from '@date-io/date-fns';
+import { Image, Link } from 'next';
+import React, { useState, useContext } from 'react';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import Dialog from '@material-ui/core/Dialog';
-import Typography from '@material-ui/core/Typography';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import Link from 'next/link';
-import accountContext from '../accountContext';
+import ImageIcon from '@material-ui/icons/Image';
+import CreateIcon from '@material-ui/icons/Create';
+import {
+  makeStyles, withStyles, Button, Card,
+  Grid, InputBase, Dialog, MuiDialogContent,
+  MuiDialogTitle, InputAdornment, Typography,
+} from '@material-ui/core/styles';
 
+import accountContext from '../components/accountContext';
 import styles from '../styles/Create.module.css';
 
 const useStyles = makeStyles((theme) => ({

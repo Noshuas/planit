@@ -1,19 +1,13 @@
 /* eslint-disable no-undef */
 /* eslint-disable camelcase */
-import {
-  Card, CardContent, CardMedia, Typography,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import EditIcon from '@material-ui/icons/Edit';
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
 import React from 'react';
 import { useRouter } from 'next/router';
+import { Share, ExpandMore, Edit } from '@material-ui/icons';
+import {
+  Card, CardContent, CardMedia, Typography,
+  makeStyles, CardActions, Collapse, IconButton,
+} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -68,10 +62,10 @@ const Event = ({
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="share">
-          <ShareIcon onClick={() => { navigator.clipboard.writeText(`http://localhost:3000/invite-page/${_id}`); }} />
+          <Share onClick={() => { navigator.clipboard.writeText(`http://localhost:3000/invite-page/${_id}`); }} />
         </IconButton>
         <IconButton aria-label="edit" onClick={() => { router.push(`/event/${_id}`); }}>
-          <EditIcon />
+          <Edit />
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {
@@ -81,7 +75,7 @@ const Event = ({
           aria-expanded={expanded}
           aria-label="show more"
         >
-          <ExpandMoreIcon />
+          <ExpandMore />
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>

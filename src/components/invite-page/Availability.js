@@ -1,17 +1,11 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-// import Button from '@material-ui/core/Button';
-import MuiDialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-// import MuiDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
+import {
+  withStyles, MuiDialog, MuiDialogTitle,
+  MuiDialogContent, IconButton, CloseIcon,
+  Typography,
+} from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import Theme from '../Theme'; // need to take a look
-// import style from '../styles/Availability.module.css';
-
 import TimeBlock from './TimeBlock';
 
 const styles = (theme) => ({

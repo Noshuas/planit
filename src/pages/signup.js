@@ -1,7 +1,5 @@
 import React from 'react';
-import LoginLayout from '../components/login/loginLayout';
-import LoginNav from '../components/login/loginNav';
-import SignupForm from '../components/login/signupForm';
+import { LoginLayout, LoginNav, SignupForm } from '../components/login';
 
 const Signup = () => (
   <LoginLayout>

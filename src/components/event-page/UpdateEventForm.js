@@ -1,9 +1,9 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-restricted-syntax */
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
-// import TextField from '@material-ui/core/TextField';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import styles from '../../styles/Event.module.css';

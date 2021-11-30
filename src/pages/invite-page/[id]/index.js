@@ -4,28 +4,16 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-alert */
 import axios from 'axios';
+import { Image, Script } from 'next';
 import React, { useState } from 'react';
-// import Backdrop from '@material-ui/core/Backdrop';
-import Button from '@material-ui/core/Button';
-// import CloseIcon from '@material-ui/icons/Close';
-// import IconButton from '@material-ui/core/IconButton';
-// import Fade from '@material-ui/core/Fade';
-import Dialog from '@material-ui/core/Dialog';
-// import MuiDialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-// import MuiDialogActions from '@material-ui/core/DialogActions';
-// import Modal from '@material-ui/core/Modal';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-// import { shadows } from '@material-ui/system';
-import { TextField } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 
-// import Head from 'next/head';
-import Image from 'next/image';
-import Script from 'next/script';
+import {
+  Button, Dialog, MuiDialogTitle, MuiDialogContent,
+  Paper, Typography, makeStyles, withStyles,
+  TextField,
+} from '@material-ui/core/';
+
 import styles from '../../../styles/invite-page.module.css';
 import Availability from '../../../components/invite-page/Availability';
 
@@ -59,16 +47,13 @@ const modalStyles = (theme) => ({
 });
 
 // RSVP Confirmation Modal window
-const DialogTitle = withStyles(modalStyles)((props) => {
-  const {
-    children, classes, onClose, ...other
-  } = props;
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-    </MuiDialogTitle>
-  );
-});
+const DialogTitle = withStyles(modalStyles)(({
+  children, classes, onClose, ...other
+}) => (
+  <MuiDialogTitle disableTypography className={classes.root} {...other}>
+    <Typography variant="h6">{children}</Typography>
+  </MuiDialogTitle>
+));
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -76,16 +61,9 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-// const DialogActions = withStyles((theme) => ({
-//   root: {
-//     margin: 0,
-//     padding: theme.spacing(1),
-//   },
-// }))(MuiDialogActions);
-
-const InvitePage = function ({
+const InvitePage = ({
   event, googleClientId, windowStart, windowEnd,
-}, ...props) {
+}, ...props) => {
   event = event[0];
 
   const classes = useStyles();

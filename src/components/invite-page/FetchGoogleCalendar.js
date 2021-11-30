@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
 import { Button } from '@material-ui/core';
 import styles from '../../styles/FetchGoogleCalendar.module.css';
@@ -13,15 +14,8 @@ const FetchGoogleCalendar = ({
   const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'];
   const SCOPES = 'https://www.googleapis.com/auth/calendar.events.freebusy';
 
-  const [status, setStatus] = useState('');
   const [calendarDataIsLoading, setCalendarDataIsLoading] = useState(false);
   const [showNoCalendarDataMsg, setShowNoCalendarDataMsg] = useState(false);
-
-  // Initialize Google API auth once component has mounted
-  // (Now gapi.load() runs outside this useEffect)
-  // useEffect(() => {
-  //   gapi.load('client:auth2', initClient);
-  // }, [initClient]);
 
   // Clear the 'no calendar data' message after three seconds
   useEffect(() => {
@@ -116,7 +110,9 @@ const FetchGoogleCalendar = ({
       <p className={styles.googleFetchHelpText}>
         <b>Plan.it</b>
         {' '}
-        can fill in your availability automatically from your Google Calendar. You will be able to adjust your availability before submitting.
+        can fill in your availability automatically
+        from your Google Calendar. You will be able
+        to adjust your availability before submitting.
       </p>
     </div>
   );
