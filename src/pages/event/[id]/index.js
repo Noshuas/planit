@@ -13,7 +13,7 @@ import axios from 'axios';
 // import mockData from '../../../../MockData/EventData';
 import styles from '../../../styles/Event.module.css';
 import generalStyles from '../../../styles/invite-page.module.css';
-import SetTimeForm from '../../../components/SetTimeForm';
+import SetTimeForm from '../../../components/event/SetTimeForm';
 import UpdateEventForm from '../../../components/UpdateEventForm';
 import helpers from '../../../components/tempHelp';
 

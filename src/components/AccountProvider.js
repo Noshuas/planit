@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Cookie from 'js-cookie';
-import Account from '../accountContext';
+import Account from './accountContext';
 
 const AccountProvider = ({ children }) => {
   // sets up the cookie state which will be passed as context

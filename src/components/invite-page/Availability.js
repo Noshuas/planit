@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { ThemeProvider } from '@material-ui/styles';
-import Theme from './Theme'; // need to take a look
+import Theme from '../Theme'; // need to take a look
 // import style from '../styles/Availability.module.css';
 
 import TimeBlock from './TimeBlock';

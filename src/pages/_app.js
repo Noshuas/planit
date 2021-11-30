@@ -10,7 +10,7 @@ import Head from 'next/head';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Layout from '../components/layout/Layout';
 // import Account from '../accountContext';
-import CustomThemeProvider from '../themes/CustomThemeProvider';
+import CustomThemeProvider from '../components/themes/CustomThemeProvider';
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;

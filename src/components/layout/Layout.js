@@ -14,7 +14,7 @@ import Link from 'next/link';
 // import PlanitIcon from './PlanitIcon';
 import ColorPicker from './ColorPicker';
 
-import Account from '../../accountContext';
+import Account from '../accountContext';
 
 const useStyles = makeStyles(() => ({
   root: {

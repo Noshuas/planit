@@ -27,7 +27,7 @@ import { useForm } from 'react-hook-form';
 import Image from 'next/image';
 import Script from 'next/script';
 import styles from '../../../styles/invite-page.module.css';
-import Availability from '../../../components/Availability';
+import Availability from '../../../components/invite-page/Availability';
 
 const sampleImg = 'https://wallpaperaccess.com/full/632782.jpg';
 

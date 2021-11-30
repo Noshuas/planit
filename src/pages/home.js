@@ -5,8 +5,8 @@ import {
 import axios from 'axios';
 // import Link from 'next/link';
 
-import Event from '../components/Event';
-import Account from '../accountContext';
+import Event from '../components/home/Event';
+import Account from '../components/accountContext';
 
 const useStyles = makeStyles({
   root: {

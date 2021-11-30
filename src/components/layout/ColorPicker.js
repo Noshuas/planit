@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core/colors';
 import FlareIcon from '@material-ui/icons/Flare';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
-import Theme from '../../themes/theme';
+import Theme from '../themes/theme';
 import PlanitIcon from './PlanitIcon';
 
 const useStyles = makeStyles({

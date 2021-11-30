@@ -7,9 +7,9 @@ import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import Button from '@material-ui/core/Button';
-import { INITIAL_EVENTS, createEventId, cleanData } from './helpers/event-utils';
+import { INITIAL_EVENTS, createEventId, cleanData } from '../helpers/event-utils';
 import style from '../styles/Availability.module.css';
-import FetchGoogleCalendar from './FetchGoogleCalendar';
+import FetchGoogleCalendar from '../FetchGoogleCalendar';
 
 export default function TimeBlock({
   onClose, googleClientId, windowEnd, windowStart,

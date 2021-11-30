@@ -12,7 +12,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 // import { useRouter } from 'next/router';
 import axios from 'axios';
-import Options from './Options';
+import Options from '../Options';
 
 const styles = (theme) => ({
   root: {
