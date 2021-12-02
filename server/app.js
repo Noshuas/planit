@@ -41,7 +41,7 @@ nextServer.prepare().then(() => {
   httpServer.use((req, res, next) => {
     const { method } = req;
     // proxy all get requests to render to the virtual
-    // next.js server.
+    // next.js5*9+ server.
     if (method === 'GET') {
       const parsedUrl = parse(req.url, true);
       const { pathname, query } = parsedUrl;
@@ -54,7 +54,8 @@ nextServer.prepare().then(() => {
     }
   });
 
-  httpServer.listen(3000, () => {
+  const server = httpServer.listen(3000, () => {
+    console.log(server.address().address);
     console.log('Listening on localhost:3000');
   });
 });

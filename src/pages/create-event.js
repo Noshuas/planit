@@ -8,9 +8,10 @@ import ImageIcon from '@material-ui/icons/Image';
 import CreateIcon from '@material-ui/icons/Create';
 import {
   makeStyles, withStyles, Button, Card,
-  Grid, InputBase, Dialog, MuiDialogContent,
-  MuiDialogTitle, InputAdornment, Typography,
-} from '@material-ui/core/styles';
+  Grid, InputBase, Dialog,
+  DialogContent as MuiDialogContent,
+  DialogTitle as MuiDialogTitle, InputAdornment, Typography,
+} from '@material-ui/core';
 
 import accountContext from '../components/accountContext';
 import styles from '../styles/Create.module.css';

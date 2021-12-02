@@ -1,11 +1,12 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useRouter, Image } from 'next';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Paper } from '@material-ui/core';
-import { SetTimeForm, Helpers, UpdateEventForm } from '../../../components/event';
+import { SetTimeForm, Helpers, UpdateEventForm } from '../../../components/event-page';
 import styles from '../../../styles/Event.module.css';
 import generalStyles from '../../../styles/invite-page.module.css';
 
@@ -89,9 +90,9 @@ const Event = ({ event }) => {
       setUploads('');
     }
   };
+
   return (
     <div className={generalStyles.window}>
-      {/* <div className={generalStyles.title}>P L A N . I T</div> */}
       <div className={styles.container}>
         <div>
           {uploaded && uploads

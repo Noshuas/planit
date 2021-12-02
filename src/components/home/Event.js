@@ -45,6 +45,19 @@ const Event = ({
     setExpanded(!expanded);
   };
 
+  const copyToClipBoard = () => {
+    const link = document.createElement('input');
+    document.body.appendChild(link);
+    link.value = `http://localhost:3000/invite-page/${_id}`;
+    link.focus();
+    link.select();
+    const result = document.execCommand('copy');
+    if (result) {
+      console.log('success');
+      link.remove();
+    }
+  };
+
   return (
     <Card color="primary" className={classes.card}>
       {photo && (
@@ -62,7 +75,7 @@ const Event = ({
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="share">
-          <Share onClick={() => { navigator.clipboard.writeText(`http://localhost:3000/invite-page/${_id}`); }} />
+          <Share onClick={copyToClipBoard} />
         </IconButton>
         <IconButton aria-label="edit" onClick={() => { router.push(`/event/${_id}`); }}>
           <Edit />

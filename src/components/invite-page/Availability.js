@@ -1,7 +1,9 @@
 import React from 'react';
 import {
-  withStyles, MuiDialog, MuiDialogTitle,
-  MuiDialogContent, IconButton, CloseIcon,
+  withStyles, MuiDialog,
+  DialogTitle as MuiDialogTitle,
+  DialogContent as MuiDialogContent,
+  IconButton, CloseIcon,
   Typography,
 } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';

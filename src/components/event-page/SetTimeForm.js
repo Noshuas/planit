@@ -1,10 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState } from 'react';
 import {
-  MuiDialogTitle, MuiDialogContent,
+  DialogTitle as MuiDialogTitle,
+  DialogContent as MuiDialogContent,
   makeStyles, withStyles, Button,
   Dialog, IconButton, Typography,
-} from '@material-ui/core/';
+} from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import axios from 'axios';
 import Options from './Options';
@@ -120,6 +121,7 @@ const SetTimeForm = ({ data, refeshData }) => {
   const handleOpen = () => {
     setOpen(true);
   };
+
   return (
     <>
       <Button variant="contained" component="span" onClick={handleOpen}>
