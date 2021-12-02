@@ -4,15 +4,18 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-alert */
 import axios from 'axios';
-import { Image, Script } from 'next';
+import Image from 'next/image';
+import Script from 'next/script';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import {
-  Button, Dialog, MuiDialogTitle, MuiDialogContent,
+  Button, Dialog,
+  DialogTitle as MuiDialogTitle,
+  DialogContent as MuiDialogContent,
   Paper, Typography, makeStyles, withStyles,
   TextField,
-} from '@material-ui/core/';
+} from '@material-ui/core';
 
 import styles from '../../../styles/invite-page.module.css';
 import Availability from '../../../components/invite-page/Availability';

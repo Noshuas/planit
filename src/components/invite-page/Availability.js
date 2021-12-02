@@ -1,11 +1,13 @@
 import React from 'react';
 import {
-  withStyles, MuiDialog,
+  withStyles,
+  Dialog as MuiDialog,
   DialogTitle as MuiDialogTitle,
   DialogContent as MuiDialogContent,
-  IconButton, CloseIcon,
+  IconButton,
   Typography,
 } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import { ThemeProvider } from '@material-ui/styles';
 import Theme from '../Theme'; // need to take a look
 import TimeBlock from './TimeBlock';
@@ -47,8 +49,6 @@ const DialogTitle = withStyles(styles)((props) => {
     </MuiDialogTitle>
   );
 });
-
-console.log('in Availability.js');
 
 const DialogContent = withStyles((theme) => ({
   root: {

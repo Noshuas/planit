@@ -9,6 +9,8 @@ import {
   makeStyles, CardActions, Collapse, IconButton,
 } from '@material-ui/core';
 
+import { copyInviteLink } from '../helpers';
+
 const useStyles = makeStyles((theme) => ({
   card: {
     width: '800px',
@@ -45,18 +47,7 @@ const Event = ({
     setExpanded(!expanded);
   };
 
-  const copyToClipBoard = () => {
-    const link = document.createElement('input');
-    document.body.appendChild(link);
-    link.value = `http://localhost:3000/invite-page/${_id}`;
-    link.focus();
-    link.select();
-    const result = document.execCommand('copy');
-    if (result) {
-      console.log('success');
-      link.remove();
-    }
-  };
+
 
   return (
     <Card color="primary" className={classes.card}>
@@ -75,7 +66,8 @@ const Event = ({
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="share">
-          <Share onClick={copyToClipBoard} />
+          {/* copyInviteLink returns a click handler */}
+          <Share onClick={copyInviteLink(_id)} />
         </IconButton>
         <IconButton aria-label="edit" onClick={() => { router.push(`/event/${_id}`); }}>
           <Edit />

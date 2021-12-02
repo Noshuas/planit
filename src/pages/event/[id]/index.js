@@ -9,6 +9,7 @@ import { Button, Paper } from '@material-ui/core';
 import { SetTimeForm, Helpers, UpdateEventForm } from '../../../components/event-page';
 import styles from '../../../styles/Event.module.css';
 import generalStyles from '../../../styles/invite-page.module.css';
+import { copyInviteLink } from '../../../components/helpers';
 
 const testImage = 'https://wallpaperaccess.com/full/632782.jpg';
 
@@ -183,7 +184,8 @@ const Event = ({ event }) => {
                 </span>
               </div>
             </Paper>
-            <Button variant="contained" component="span" onClick={() => { navigator.clipboard.writeText(`http://localhost:3000/invite-page/${test._id}`); }}>
+            {/* copyInviteLink returns a click handler */}
+            <Button variant="contained" component="span" onClick={copyInviteLink(test._id)}>
               Copy Link to Event
             </Button>
             <SetTimeForm data={test} refeshData={refeshData} />
