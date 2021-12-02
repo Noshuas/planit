@@ -1,16 +1,18 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // import { useRouter } from 'next/router';
 import DateFnsUtils from '@date-io/date-fns';
-import { Image, Link } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState, useContext } from 'react';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import ImageIcon from '@material-ui/icons/Image';
 import CreateIcon from '@material-ui/icons/Create';
 import {
+  DialogContent as MuiDialogContent,
+  DialogTitle as MuiDialogTitle,
   makeStyles, withStyles, Button, Card,
   Grid, InputBase, Dialog,
-  DialogContent as MuiDialogContent,
-  DialogTitle as MuiDialogTitle, InputAdornment, Typography,
+  InputAdornment, Typography,
 } from '@material-ui/core';
 
 import accountContext from '../components/accountContext';
