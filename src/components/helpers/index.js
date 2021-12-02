@@ -1,3 +1,3 @@
-import copyInviteLink from './copyToClipboard';
+import copyInviteLink from './copyInviteLink';
 
 export { copyInviteLink };
