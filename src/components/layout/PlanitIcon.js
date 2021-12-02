@@ -1,5 +1,5 @@
 import React from 'react';
-import { SvgIcon } from '@material-ui/core';
+import { SvgIcon } from '@mui/material';
 
 // eslint-disable-next-line react/function-component-definition
 const PlanitIcon = (props) => (

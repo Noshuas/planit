@@ -5,7 +5,7 @@ import '../styles/globals.css';
 import React from 'react';
 import Head from 'next/head';
 
-import CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from '@mui/material/CssBaseline';
 import Layout from '../components/layout/Layout';
 import CustomThemeProvider from '../components/themes/CustomThemeProvider';
 

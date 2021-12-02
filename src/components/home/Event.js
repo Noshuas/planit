@@ -3,11 +3,18 @@
 import clsx from 'clsx';
 import React from 'react';
 import { useRouter } from 'next/router';
-import { Share, ExpandMore, Edit } from '@material-ui/icons';
+import { Share, ExpandMore, Edit } from '@mui/icons-material';
 import {
-  Card, CardContent, CardMedia, Typography,
-  makeStyles, CardActions, Collapse, IconButton,
-} from '@material-ui/core';
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  CardActions,
+  Collapse,
+  IconButton,
+} from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 import { copyInviteLink } from '../helpers';
 
@@ -39,7 +46,6 @@ const Event = ({
   //   name, description, owner, location, duration, status, time, window, rsvps, _id, photo_url,
   // } = props;
 
-  console.log(photo);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -65,11 +71,14 @@ const Event = ({
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="share">
+        <IconButton aria-label="share" size="large">
           {/* copyInviteLink returns a click handler */}
           <Share onClick={copyInviteLink(_id)} />
         </IconButton>
-        <IconButton aria-label="edit" onClick={() => { router.push(`/event/${_id}`); }}>
+        <IconButton
+          aria-label="edit"
+          onClick={() => { router.push(`/event/${_id}`); }}
+          size="large">
           <Edit />
         </IconButton>
         <IconButton
@@ -79,7 +88,7 @@ const Event = ({
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
-        >
+          size="large">
           <ExpandMore />
         </IconButton>
       </CardActions>

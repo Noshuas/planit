@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
+import { createTheme, ThemeProvider, StyledEngineProvider, adaptV4Theme } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
 import Theme from './theme';
 
 // Create a theme instance.
@@ -44,13 +44,13 @@ const colors = {
 const CustomThemeProvider = ({ children }) => {
   const [color, setColor] = useState('violet');
 
-  const theme = createTheme({
+  const theme = createTheme(adaptV4Theme({
     spacing: 8,
     palette: {
       ...colors[color],
       error: { main: red.A400 },
     },
-  });
+  }));
 
   theme.props = {
     MuiTextField: { size: 'small' },
@@ -78,9 +78,11 @@ const CustomThemeProvider = ({ children }) => {
 
   return (
     <Theme.Provider value={{ setColor }}>
-      <ThemeProvider theme={theme}>
-        {children}
-      </ThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          {children}
+        </ThemeProvider>
+      </StyledEngineProvider>
     </Theme.Provider>
   );
 };

@@ -1,14 +1,14 @@
 import React from 'react';
 import {
-  withStyles,
   Dialog as MuiDialog,
   DialogTitle as MuiDialogTitle,
   DialogContent as MuiDialogContent,
   IconButton,
   Typography,
-} from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
-import { ThemeProvider } from '@material-ui/styles';
+} from '@mui/material';
+import withStyles from '@mui/styles/withStyles';
+import CloseIcon from '@mui/icons-material/Close';
+import { ThemeProvider, StyledEngineProvider } from '@mui/styles';
 import Theme from '../Theme'; // need to take a look
 import TimeBlock from './TimeBlock';
 
@@ -42,7 +42,11 @@ const DialogTitle = withStyles(styles)((props) => {
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography component="span" variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+          size="large">
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -62,29 +66,31 @@ export default function Availability({
 }) {
   return (
     <div>
-      <ThemeProvider theme={Theme}>
-        <Dialog
-          maxWidth="xl"
-          onClose={handleClose}
-          aria-labelledby="customized-dialog-title"
-          open={open}
-        >
-          <DialogTitle
-            id="customized-dialog-title"
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={Theme}>
+          <Dialog
+            maxWidth="xl"
             onClose={handleClose}
+            aria-labelledby="customized-dialog-title"
+            open={open}
           >
-            Add Availability
-          </DialogTitle>
-          <DialogContent>
-            <TimeBlock
-              googleClientId={googleClientId}
+            <DialogTitle
+              id="customized-dialog-title"
               onClose={handleClose}
-              windowStart={windowStart}
-              windowEnd={windowEnd}
-            />
-          </DialogContent>
-        </Dialog>
-      </ThemeProvider>
+            >
+              Add Availability
+            </DialogTitle>
+            <DialogContent>
+              <TimeBlock
+                googleClientId={googleClientId}
+                onClose={handleClose}
+                windowStart={windowStart}
+                windowEnd={windowEnd}
+              />
+            </DialogContent>
+          </Dialog>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </div>
   );
 }

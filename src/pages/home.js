@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { TextField, Grid, makeStyles } from '@material-ui/core';
+import { TextField, Grid } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import axios from 'axios';
 // import Link from 'next/link';
 import Event from '../components/home/Event';

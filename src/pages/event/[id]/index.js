@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Paper } from '@material-ui/core';
+import { Button, Paper } from '@mui/material';
 import { SetTimeForm, Helpers, UpdateEventForm } from '../../../components/event-page';
 import styles from '../../../styles/Event.module.css';
 import generalStyles from '../../../styles/invite-page.module.css';

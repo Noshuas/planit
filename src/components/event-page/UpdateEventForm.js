@@ -3,7 +3,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-restricted-syntax */
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import styles from '../../styles/Event.module.css';

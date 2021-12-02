@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-// import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import CheckBoxOutlineBlankRoundedIcon from '@material-ui/icons/CheckBoxOutlineBlankRounded';
-import IconButton from '@material-ui/core/IconButton';
+import makeStyles from '@mui/styles/makeStyles';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+// import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
+import IconButton from '@mui/material/IconButton';
 import {
   red, orange, yellow, green, blue, purple,
-} from '@material-ui/core/colors';
-import FlareIcon from '@material-ui/icons/Flare';
-import Brightness3Icon from '@material-ui/icons/Brightness3';
+} from '@mui/material/colors';
+import FlareIcon from '@mui/icons-material/Flare';
+import Brightness3Icon from '@mui/icons-material/Brightness3';
 import Theme from '../themes/theme';
 import PlanitIcon from './PlanitIcon';
 
@@ -78,7 +78,13 @@ const ColorPicker = () => {
 
   return (
     <div>
-      <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer()}>
+      <IconButton
+        edge="start"
+        className={classes.menuButton}
+        color="inherit"
+        aria-label="menu"
+        onClick={toggleDrawer()}
+        size="large">
         <PlanitIcon />
       </IconButton>
       <SwipeableDrawer

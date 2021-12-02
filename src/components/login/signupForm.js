@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button } from '@mui/material';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 

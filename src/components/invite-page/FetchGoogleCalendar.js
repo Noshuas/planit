@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 import styles from '../../styles/FetchGoogleCalendar.module.css';
 import computeAvailability from '../helpers/googleCalendarUtils';
 

@@ -6,7 +6,7 @@ import FullCalendar from '@fullcalendar/react';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { INITIAL_EVENTS, createEventId, cleanData } from '../helpers/event-utils';
 import style from '../../styles/Availability.module.css';
 import FetchGoogleCalendar from './FetchGoogleCalendar';

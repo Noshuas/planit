@@ -5,15 +5,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState, useContext } from 'react';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import ImageIcon from '@material-ui/icons/Image';
-import CreateIcon from '@material-ui/icons/Create';
+import ImageIcon from '@mui/icons-material/Image';
+import CreateIcon from '@mui/icons-material/Create';
 import {
   DialogContent as MuiDialogContent,
   DialogTitle as MuiDialogTitle,
-  makeStyles, withStyles, Button, Card,
-  Grid, InputBase, Dialog,
-  InputAdornment, Typography,
-} from '@material-ui/core';
+  Button,
+  Card,
+  Grid,
+  InputBase,
+  Dialog,
+  InputAdornment,
+  Typography,
+} from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
+import withStyles from '@mui/styles/withStyles';
 
 import accountContext from '../components/accountContext';
 import styles from '../styles/Create.module.css';

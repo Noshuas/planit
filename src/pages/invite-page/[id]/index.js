@@ -10,12 +10,17 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import {
-  Button, Dialog,
+  Button,
+  Dialog,
   DialogTitle as MuiDialogTitle,
   DialogContent as MuiDialogContent,
-  Paper, Typography, makeStyles, withStyles,
+  Paper,
+  Typography,
   TextField,
-} from '@material-ui/core';
+} from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
+import withStyles from '@mui/styles/withStyles';
 
 import styles from '../../../styles/invite-page.module.css';
 import Availability from '../../../components/invite-page/Availability';
