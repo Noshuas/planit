@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { TextField, Button } from '@mui/material';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import { getProviders, signIn } from "next-auth/react"
 
-const LoginForm = () => {
+const LoginForm = ( { providers }) => {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,38 +37,52 @@ const LoginForm = () => {
   };
 
   return (
-    <form noValidate autoComplete="off">
-      <TextField
-        variant="outlined"
-        autoFocus
-        required
-        type="email"
-        id="email"
-        name="email"
-        label="Email"
-        value={email}
-        onChange={handleChange(setEmail)}
-      />
-      <TextField
-        variant="outlined"
-        required
-        type="password"
-        id="password"
-        name="password"
-        label="Password"
-        value={password}
-        onChange={handleChange(setPassword)}
-      />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={submitLogin}
-        disabled={isLoggingIn}
-      >
-        {isLoggingIn ? 'Logging in...' : 'Log in'}
-      </Button>
-    </form>
+    // <form noValidate autoComplete="off">
+    //   <TextField
+    //     variant="outlined"
+    //     autoFocus
+    //     required
+    //     type="email"
+    //     id="email"
+    //     name="email"
+    //     label="Email"
+    //     value={email}
+    //     onChange={handleChange(setEmail)}
+    //   />
+    //   <TextField
+    //     variant="outlined"
+    //     required
+    //     type="password"
+    //     id="password"
+    //     name="password"
+    //     label="Password"
+    //     value={password}
+    //     onChange={handleChange(setPassword)}
+    //   />
+    //   <Button
+    //     variant="contained"
+    //     color="primary"
+    //     onClick={submitLogin}
+    //     disabled={isLoggingIn}
+    //   >
+    //     {isLoggingIn ? 'Logging in...' : 'Log in'}
+    //   </Button>
+    // </form>
+    <>
+      <button onClick={() => signIn()}>Sign in</button>
+      <p>{process.env.NEXT_PUBLIC_TESTA}</p>
+      <p>{process.env.NEXT_PUBLIC_TESTB}</p>
+      <p>{process.env.TESTA}</p>
+      <p>{process.env.TESTB}</p>
+    </>
   );
 };
 
 export default LoginForm;
+
+export async function getServerSideProps(context) {
+  const providers = await getProviders()
+  return {
+    props: { providers },
+  }
+}
