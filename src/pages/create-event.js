@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // import { useRouter } from 'next/router';
-import DateFnsUtils from '@date-io/date-fns';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState, useContext } from 'react';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { DatePicker, LocalizationProvider } from '@mui/lab';
+import TextField from '@mui/material/TextField';
 import ImageIcon from '@mui/icons-material/Image';
 import CreateIcon from '@mui/icons-material/Create';
 import {
@@ -283,7 +284,7 @@ export default function CreateEvent() {
                   </InputAdornment>
               )}
               />
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <div className={classes.eventWindow}>
                   <label>Event Window</label>
                   <DatePicker
@@ -291,6 +292,7 @@ export default function CreateEvent() {
                     value={windowStart}
                     onChange={setWindowStart}
                     animateYearScrolling
+                    renderInput={(params) => <TextField {...params} />}
                   />
                   <DatePicker
                     className={classes.inputField}
@@ -298,9 +300,10 @@ export default function CreateEvent() {
                     value={windowEnd}
                     onChange={setWindowEnd}
                     animateYearScrolling
+                    renderInput={(params) => <TextField {...params} />}
                   />
                 </div>
-              </MuiPickersUtilsProvider>
+              </LocalizationProvider>
 
               <InputBase
                 className={classes.inputField}

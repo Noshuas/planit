@@ -5,10 +5,11 @@ import {
   DialogContent as MuiDialogContent,
   IconButton,
   Typography,
+  StyledEngineProvider
 } from '@mui/material';
 import withStyles from '@mui/styles/withStyles';
 import CloseIcon from '@mui/icons-material/Close';
-import { ThemeProvider, StyledEngineProvider } from '@mui/styles';
+import { ThemeProvider } from '@mui/styles';
 import Theme from '../Theme'; // need to take a look
 import TimeBlock from './TimeBlock';
 
