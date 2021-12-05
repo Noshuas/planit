@@ -69,11 +69,9 @@ const LoginForm = ( { providers }) => {
     //   </Button>
     // </form>
     <>
-      <button onClick={() => signIn()}>Sign in</button>
-      <p>{process.env.NEXT_PUBLIC_TESTA}</p>
-      <p>{process.env.NEXT_PUBLIC_TESTB}</p>
-      <p>{process.env.TESTA}</p>
-      <p>{process.env.TESTB}</p>
+      <button onClick={() => signIn("google", { callbackUrl: `${window.location.origin}/home` })}>Sign in</button>
+      <button onClick={() => signIn()}>Sign in without redirect</button>
+
     </>
   );
 };

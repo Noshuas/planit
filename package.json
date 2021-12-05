@@ -32,7 +32,7 @@
     "@mui/lab": "^5.0.0-alpha.58",
     "@mui/material": "^5.2.2",
     "@mui/styles": "^5.2.2",
-    "@next-auth/mongodb-adapter": "^1.0.0",
+    "@next-auth/mongodb-adapter": "^0.0.2-next.298",
     "axios": "^0.24.0",
     "babel-jest": "^27.4.2",
     "babel-plugin-transform-require-ignore": "^0.1.1",

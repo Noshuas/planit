@@ -5,6 +5,7 @@ import axios from 'axios';
 // import Link from 'next/link';
 import Event from '../components/home/Event';
 import Account from '../components/accountContext';
+import { useSession, getSession } from 'next-auth/react';
 
 const useStyles = makeStyles({
   root: {
@@ -20,50 +21,31 @@ const useStyles = makeStyles({
 
 });
 
-const Home = () => {
-  const classes = useStyles();
-  const { name, loggedIn, update } = useContext(Account);
-  const [state, setState] = useState({
-    initialized: false,
-    events: [],
-    displayedEvents: [],
-  });
-
-  useEffect(() => {
-    if (typeof update === 'function') {
-      update();
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      session: await getSession(context)
     }
-    if (!state.initialized && loggedIn) {
-      const data = {
-        options: {
-          count: 20,
-          where: {
-            property: 'owner',
-            value: name,
-          },
-        },
-      };
+  }
+}
 
-      const config = {
-        method: 'get',
-        url: '/api/events',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        params: data,
-      };
+const Home = (props) => {
+  let [ events, setEvents ] = useState();
+  const { data: session, status } = useSession();
+  const authenticated = status === 'authenticated';
+  console.log(events, 'events');
 
-      axios(config)
-        .then((res) => res.data)
-        .then((events) => {
-          setState({
-            initialized: true,
-            events,
-            displayedEvents: events,
-          });
-        });
-    }
-  }, [loggedIn, name, update, state.initialized]);
+  useEffect(()=>{
+    if (!authenticated) return;
+
+    const { email } = session.user;
+
+    axios.get(`/api/events/${email}`)
+      .then(({ data })=> setEvents(data))
+      .catch(console.log);
+
+  }, [status])
+
 
   const search = (e) => {
     if (e.key === 'Enter') {
@@ -76,11 +58,15 @@ const Home = () => {
     }
   };
 
+  if (!events) return <h1>Loading</h1>
+
+
+
   return (
     <Grid container direction="column" alignItems="center" spacing={6}>
       <Grid
         container
-        className={classes.gridHeader}
+        // className={classes.gridHeader}
         alignItems="center"
         justifyContent="center"
         direction="row"
@@ -88,7 +74,7 @@ const Home = () => {
         <Grid item xs={2}>
           <TextField
             margin="dense"
-            className={classes.root}
+            // className={classes.root}
             id="search-bar"
             label="Search"
             variant="outlined"
@@ -96,7 +82,7 @@ const Home = () => {
           />
         </Grid>
       </Grid>
-      {state.displayedEvents.map((event) => (
+      {events.map((event) => (
         <Grid item key={Math.random()} xs={6}>
           <Event {...event} />
         </Grid>
