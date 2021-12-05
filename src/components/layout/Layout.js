@@ -44,7 +44,8 @@ export default function ButtonAppBar({ children }) {
       : null;
   })
 
-  if (status === 'loading') return;
+  if (status === 'loading')
+    return <p></p>;
 
   return (
     <div className={classes.root}>
