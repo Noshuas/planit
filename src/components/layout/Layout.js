@@ -1,20 +1,14 @@
 /* eslint-disable @next/next/link-passhref */
 import React, { useState, useEffect } from 'react';
-import Cookie from 'js-cookie';
 import makeStyles from '@mui/styles/makeStyles';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-// import IconButton from '@mui/material/IconButton';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import { SvgIcon } from '@mui/icons-material';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-// import PlanitIcon from './PlanitIcon';
 import ColorPicker from './ColorPicker';
-
-import Account from '../accountContext';
+import { useSession, signOut } from 'next-auth/react';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -34,20 +28,23 @@ const useStyles = makeStyles(() => ({
 export default function ButtonAppBar({ children }) {
   const router = useRouter();
   const classes = useStyles();
-  const [cookie, setCookie] = useState({ loggedIn: false });
+  const { data: session, status } = useSession();
+  const authenticated = status === 'authenticated'
+  const needAuth = !['home', '/event/'].some(str => {
+    return router.pathname.includes(str);
+  })
 
-  // on page render, set cookie state
-  useEffect(() => {
-    const updateCookies = () => {
-      setCookie({
-        name: Cookie.get('name'),
-        email: Cookie.get('email'),
-        loggedIn: Cookie.get('logged-in') === 'true',
-        update: updateCookies,
-      });
-    };
-    if (cookie.update === undefined) { updateCookies(); }
-  }, [cookie]);
+  useEffect(()=>{
+    if (status === 'loading') return;
+
+    !authenticated  /* Should find a way to do this with nextAuth */
+      ? needAuth
+        ? router.push('/login')
+        : null
+      : null;
+  })
+
+  if (status === 'loading') return;
 
   return (
     <div className={classes.root}>
@@ -57,16 +54,15 @@ export default function ButtonAppBar({ children }) {
           <Typography variant="h3" className={classes.title} onClick={() => { router.push('/home'); }}>
             P L A N . I T
           </Typography>
-          {cookie.loggedIn && <Button color="inherit"><Link href="/create-event">Create Event</Link></Button>}
-          {cookie.loggedIn && <Button color="inherit"><Link href="/logout">Logout</Link></Button>}
+          {authenticated && <Button color="inherit"><Link href="/create-event">Create Event</Link></Button>}
+          {authenticated && <Button color="inherit" onClick={signOut}>Logout</Button>}
+          {authenticated && <img src={session.user.image}/>}
         </Toolbar>
       </AppBar>
       <br />
       <br />
       <br />
-      <Account.Provider value={cookie}>
         {children}
-      </Account.Provider>
     </div>
   );
 }

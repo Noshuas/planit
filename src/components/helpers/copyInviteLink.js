@@ -5,8 +5,7 @@ const copyInviteLink = (id) => {
   // to do: create a floating pill notification saying "'[link]' copied to the clipboard";
   // this way we can copy from that rather than creating an element for a fraction of a second.
   return (() => {
-    const { hostname } = window.location;
-    const inviteLink = `http://${hostname}:3000/invite-page/${id}`;
+    const inviteLink = `http://localhost:3000/invite-page/${id}`;
     const link = document.createElement('input');
     document.body.appendChild(link);
     link.value = inviteLink;
