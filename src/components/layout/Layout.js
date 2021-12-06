@@ -5,6 +5,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import ColorPicker from './ColorPicker';
@@ -57,7 +58,7 @@ export default function ButtonAppBar({ children }) {
           </Typography>
           {authenticated && <Button color="inherit"><Link href="/create-event">Create Event</Link></Button>}
           {authenticated && <Button color="inherit" onClick={signOut}>Logout</Button>}
-          {authenticated && <img src={session.user.image}/>}
+          {authenticated && <Avatar src={session.user.image}/>}
         </Toolbar>
       </AppBar>
       <br />
