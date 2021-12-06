@@ -1,8 +1,7 @@
-import React from 'react';
 import Link from 'next/link';
 import styles from '../../styles/Login.module.css';
 
-const LoginNav = ({ currentPage }) => {
+export const LoginNav = ({ currentPage }) => {
   const links = [
     {
       href: '/login',
@@ -32,4 +31,3 @@ const LoginNav = ({ currentPage }) => {
   );
 };
 
-export default LoginNav;

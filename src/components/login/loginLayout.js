@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../../styles/Login.module.css';
 
-const LoginLayout = ({ children }) => (
+export const LoginLayout = ({ children }) => (
   <div className={styles.parentContainer}>
     <div className={styles.container}>
       {children}
@@ -9,4 +9,3 @@ const LoginLayout = ({ children }) => (
   </div>
 );
 
-export default LoginLayout;

@@ -3,7 +3,7 @@ import { TextField, Button } from '@mui/material';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
-const SignupForm = () => {
+export const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -85,4 +85,3 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
