@@ -1,50 +1,47 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import { TextField, Grid } from '@mui/material';
 import axios from 'axios';
 import Event from '../components/home/Event';
 import { useSession, getSession } from 'next-auth/react';
 
-
 export async function getServerSideProps(context) {
-  return {
-    props: {
-      session: await getSession(context)
-    }
+  const session = await getSession(context)
+  const props = {session}
+  const redirect = {
+    destination: '/login',
+    permanent: false,
   }
+
+  return (!session)
+    ? { redirect }
+    : { props }
 }
 
-const Home = (props) => {
-  let [events, setEvents] = useState();
+export const Home = (props) => {
+  const [events, setEvents] = useState();
+  const [displayedEvents, setDisplayed] = useState();
   const { data: session, status } = useSession();
-  const authenticated = status === 'authenticated';
-  const loading = status === 'loading';
 
   useEffect(() => {
-    if (!authenticated) return;
-
     const { email } = session.user;
+
     axios.get(`/api/events/${email}`)
-      .then(({ data }) => setEvents(data))
+      .then(({ data }) => {
+        setEvents(data)
+        setDisplayed(data)
+      })
       .catch(console.log);
   }, [status])
 
   const search = (e) => {
     if (e.key === 'Enter') {
-      const query = document.getElementById('search-bar').value;
-      const newDisplayed = state.events.filter((event) => event.name.indexOf(query) >= 0);
-      setState({
-        ...state,
-        displayedEvents: newDisplayed,
-      });
+      const query = e.target.value;
+      const newDisplayed = events.filter((event) => event.name.includes(query));
+      setDisplayed(newDisplayed);
     }
   };
 
-  return (loading)
-    ? <h1>Loading...</h1>
-    : (!authenticated)
-      ? useRouter().push('/login')
-      : (
+  return (
         <Grid container direction="column" alignItems="center" spacing={6}>
           <Grid
             container
@@ -62,7 +59,7 @@ const Home = (props) => {
               />
             </Grid>
           </Grid>
-          {events.map((event) => (
+          {displayedEvents && displayedEvents.map((event) => (
             <Grid item key={Math.random()} xs={6}>
               <Event {...event} />
             </Grid>
@@ -72,3 +69,4 @@ const Home = (props) => {
 };
 
 export default Home;
+

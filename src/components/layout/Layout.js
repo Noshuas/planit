@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import ColorPicker from './ColorPicker';
+// import ColorPicker from './ColorPicker';
 import { useSession, signOut } from 'next-auth/react';
 
 const useStyles = makeStyles(() => ({
@@ -27,44 +27,28 @@ const useStyles = makeStyles(() => ({
 
 // eslint-disable-next-line react/function-component-definition
 export default function ButtonAppBar({ children }) {
-  const router = useRouter();
+  const router = useRouter()
   const classes = useStyles();
   const { data: session, status } = useSession();
   const authenticated = status === 'authenticated'
-  const needAuth = !['home', '/event/'].some(str => {
-    return router.pathname.includes(str);
-  })
-
-  useEffect(()=>{
-    if (status === 'loading') return;
-
-    !authenticated  /* Should find a way to do this with nextAuth */
-      ? needAuth
-        ? router.push('/login')
-        : null
-      : null;
-  })
-
-  if (status === 'loading')
-    return <p></p>;
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <ColorPicker />
+          {/* <ColorPicker /> */}
           <Typography variant="h3" className={classes.title} onClick={() => { router.push('/home'); }}>
             P L A N . I T
           </Typography>
           {authenticated && <Button color="inherit"><Link href="/create-event">Create Event</Link></Button>}
           {authenticated && <Button color="inherit" onClick={signOut}>Logout</Button>}
-          {authenticated && <Avatar src={session.user.image}/>}
+          {authenticated && <Avatar src={session.user.image} />}
         </Toolbar>
       </AppBar>
       <br />
       <br />
       <br />
-        {children}
+      {children}
     </div>
   );
 }

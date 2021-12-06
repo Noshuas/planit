@@ -7,7 +7,6 @@ import Head from 'next/head';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import Layout from '../components/layout/Layout';
-import CustomThemeProvider from '../components/themes/CustomThemeProvider';
 import { SessionProvider } from 'next-auth/react'
 
 const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => (
@@ -18,12 +17,10 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => (
     </Head>
 
     <SessionProvider session={session}>
-      <CustomThemeProvider>
         <CssBaseline />
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </CustomThemeProvider>
     </SessionProvider>
 
   </>
