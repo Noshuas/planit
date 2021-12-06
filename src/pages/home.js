@@ -23,10 +23,11 @@ export const Home = (props) => {
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    const { email } = session.user;
+    const { email, name } = session.user;
 
-    axios.get(`/api/events/${email}`)
+    axios.get(`/api/events/${name}/${email}`)
       .then(({ data }) => {
+        console.log(data)
         setEvents(data)
         setDisplayed(data)
       })

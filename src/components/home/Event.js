@@ -18,24 +18,24 @@ import makeStyles from '@mui/styles/makeStyles';
 
 import { copyInviteLink } from '../helpers';
 
-const useStyles = makeStyles((theme) => ({
-  card: {
-    width: '800px',
-  },
-  cardContent: {
-    padding: '1em',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   card: {
+//     width: '800px',
+//   },
+//   cardContent: {
+//     padding: '1em',
+//   },
+//   expand: {
+//     transform: 'rotate(0deg)',
+//     marginLeft: 'auto',
+//     transition: theme.transitions.create('transform', {
+//       duration: theme.transitions.duration.shortest,
+//     }),
+//   },
+//   expandOpen: {
+//     transform: 'rotate(180deg)',
+//   },
+// }));
 
 const Event = ({
   name, description, _id, photo_url: photo,
@@ -46,7 +46,7 @@ const Event = ({
   //   name, description, owner, location, duration, status, time, window, rsvps, _id, photo_url,
   // } = props;
 
-  const classes = useStyles();
+  // const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -56,13 +56,13 @@ const Event = ({
 
 
   return (
-    <Card color="primary" className={classes.card}>
+    <Card color="primary">
       {photo && (
       <CardMedia
         image={photo}
       />
       )}
-      <CardContent className={classes.cardContent}>
+      <CardContent >
         <Typography
           variant="h4"
           color="inherit"
@@ -82,9 +82,9 @@ const Event = ({
           <Edit />
         </IconButton>
         <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
+          // className={clsx(null, {
+          //   [classes.expandOpen]: expanded,
+          // })}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"

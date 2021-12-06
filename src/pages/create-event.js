@@ -38,7 +38,7 @@ export default function CreateEvent() {
     const { name, email } = session.user
     windowStart.setHours(0, 0, 0, 0);
     windowEnd.setHours(0, 0, 0, 0);
-    form.duration *= 3600;
+    form.duration *= 60 * 60;
     form.window = {
       start: windowStart,
       end: windowEnd,
