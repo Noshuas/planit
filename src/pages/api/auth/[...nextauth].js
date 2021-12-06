@@ -3,6 +3,10 @@ import GoogleProvider from "next-auth/providers/google"
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import clientPromise from "lib/database/mongodb"
 
+const logWithColor = (message, name) => {
+  console.log(`${name}:`, message)
+}
+
 export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
   providers: [
@@ -24,26 +28,26 @@ export default NextAuth({
   ],
   events: {
     async signIn(message) {
-      console.log('\x1b[31m%s\x1b[0m', 'signIn:')
-      console.log(message)},
+     logWithColor(message, 'signIn:')
+    },
     async signOut(message) {
-      console.log('\x1b[31m%s\x1b[0m', 'signOut:')
-      console.log(message)},
+      logWithColor(message, 'signOut:')
+    },
     async createUser(message) {
-      console.log('\x1b[31m%s\x1b[0m', 'createUser:')
-      console.log(message)},
+      logWithColor(message, 'createUser:')
+    },
     async updateUser(message) {
-      console.log('\x1b[31m%s\x1b[0m', 'updateUser:')
-      console.log(message)},
+      logWithColor(message, 'updateUser:')
+    },
     async linkAccount(message) {
-      console.log('\x1b[31m%s\x1b[0m', 'linkAccount:')
-      console.log(message)},
+      logWithColor(message, 'linkAccount:')
+    },
     async session(message) {
-      console.log('\x1b[31m%s\x1b[0m', 'session:')
-      console.log(message)},
+      logWithColor(message, 'session:')
+    },
     async error(message) {
-      console.log('\x1b[31m%s\x1b[0m', 'error:')
-      console.log(message)}
+      logWithColor(message, 'error:')
+    }
   },
   // callbacks: {
   //   async signIn({ user, account, profile, email, credentials }) {
