@@ -9,29 +9,28 @@ import {
   Typography,
 } from '@mui/material';
 
-export const EventCreatedModal = ({ setConfirmed, confirmed, form }) => {
+export const EventCreatedModal = ({ setConfirmed, confirmed, form }) => (
+  <Dialog onClose={() => setConfirmed(false)} aria-labelledby="created-title" open={confirmed}>
+    <DialogTitle id="created-title" onClose={() => setConfirmed(false)}>
+      <Typography variant="h6">Event Created</Typography>
+    </DialogTitle>
+    <DialogContent dividers>
+      <Typography gutterBottom>
+        Event:
+        {' '}
+        <b>{form.name}</b>
+        {' '}
+        will be held at
+        {' '}
+        <b>{form.location}</b>
+        !
+      </Typography>
+      <Typography gutterBottom>
+        Please send the invitation to your guests now.
+      </Typography>
+      <Button><Link href="/home">Return Home</Link></Button>
+    </DialogContent>
+  </Dialog>
+);
 
-  return (
-    <Dialog onClose={()=>setConfirmed(false)} aria-labelledby="created-title" open={confirmed}>
-      <DialogTitle id="created-title" onClose={()=>setConfirmed(false)}>
-        <Typography variant="h6">Event Created</Typography>
-      </DialogTitle>
-      <DialogContent dividers>
-        <Typography gutterBottom>
-          Event:
-          {' '}
-          <b>{form.name}</b>
-          {' '}
-          will be held at
-          {' '}
-          <b>{form.location}</b>
-          !
-        </Typography>
-        <Typography gutterBottom>
-          Please send the invitation to your guests now.
-        </Typography>
-        <Button><Link href="/home">Return Home</Link></Button>
-      </DialogContent>
-    </Dialog>
-  )
-}
+export default EventCreatedModal;

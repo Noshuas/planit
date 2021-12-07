@@ -4,7 +4,7 @@ import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import clientPromise from "lib/database/mongodb"
 
 const logWithColor = (message, name) => {
-  console.log(`${name}:`, message)
+  // console.log(`${name}:`, message)
 }
 
 export default NextAuth({

@@ -6,7 +6,7 @@ import { useSession, getSession } from 'next-auth/react';
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)
-  const props = {session}
+  const props = { session }
   const redirect = {
     destination: '/login',
     permanent: false,
@@ -23,51 +23,48 @@ export const Home = (props) => {
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    const { email, name } = session.user;
-
-    axios.get(`/api/events/${name}/${email}`)
+    axios.get(`/api/events/${session.user.email}`)
       .then(({ data }) => {
-        console.log(data)
-        setEvents(data)
-        setDisplayed(data)
+        console.log(data);
+        setEvents(data);
+        setDisplayed(data);
       })
       .catch(console.log);
-  }, [status])
+  }, [status, session]);
 
   const search = (e) => {
     if (e.key === 'Enter') {
       const query = e.target.value;
-      const newDisplayed = events.filter((event) => event.name.includes(query));
+      const newDisplayed = events.filter((result) => result.event.name.includes(query));
       setDisplayed(newDisplayed);
     }
   };
 
   return (
-        <Grid container direction="column" alignItems="center" spacing={6}>
-          <Grid
-            container
-            alignItems="center"
-            justifyContent="center"
-            direction="row"
-          >
-            <Grid item xs={2}>
-              <TextField
-                margin="dense"
-                id="search-bar"
-                label="Search"
-                variant="outlined"
-                onKeyUp={search}
-              />
-            </Grid>
-          </Grid>
-          {displayedEvents && displayedEvents.map((event) => (
-            <Grid item key={Math.random()} xs={6}>
-              <Event {...event} />
-            </Grid>
-          )).reverse()}
+    <Grid container direction="column" alignItems="center" spacing={6}>
+      <Grid
+        container
+        alignItems="center"
+        justifyContent="center"
+        direction="row"
+      >
+        <Grid item xs={2}>
+          <TextField
+            margin="dense"
+            id="search-bar"
+            label="Search"
+            variant="outlined"
+            onKeyUp={search}
+          />
         </Grid>
-      );
+      </Grid>
+      {displayedEvents && displayedEvents.map((event) => (
+        <Grid item key={Math.random()} xs={6}>
+          <Event {...event} />
+        </Grid>
+      )).reverse()}
+    </Grid>
+  );
 };
 
 export default Home;
-

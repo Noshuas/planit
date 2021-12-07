@@ -19,9 +19,10 @@ export const postEvent = ( query, cb ) => {
 }
 
 export const timeStamp = (body) => {
+  console.log(body);
   const {
     name, duration, location, description, window,
-    owner, status, time, url, attendees
+    owner, status, time, photo_url, attendees
   } = body
 
   return {
@@ -31,7 +32,7 @@ export const timeStamp = (body) => {
       status,
       description,
       location,
-      url,
+      image: photo_url,
       time: {
         createdAt: + new Date(),
         time,

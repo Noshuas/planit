@@ -1,16 +1,15 @@
 import Image from 'next/image';
 import { Card, Grid } from '@mui/material';
 import ImageIcon from '@mui/icons-material/Image';
-import { getPhotoURL } from 'next/dist/shared/lib/utils';
 
-const PhotoUploadCard = ({ handlePhotoChange }) => (
+const PhotoUploadCard = ({ onUpload }) => (
   <label htmlFor="contained-button-file">
     <Card>
       <ImageIcon />
       <input
         id="contained-button-file"
         type="file"
-        onChange={handlePhotoChange}
+        onChange={onUpload}
         accept=".jpg, .jpeg, .png, .svg"
       />
       Click to upload file
@@ -20,7 +19,7 @@ const PhotoUploadCard = ({ handlePhotoChange }) => (
 
 const PhotoCard = ({ form }) => (
   <Image
-    src={form.photo_url}
+    src={form.photo_url || ''}
     layout="responsive"
     height={144}
     width={1050}
@@ -31,19 +30,21 @@ const PhotoCard = ({ form }) => (
 
 export const PhotoBanner = (props) => {
 
-  const onUpload = (e) => {
-    getPhotoURL(e, (res) => {
-      setForm({
-        ...form,
-        photo_url: res.text()
-      })
-    })
+  const renderUpload = ({ target }) => {
+    const [file] = target.files
+    const reader = new FileReader();
+
+    reader.onload = ({target}) => {
+      props.setForm({photo_url: target.result})
+    }
+
+    reader.readAsDataURL(file);
   }
 
   return (
     <Grid item xs={12}>
       {(!props.form.photo_url)
-        ? <PhotoUploadCard {...props} onUpload={onUpload} />
+        ? <PhotoUploadCard {...props} onUpload={renderUpload} />
         : <PhotoCard {...props} />}
     </Grid>
   )

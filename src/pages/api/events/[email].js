@@ -14,10 +14,8 @@ export default async function handler(req, res) {
       })
 
     } else if (req.method === 'GET') {
-      const [name, email] = req.query.user
-      const dbQ = { owner: {name, email}}
-      console.log(dbQ);
-      fetchEvents(dbQ, (err, result) => {
+      const query = {'owner.email': req.query.email}
+      fetchEvents(query, (err, result) => {
         (err)
           ? res.status(500).send(err)
           : res.status(200).send(result);
