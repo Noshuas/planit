@@ -1,18 +1,21 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import EventDuration from "./EventDuration";
 import Input from "./Input";
 import EventLocation from "./EventLocation";
 import EventWindow from "./EventWindow";
+import { useWatch } from "react-hook-form";
 
 
-export const EventDetails = ({ time: {duration, frameStart, frameEnd}, status, location }) => {
-  console.log(location);
+export const EventDetails = ({ time: { duration, frameStart, frameEnd, scheduled }, location }) => {
+  const newScheduled = useWatch('scheduled', scheduled);
   return (
-    <Grid item sm={4} container spacing={2} direction='column' alignContent='center' >
+    <>
+      {typeof newScheduled !== 'object' &&
+        <Typography>Scheduled for {new Date(newScheduled).toLocaleString()}</Typography>}
       <EventWindow time={[frameStart, frameEnd]} />
       <EventDuration {...{ duration }} />
       <EventLocation {...{ location }} />
-    </Grid>
+    </>
   )
 }
 
