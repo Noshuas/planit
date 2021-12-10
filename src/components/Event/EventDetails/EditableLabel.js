@@ -7,20 +7,13 @@ export const EditableLabel = ({ label, handleClick, disabled, variant = 'subtitl
   const [hovered, setHovered] = useState(false);
   const handleMouseEnter = useCallback(() => setHovered(true));
   const handleMouseLeave = useCallback(() => setHovered(false));
-  const containerRef = useRef(null);
-
-  const EditIcon = forwardRef((props, ref) => (
-    <IconButton {...props} ref={ref}>
-      <Edit fontSize='small' />
-    </IconButton>
-  ))
 
   return (
     <Typography variant={variant}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      ref={containerRef}
-      sx={{fontStyle: i ? 'italic' : 'normal', fontWeight: b ? 'bold' : 'normal'}}
+      onClick={handleClick}
+      sx={{ fontStyle: i ? 'italic' : 'normal', fontWeight: b ? 'bold' : 'normal' }}
     >
       {label}
       {!disabled &&
@@ -28,9 +21,10 @@ export const EditableLabel = ({ label, handleClick, disabled, variant = 'subtitl
           timeout={300}
           // direction='left'
           in={hovered}
-          container={containerRef.current}
         >
-          <EditIcon onClick={handleClick} />
+          <IconButton>
+            <Edit fontSize='small' />
+          </IconButton>
         </Fade>}
     </Typography >
 
