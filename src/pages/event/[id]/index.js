@@ -2,8 +2,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { Grid } from '@mui/material';
+import EventContent from 'components/Event/EventContent';
 import EventDetails from 'components/Event/EventDetails';
-import Input from 'components/Event/EventDetails/Input';
 import { PhotoBanner } from 'components/Event/PhotoBanner';
 import { fetchEvents } from 'lib/database/controllers/events';
 import { ObjectId } from 'mongodb';
@@ -25,12 +25,12 @@ export const Event = ({ e }) => {
         <Grid container justifyContent="center" columns={11} spacing={4}>
           <PhotoBanner url={watchUrl || e.info.image} />
 
-          <Grid item sm={4} container spacing={2} direction='column' alignContent='center' >
+          <Grid item container xs={4} spacing={2} direction="column">
             <EventDetails {...{ time, status, location }} />
           {/* <EventController /> */}
           </Grid>
 
-          {/* <EventDescription /> */}
+          <EventContent title={name} {...{description}} />
         </Grid>
         <button type='submit'> Click me </button>
       </form>

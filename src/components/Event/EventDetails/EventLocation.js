@@ -1,8 +1,7 @@
-import { Edit } from "@mui/icons-material";
-import { Grid, IconButton, Slide, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useCallback, useState } from "react";
 import { useWatch } from "react-hook-form";
-import EditableLabel from "./EditableField";
+import EditableLabel from "./EditableLabel";
 import { Input } from './Input';
 
 export const EventLocation = ({ location }) => {
@@ -20,6 +19,7 @@ export const EventLocation = ({ location }) => {
           name="location"
           label="Event Location"
           value={newLocation}
+          size='small'
         />
         :
         <EditableLabel

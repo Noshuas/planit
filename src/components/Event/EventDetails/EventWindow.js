@@ -1,10 +1,11 @@
-import { Grid, Slide } from "@mui/material";
+import { Grid, Fade } from "@mui/material";
 import { forwardRef, useCallback, useMemo, useRef, useState } from "react";
 import { useWatch } from "react-hook-form";
 import DateRangePicker from "./DateRangePicker";
-import EditableLabel from "./EditableField";
+import EditableLabel from "./EditableLabel";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
+import { ImportantDevices } from "@mui/icons-material";
 
 
 export const EventWindow = ({ time }) => {
@@ -22,19 +23,21 @@ export const EventWindow = ({ time }) => {
 
   return (
     <>
-      <Grid item onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
-        <Box sx={{display: 'flex', flexFlow: 'row nowrap'}} ref={containerRef}>
-          <Typography variant="h6" sx={{ display: 'inline-block', marginRight: '1em' }}> Event Window: </Typography>
-          < Slide
+      <Grid item onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} spacing={0} container direction='column' alignContent='stretch'>
+        <Box sx={{ display: 'flex', flexFlow: 'row wrap' }} ref={containerRef} >
+          <Typography variant="h6" sx={{ display: 'inline-block', marginRight: '.75em' }}> Event Window: </Typography>
+          < Fade
             timeout={400}
-            direction='left'
+            // direction='left'
             in={hovered}
-            container={containerRef.current}
+            // container={containerRef.current}
           >
             <DateRangePicker />
-          </Slide>
-          </Box>
-        <Typography varient="subtitle1">{format(newStart)} - {format(newEnd)}</Typography>
+          </Fade>
+        </Box>
+        <Grid item>
+          <Typography varient="subtitle1">{format(newStart)} - {format(newEnd)}</Typography>
+        </Grid>
       </Grid>
     </>
   )

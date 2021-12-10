@@ -1,4 +1,5 @@
 import { Fade, Grid } from '@mui/material';
+import { Box } from '@mui/system';
 import Image from 'next/image';
 import { useCallback, useState } from 'react';
 import { PhotoUploadCard } from './PhotoUploadCard';
@@ -16,8 +17,8 @@ export const PhotoBanner = ({ url }) => {
   })
 
   return (
-    <Grid item xs={8} sx={{ position: 'relative' }}>
-      <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{borderRadius: '5px', overflow: 'hidden'}}>
+    <Grid item xs={8}>
+      <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{borderRadius: '5px', overflow: 'hidden', position: 'relative'}}>
         <Fade in={!url || hovered} timeout={450} >
           <PhotoUploadCard handlePhotoChange={handlePhotoChange} />
         </Fade>

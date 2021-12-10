@@ -1,10 +1,9 @@
 import { Edit } from "@mui/icons-material";
-import { IconButton, Slide, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import { forwardRef, useCallback, useMemo, useRef, useState } from "react";
+import { Fade, IconButton, Typography } from "@mui/material";
+import { forwardRef, useCallback, useRef, useState } from "react";
 
 
-export const EditableLabel = ({ label, handleClick, disabled }) => {
+export const EditableLabel = ({ label, handleClick, disabled, variant = 'subtitle1', i, b }) => {
   const [hovered, setHovered] = useState(false);
   const handleMouseEnter = useCallback(() => setHovered(true));
   const handleMouseLeave = useCallback(() => setHovered(false));
@@ -17,21 +16,22 @@ export const EditableLabel = ({ label, handleClick, disabled }) => {
   ))
 
   return (
-    <Typography variant='h6'
+    <Typography variant={variant}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       ref={containerRef}
+      sx={{fontStyle: i ? 'italic' : 'normal', fontWeight: b ? 'bold' : 'normal'}}
     >
       {label}
       {!disabled &&
-        < Slide
-          timeout={350}
-          direction='left'
+        < Fade
+          timeout={300}
+          // direction='left'
           in={hovered}
           container={containerRef.current}
         >
           <EditIcon onClick={handleClick} />
-        </Slide>}
+        </Fade>}
     </Typography >
 
   )
