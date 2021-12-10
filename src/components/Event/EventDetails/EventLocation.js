@@ -23,7 +23,7 @@ export const EventLocation = ({ location }) => {
         />
         :
         <EditableLabel
-          label={`Event Location: ${newLocation}   `}
+          label={`Event Location: ${newLocation || 'unset'}   `}
           handleClick={handleClick}
         />
       }

@@ -19,12 +19,14 @@ export const EventTitle = ({ title }) => {
           name="title"
           label="New Event Title"
           value={newTitle}
+          rows={1}
+          fullWidth
         />
         :
         <EditableLabel
           variant='h4'
           i b
-          label={`${newTitle}`}
+          label={`${newTitle || 'Add Event Title'}`}
           handleClick={handleClick}
         />}
     </>

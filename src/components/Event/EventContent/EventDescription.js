@@ -26,7 +26,7 @@ export const EventDescription = ({ description }) => {
         />
         :
         <EditableLabel
-          label={`${newDescription}`}
+          label={`${newDescription || 'Please enter a description'}`}
           handleClick={handleClick}
         />}
     </>

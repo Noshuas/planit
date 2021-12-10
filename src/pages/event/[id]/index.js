@@ -15,37 +15,44 @@ import { FormProvider, useForm } from 'react-hook-form';
 export const Event = ({ e }) => {
 
   const { info: { time, location, name, description, image, status } } = e;
+  const methods = useForm({
+    mode: 'onBlur',
+    defaultValues: {
+      title: name,
+      url: image,
+      timeFrame: [time.frameStart, time.frameEnd],
+      duration: time.duration,
+      description,
+      location
+    }
+  });
 
-  const methods = useForm({ mode: 'onChange' })
+
   const onSubmit = useCallback((test, e) => console.log(e));
   console.log(methods.getValues());
   const watchUrl = methods.watch("url", false)
+
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Grid container columns={12} spacing={4} justifyContent='center'>
-
           <Grid item sm={8} >
             <PhotoBanner url={watchUrl || e.info.image} />
           </Grid>
-
           <Grid item container sm={8} columns={12} spacing={4}>
-
             <Grid item container xs={4} spacing={2} direction="column" >
               <Card sx={{ padding: '3em' }}>
                 <EventDetails {...{ time, status, location }} />
               </Card>
-              <EventController />
+              <EventController id={e._id} resetForm={methods.reset}/>
             </Grid>
-
             <Grid item spacing={2} xs={8} colums={1} container direction="column" >
               <Card sx={{ padding: '3em' }}>
                 <EventContent title={name} {...{ description }} />
               </Card>
             </Grid>
-
           </Grid>
-
         </Grid>
       </form>
     </FormProvider>
