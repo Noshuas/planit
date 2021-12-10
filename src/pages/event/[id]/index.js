@@ -1,8 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { Grid } from '@mui/material';
+import { Card, Grid } from '@mui/material';
 import EventContent from 'components/Event/EventContent';
+import EventController from 'components/Event/EventController';
 import EventDetails from 'components/Event/EventDetails';
 import { PhotoBanner } from 'components/Event/PhotoBanner';
 import { fetchEvents } from 'lib/database/controllers/events';
@@ -22,15 +23,17 @@ export const Event = ({ e }) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <Grid container justifyContent="center" columns={11} spacing={4}>
+        <Grid container justifyContent="center" columns={16} spacing={4}>
           <PhotoBanner url={watchUrl || e.info.image} />
 
-          <Grid item container xs={4} spacing={2} direction="column">
-            <EventDetails {...{ time, status, location }} />
-          {/* <EventController /> */}
+          <Grid item container xs={4.1} spacing={2} direction="column" columns={12}>
+            <Card sx={{padding: '3em'}}>
+              <EventDetails {...{ time, status, location }} />
+              </Card>
+            <EventController />
           </Grid>
 
-          <EventContent title={name} {...{description}} />
+          <EventContent title={name} {...{ description }} />
         </Grid>
         <button type='submit'> Click me </button>
       </form>

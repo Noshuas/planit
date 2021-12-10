@@ -6,7 +6,7 @@ import EventTitle from "./EventTitle";
 export const EventContent = ({ title, description }) => {
 
   return (
-    <Grid item spacing={3} xs={4} colums={1} container direction="column" >
+    <Grid item spacing={3} xs={8} colums={1} container direction="column" >
       <Grid item sx={{alignSelf: 'start'}}>
         <EventTitle {...{ title }} />
       </Grid>

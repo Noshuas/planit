@@ -17,7 +17,7 @@ export const PhotoBanner = ({ url }) => {
   })
 
   return (
-    <Grid item xs={8}>
+    <Grid item xs={12}>
       <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{borderRadius: '5px', overflow: 'hidden', position: 'relative'}}>
         <Fade in={!url || hovered} timeout={450} >
           <PhotoUploadCard handlePhotoChange={handlePhotoChange} />
