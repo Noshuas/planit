@@ -1,14 +1,17 @@
 import { AccessTime, DeleteForever, Save, Share } from "@mui/icons-material";
 import { Button, Fade, Grid } from "@mui/material";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useFormState } from "react-hook-form";
 import { copyInviteLink } from "components/helpers";
-import ScheduleModal from "./Scheduler";
+import ScheduleModal from "./ScheduleModal";
+import Scheduler from "./Scheduler";
 
 
 export const EventController = ({ id, resetForm }) => {
   const { isDirty, isSubmitSuccessful } = useFormState();
-
+  const [isOpen, setIsOpen] = useState(false);
+  const handleOpen = useCallback(()=>setIsOpen(true));
+  const handleClose = useCallback(()=>setIsOpen(false));
 
   return (
     <Grid container spacing={2} direction="column" wrap item alignItems='end' alignContent='end'>
@@ -16,6 +19,7 @@ export const EventController = ({ id, resetForm }) => {
         <Button
           variant='outlined'
           endIcon={<AccessTime />}
+          onClick={handleOpen}
         >
           Schedule Event
         </Button>
@@ -49,6 +53,7 @@ export const EventController = ({ id, resetForm }) => {
           </Button>
         </Fade>
       </Grid>
+      <ScheduleModal open={isOpen} handleClose={handleClose} />
     </Grid >
   )
 }
