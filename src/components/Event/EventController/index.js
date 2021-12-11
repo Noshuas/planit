@@ -3,6 +3,7 @@ import { Button, Fade, Grid } from "@mui/material";
 import { useState } from "react";
 import { useFormState } from "react-hook-form";
 import { copyInviteLink } from "components/helpers";
+import ScheduleModal from "./Scheduler";
 
 
 export const EventController = ({ id, resetForm }) => {
@@ -48,7 +49,6 @@ export const EventController = ({ id, resetForm }) => {
           </Button>
         </Fade>
       </Grid>
-
     </Grid >
   )
 }

@@ -1,4 +1,4 @@
-import { EventContent } from './EventContent'
+import { EventContent } from './EventDescription'
 import { EventDetails } from './EventDetails'
 import { PhotoBanner } from './PhotoBanner'
 
