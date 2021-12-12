@@ -18,6 +18,7 @@ export const fetchEvents = (query, cb = () => { }) => {
 }
 
 export const postEvent = (query, cb) => {
+  console.log('in postEvent, global:', global)
   return global._mongoClientPromise.then((client) => {
     let db = client.db();
     let events = db.collection('events');

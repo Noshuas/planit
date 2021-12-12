@@ -1,18 +1,16 @@
 import axios from 'axios';
 
-export const getPhotoURL = (url, cb) => {
-  if (!url) {
-    cb({ photo_url: '' })
-    return;
-  };
-  console.log('sending to server:', {url});
-
-  axios.post(`/api/events/photos/dataUrl`, { url })
-    .then(({ data }) => {
-      console.log('response from server:', data)
-      cb(data)
-    })
-    .catch(console.log)
+export const getPhotoURL = async (url, cb) => {
+  return new Promise((resolve, reject) => {
+    const defaultUrl = 'https://upload.wikimedia.org/wikipedia/commons/2/23/Mars_Wikivoyage_banner.jpg'
+    if (url === defaultUrl) {
+      resolve(defaultUrl)
+    };
+    console.log('here is our url:', url);
+    axios.post(`/api/events/photos/dataUrl`, { url })
+      .then(resolve)
+      .catch(reject)
+  })
 }
 
 // makes useState()[1] calls more like component.setState();
@@ -24,8 +22,10 @@ export const upgradeHook = ([name, setState]) => [name, (val) => {
   setState(val)
 }];
 
-export const postEvent = (email, form, cb) => {
-  axios.post(`/api/events/${email}`, form)
-    .then(res => cb(true))
-    .catch(console.log);
+export const postEvent = async (email, form, cb) => {
+  return new Promise((resolve, reject)=>{
+    axios.post(`/api/events/${email}`, form)
+      .then(resolve)
+      .catch(reject)
+  })
 }

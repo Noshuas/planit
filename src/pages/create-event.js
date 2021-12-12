@@ -4,10 +4,16 @@ import EventController from 'components/Event/EventController';
 import EventDetails from 'components/Event/EventDetails';
 import { PhotoBanner } from 'components/Event/PhotoBanner';
 import { getSession, useSession } from 'next-auth/react';
-import { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { getPhotoURL } from 'components/create-event/helpers';
+import { postEvent } from 'components/create-event/helpers'
+import router from 'next/router';
 
 export const createEvent = () => {
+  const [posted, setPosted] = useState(false);
+  const { data: session, status } = useSession();
+
   const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/2/23/Mars_Wikivoyage_banner.jpg'
   const methods = useForm({
     mode: 'onBlur',
@@ -19,28 +25,31 @@ export const createEvent = () => {
     }
   });
 
-
-  const onSubmit = useCallback((test, e) => console.log(test));
-
-  const { data: session, status } = useSession();
+  useEffect(()=>{
+    if (posted) router.push('/home')
+  }, [posted])
 
   const createNewEvent = async (e) => {
     e.preventDefault();
-    const owner = session.user;
     const info = methods.getValues()
-
-    info.time.created = Date.now();
     const [start, end] = info.time.timeFrame;
-    info.time.timeFrame = [start.getTime(), end.setHours(23,59,59,999)]
+    info.time.created = Date.now();
+    info.time.timeFrame = [start.getTime(), end.setHours(23, 59, 59, 999)]
 
-    getPhotoURL(info.photoUrl, (photoUrl) => {
-      info.photoUrl = photoUrl;
-      postEvent(session.user.email, {owner, info}, setConfirmed);
-    });
+    const event = {
+      owner: session.user,
+      info,
+      attendees: []
+    }
+    console.log(info);
+    getPhotoURL(info.imageUrl)
+      .then(({ data }) => {
+        info.imageUrl = data;
+        return postEvent(session.user.email, event)
+      })
+      .then(() => { setPosted(true) })
+      .catch(console.log)
   };
-
-
-
 
   return (
     <FormProvider {...methods}>
@@ -67,9 +76,6 @@ export const createEvent = () => {
     </FormProvider>
   )
 }
-
-
-
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)

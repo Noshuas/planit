@@ -5,8 +5,7 @@ export default async function handler(req, res) {
 
     console.log(req.method);
     if (req.method === 'POST') {
-      let event = timeStamp(req.body);
-      postEvent(event, (err, result) => {
+      postEvent(req.body, (err, result) => {
         (err)
           ? res.status(500).send(err)
           : res.status(200).send(result);

@@ -3,9 +3,7 @@ import GoogleProvider from "next-auth/providers/google"
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import clientPromise from "lib/database/mongodb"
 
-const logWithColor = (message, name) => {
-  // console.log(`${name}:`, message)
-}
+
 
 export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
@@ -27,27 +25,7 @@ export default NextAuth({
     // })
   ],
   events: {
-    async signIn(message) {
-     logWithColor(message, 'signIn:')
-    },
-    async signOut(message) {
-      logWithColor(message, 'signOut:')
-    },
-    async createUser(message) {
-      logWithColor(message, 'createUser:')
-    },
-    async updateUser(message) {
-      logWithColor(message, 'updateUser:')
-    },
-    async linkAccount(message) {
-      logWithColor(message, 'linkAccount:')
-    },
-    async session(message) {
-      logWithColor(message, 'session:')
-    },
-    async error(message) {
-      logWithColor(message, 'error:')
-    }
+
   },
   // callbacks: {
   //   async signIn({ user, account, profile, email, credentials }) {
