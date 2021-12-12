@@ -7,7 +7,7 @@ import { Box } from "@mui/system";
 import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 
 
-export const Scheduler = ({ start, end, myref, color = 'green' }) => {
+export const Scheduler = ({ start, end, myref, color = 'green', events}) => {
 
   const handleEventSelect = useCallback(({ event }) => event.remove())
   const handleSelect = useCallback(({ start, end, view: { calendar } }) => {
@@ -42,6 +42,7 @@ export const Scheduler = ({ start, end, myref, color = 'green' }) => {
         omitZeroMinute: true,
         meridiem: 'narrow'
       }}
+      events={events}
       select={handleSelect}
       eventClick={handleEventSelect}
     />

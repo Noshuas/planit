@@ -12,7 +12,7 @@ export const PhotoUploadCard = forwardRef(({ handlePhotoChange, style }, ref) =>
       background: 'rgb(255,255,255,.70)',
     }}
   >
-    <Input name='url' type='file' handlePhotoChange={handlePhotoChange} value=""/>
+    <Input name='imageUrl' type='file' handlePhotoChange={handlePhotoChange}/>
     Upload Image
   </Card>
 ));

@@ -18,7 +18,7 @@ export const EventTitle = ({ title }) => {
           onBlur={handleBlur}
           name="title"
           label="New Event Title"
-          value={newTitle}
+          value={newTitle || ''}
           rows={1}
           fullWidth
         />

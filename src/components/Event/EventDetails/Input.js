@@ -18,16 +18,16 @@ export const Input = ({ name, handlePhotoChange, required, value, ...props, }) =
               {...props}
               onChange={(e) => handlePhotoChange(e, field.onChange)}
               accept=".jpg, .jpeg, .png, .svg"
-              value={null}
-              hidden />
+              hidden
+              value={''} />
           </IconButton>
           :
           <TextField
+            sx={{margin: '.5em 0 .5em 0'}}
             {...field}
             {...props}
             autoFocus
             onFocus={(e)=>e.target.select()}
-            multiline
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 e.preventDefault()

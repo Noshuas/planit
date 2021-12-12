@@ -1,82 +1,87 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-// import { useRouter } from 'next/router';
+import { Card, Grid } from '@mui/material';
+import EventContent from 'components/Event/EventContent';
+import EventController from 'components/Event/EventController';
+import EventDetails from 'components/Event/EventDetails';
+import { PhotoBanner } from 'components/Event/PhotoBanner';
 import { getSession, useSession } from 'next-auth/react';
-import { useState } from 'react';
-import { Grid } from '@mui/material';
-import { getServerSideProps } from './home';
-import {
-  PhotoBanner,
-  EventInfo,
-  EventDescription,
-  EventCreatedModal,
-  upgradeHook,
-  getPhotoURL,
-  postEvent
-} from '../components/create-event/';
+import { useCallback } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+
+export const createEvent = () => {
+  const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/2/23/Mars_Wikivoyage_banner.jpg'
+  const methods = useForm({
+    mode: 'onBlur',
+    defaultValues: {
+      imageUrl: defaultImage,
+      time: {
+        timeFrame: [Date.now(), Date.now()],
+      }
+    }
+  });
 
 
-export default function CreateEvent() {
+  const onSubmit = useCallback((test, e) => console.log(test));
+
   const { data: session, status } = useSession();
-  const [windowStart, setWindowStart] = useState(new Date());
-  const [windowEnd, setWindowEnd] = useState(new Date());
-  const [confirmed, setConfirmed] = useState(false);
-  const [form, setForm] = upgradeHook(useState({
-    owner: session.user,
-    name: '',
-    duration: '',
-    location: '',
-    description: '',
-    status: 'pending',
-    time: null,
-  }));
-
-  const handleChange = ({ target }) => {
-    let { name, value } = target;
-    setForm({ [name]: value });
-  };
 
   const createNewEvent = async (e) => {
     e.preventDefault();
-    windowStart.setHours(0, 0, 0, 0);
-    windowEnd.setHours(0, 0, 0, 0);
-    form.duration *= 60 * 60;
-    form.window = {
-      start: windowStart,
-      end: windowEnd,
-    };
-    getPhotoURL(form.photo_url, (photoUrl)=>{
-      form.photo_url = photoUrl;
-      postEvent(session.user.email, form, setConfirmed);
+    const owner = session.user;
+    const info = methods.getValues()
+
+    info.time.created = Date.now();
+    const [start, end] = info.time.timeFrame;
+    info.time.timeFrame = [start.getTime(), end.setHours(23,59,59,999)]
+
+    getPhotoURL(info.photoUrl, (photoUrl) => {
+      info.photoUrl = photoUrl;
+      postEvent(session.user.email, {owner, info}, setConfirmed);
     });
   };
 
+
+
+
   return (
-    <div>
+    <FormProvider {...methods}>
       <form onSubmit={createNewEvent}>
-        <Grid container spacing={3}>
-          <PhotoBanner
-            form={form}
-            setForm={setForm}
-          />
-          <EventInfo
-            parentState={{ form, windowStart, windowEnd }}
-            setParentState={{ setWindowStart, setWindowEnd }}
-            handleChange={handleChange}
-          />
-          <EventDescription
-            value={form.description}
-            handleChange={handleChange}
-          />
-        </Grid >
+        <Grid container columns={12} spacing={4} justifyContent='center'>
+          <Grid item sm={8} >
+            <PhotoBanner url={defaultImage} />
+          </Grid>
+          <Grid item container sm={8} columns={12} spacing={4}>
+            <Grid item container xs={4} spacing={2} direction="column" >
+              <Card sx={{ padding: '3em' }}>
+                <EventDetails />
+              </Card>
+              <EventController resetForm={methods.reset} init />
+            </Grid>
+            <Grid item spacing={2} xs={8} colums={1} container direction="column" >
+              <Card sx={{ padding: '3em' }}>
+                <EventContent />
+              </Card>
+            </Grid>
+          </Grid>
+        </Grid>
       </form>
-      <EventCreatedModal
-        form={form}
-        confirmed={confirmed}
-        setConfirmed={setConfirmed}
-      />
-    </div>
-  );
+    </FormProvider>
+  )
 }
 
-export { getServerSideProps }
 
+
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+  const props = { session }
+  const redirect = {
+    destination: '/login',
+    permanent: false,
+  }
+
+  return (!session)
+    ? { redirect }
+    : { props }
+}
+
+export default createEvent;

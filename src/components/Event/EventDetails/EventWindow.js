@@ -12,7 +12,7 @@ export const EventWindow = ({ time }) => {
   const [editMode, setEditMode] = useState(!time);
   const handleClick = useCallback(() => setEditMode(true));
   const handleBlur = useCallback(() => setEditMode(false));
-  const [newStart, newEnd] = useWatch({ name: 'timeFrame', defaultValue: time })
+  const [newStart, newEnd] = useWatch({ name: 'time.timeFrame', defaultValue: time })
   const options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' }
   const format = date => new Date(date).toLocaleDateString(undefined, options);
 
@@ -28,9 +28,7 @@ export const EventWindow = ({ time }) => {
           <Typography variant="h6" sx={{ display: 'inline-block', marginRight: '.75em' }}> Event Window: </Typography>
           < Fade
             timeout={400}
-            // direction='left'
             in={hovered}
-            // container={containerRef.current}
           >
             <DateRangePicker />
           </Fade>

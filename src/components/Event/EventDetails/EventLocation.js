@@ -18,7 +18,7 @@ export const EventLocation = ({ location }) => {
           onBlur={handleBlur}
           name="location"
           label="Event Location"
-          value={newLocation}
+          value={newLocation || ''}
           size='small'
         />
         :

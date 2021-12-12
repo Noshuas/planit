@@ -9,7 +9,7 @@ export const EventDuration = ({ duration }) => {
   const [editMode, setEditMode] = useState(!duration);
   const handleClick = useCallback(() => setEditMode(true));
   const handleBlur = useCallback(() => setEditMode(false));
-  const newDuration = useWatch({ name: 'duration', defaultValue: duration })
+  const newDuration = useWatch({ name: 'time.duration', defaultValue: duration})
 
   return (
     <Grid item>
@@ -17,10 +17,10 @@ export const EventDuration = ({ duration }) => {
         ?
         <Input
           onBlur={handleBlur}
-          name="duration"
+          name="time.duration"
           type='number'
           label="Duration in hours"
-          value={newDuration}
+          value={newDuration || ''}
           size='small'
         />
         :

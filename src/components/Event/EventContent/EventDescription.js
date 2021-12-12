@@ -19,7 +19,7 @@ export const EventDescription = ({ description }) => {
           onBlur={handleBlur}
           name="description"
           label="New Event Description"
-          value={newDescription}
+          value={newDescription || ''}
           multiline
           rows='15'
           fullWidth

@@ -4,34 +4,36 @@ import { useCallback, useState } from "react";
 import { useFormState } from "react-hook-form";
 import { copyInviteLink } from "components/helpers";
 import ScheduleModal from "./ScheduleModal";
-import Scheduler from "./Scheduler";
 
 
-export const EventController = ({ id, resetForm }) => {
+export const EventController = ({ id, resetForm, init }) => {
   const { isDirty, isSubmitSuccessful } = useFormState();
   const [isOpen, setIsOpen] = useState(false);
-  const handleOpen = useCallback(()=>setIsOpen(true));
-  const handleClose = useCallback(()=>setIsOpen(false));
+  const handleOpen = useCallback(() => setIsOpen(true));
+  const handleClose = useCallback(() => setIsOpen(false));
 
   return (
-    <Grid container spacing={2} direction="column" wrap item alignItems='end' alignContent='end'>
-      <Grid item>
-        <Button
-          variant='outlined'
-          endIcon={<AccessTime />}
-          onClick={handleOpen}
-        >
-          Schedule Event
-        </Button>
-      </Grid>
-      <Grid item>
-        <Button variant='outlined'
-          endIcon={<Share />}
-          onClick={copyInviteLink(id)}
-        >
-          Copy Invite Link
-        </Button>
-      </Grid>
+    <Grid container spacing={2} direction="column" item alignItems='end' alignContent='end'>
+      {!init &&
+        <>
+          <Grid item>
+            <Button
+              variant='outlined'
+              endIcon={<AccessTime />}
+              onClick={handleOpen}
+            >
+              Schedule Event
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button variant='outlined'
+              endIcon={<Share />}
+              onClick={copyInviteLink(id)}
+            >
+              Copy Invite Link
+            </Button>
+          </Grid>
+        </>}
       <Grid item>
         <Fade in={isDirty} timeout={800}>
           <Button variant='contained'
