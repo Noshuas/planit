@@ -40,26 +40,21 @@ export const Home = (props) => {
     }
   };
 
+  console.log('Events:,',)
   return (
-    <Grid container direction="column" alignItems="center" spacing={6}>
-      <Grid
-        container
-        alignItems="center"
-        justifyContent="center"
-        direction="row"
-      >
-        <Grid item xs={2}>
+    <Grid container direction="row" justifyContent="center" spacing={2} alignItems='center'>
+        <Grid item xs={6}>
           <TextField
             margin="dense"
             id="search-bar"
             label="Search"
             variant="outlined"
             onKeyUp={search}
+            fullWidth
           />
         </Grid>
-      </Grid>
       {displayedEvents && displayedEvents.map((event) => (
-        <Grid item key={Math.random()} xs={6}>
+        <Grid item key={Math.random()} xs={8}>
           <Event {...event} />
         </Grid>
       )).reverse()}

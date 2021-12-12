@@ -17,14 +17,13 @@ import Script from 'next/script';
 
 export const Event = ({ e }) => {
 
-  const { info: { time, location, name, description, image, status } } = e;
+  const { info: { time, location, title, description, imageUrl, status } } = e;
   const methods = useForm({
     mode: 'onBlur',
     defaultValues: {
-      title: name,
-      url: image,
-      timeFrame: [time.frameStart, time.frameEnd],
-      duration: time.duration,
+      title,
+      imageUrl,
+      time: time,
       description,
       location
     }
@@ -52,7 +51,7 @@ export const Event = ({ e }) => {
             </Grid>
             <Grid item spacing={2} xs={8} colums={1} container direction="column" >
               <Card sx={{ padding: '3em' }}>
-                <EventContent title={name} {...{ description }} />
+                <EventContent title={title} {...{ description }} />
               </Card>
             </Grid>
           </Grid>
@@ -67,14 +66,19 @@ export const Event = ({ e }) => {
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
-  if (!session)
-    return { redirect: './login' }
-
+  const redirect = {
+    destination: '/login',
+    permanent: false,
+  }
 
   const query = ObjectId(ctx.params.id.toString())
   let [event] = await fetchEvents(query)
+  console.log(event, session)
+  const props = { e: event, session }
 
-  return { props: { e: event } }
+  return (!session)
+    ? { redirect }
+    : { props }
 }
 
 export default Event;

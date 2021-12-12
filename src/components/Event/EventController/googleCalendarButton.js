@@ -15,14 +15,13 @@ const init = () => gapi.client.init({
 
 
 export const GoogleCalendarButton = ({ formatEventList, setEvents }) => {
-  let [start, end] = useWatch({ name: 'timeFrame' });
-  const endOfDay = new Date(end).setHours(23,59,59,999)
+  let [start, end] = useWatch({ name: 'time.timeFrame' });
 
 
   const query = {
     calendarId: 'primary',
     timeMin: new Date(start).toISOString(),
-    timeMax: new Date(endOfDay),
+    timeMax: new Date(end).toISOString(),
     showDeleted: false,
     singleEvents: true,
     orderBy: 'startTime',
