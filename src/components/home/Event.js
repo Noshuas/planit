@@ -10,61 +10,42 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { copyInviteLink } from '../helpers';
 
-const Event = ({
-  _id, owner, info, attendees
-}) => {
-  const { title, description, location, imageUrl, time } = info;
-  console.log(imageUrl);
+const Event = ({ _id, info }) => {
+  const { title, description, imageUrl } = info;
   const router = useRouter();
-  const [expanded, setExpanded] = React.useState(false);
 
+  const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-
-
   return (
     <Card color="primary">
-      {imageUrl && (
-        <CardMedia
-          image={imageUrl}
-          sx={{minHeight: '100px'}}
-        />
-      )}
+      <CardMedia
+        image={imageUrl}
+        sx={{ minHeight: '100px' }}
+      />
       <CardContent >
-        <Typography
-          variant="h4"
-          color="inherit"
-        >
+        <Typography variant="h5">
           {title}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="share" size="large" onClick={copyInviteLink(_id)}>
-          {/* copyInviteLink returns a click handler */}
+
+      <CardActions>
+        <IconButton onClick={copyInviteLink(_id)}>
           <Share />
         </IconButton>
-        <IconButton
-          aria-label="edit"
-          onClick={() => { router.push(`/event/${_id}`); }}
-          size="large">
+        <IconButton onClick={() => { router.push(`/event/${_id}`); }}>
           <Edit />
         </IconButton>
-        <IconButton
-          // className={clsx(null, {
-          //   [classes.expandOpen]: expanded,
-          // })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-          size="large">
+        <IconButton onClick={handleExpandClick} >
           <ExpandMore />
         </IconButton>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+
+      <Collapse in={expanded}>
         <CardContent>
-          <Typography variant="body1" component="p">
+          <Typography variant="body1">
             {description}
           </Typography>
         </CardContent>

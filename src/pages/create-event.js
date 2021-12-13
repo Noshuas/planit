@@ -60,14 +60,14 @@ export const createEvent = () => {
             <PhotoBanner url={defaultImage} />
           </Grid>
           <Grid item container sm={8} columns={12} spacing={4}>
-            <Grid item container xs={4} spacing={2} direction="column" >
+            <Grid item container xs={5} spacing={2} direction="column" >
               <Card sx={{ padding: '3em' }}>
                 <EventDetails />
               </Card>
               <EventController resetForm={methods.reset} init />
             </Grid>
-            <Grid item spacing={2} xs={8} colums={1} container direction="column" >
-              <Card sx={{ padding: '3em' }}>
+            <Grid item spacing={2} xs={7} colums={1} container direction="column" >
+              <Card sx={{ padding: '3em', minHeight: '1' }}>
                 <EventContent />
               </Card>
             </Grid>

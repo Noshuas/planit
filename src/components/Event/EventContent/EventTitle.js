@@ -19,7 +19,8 @@ export const EventTitle = ({ title }) => {
           name="title"
           label="New Event Title"
           value={newTitle || ''}
-          rows={1}
+          margin='dense'
+          size='small'
           fullWidth
         />
         :

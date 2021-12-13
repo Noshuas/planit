@@ -33,11 +33,9 @@ export const Home = (props) => {
   }, [status, session]);
 
   const search = (e) => {
-    if (e.key === 'Enter') {
       const query = e.target.value;
-      const newDisplayed = events.filter((result) => result.event.name.includes(query));
+      const newDisplayed = events.filter((result) => result.info.title.includes(query));
       setDisplayed(newDisplayed);
-    }
   };
 
   console.log('Events:,',)
@@ -49,7 +47,7 @@ export const Home = (props) => {
             id="search-bar"
             label="Search"
             variant="outlined"
-            onKeyUp={search}
+            onChange={search}
             fullWidth
           />
         </Grid>

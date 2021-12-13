@@ -6,7 +6,7 @@ import { Input } from '../EventDetails/Input';
 
 
 export const EventDescription = ({ description }) => {
-  const [editMode, setEditMode] = useState(!description);
+  const [editMode, setEditMode] = useState(false);
   const handleClick = useCallback(() => setEditMode(true));
   const handleBlur = useCallback(() => setEditMode(false));
   const newDescription = useWatch({ name: 'description', defaultValue: description })
@@ -21,12 +21,13 @@ export const EventDescription = ({ description }) => {
           label="New Event Description"
           value={newDescription || ''}
           multiline
-          rows='15'
+          rows='8'
           fullWidth
         />
         :
         <EditableLabel
-          label={`${newDescription || 'Please enter a description'}`}
+          variant='body1'
+          label={`${newDescription || 'Enter a description'}`}
           handleClick={handleClick}
         />}
     </>

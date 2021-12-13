@@ -1,4 +1,4 @@
-import { CalendarToday as CalendarIcon } from "@mui/icons-material";
+import { CalendarToday as CalendarIcon, Today } from "@mui/icons-material";
 import { LocalizationProvider, MobileDateRangePicker } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { Button, Grid, IconButton, TextField } from "@mui/material";
@@ -31,14 +31,13 @@ export const DateRangePicker = forwardRef(({ style }, ref) => {
         onChange={onChange}
         renderInput={(startProps, endProps) => {
           return (
-            <Button variant='contained'
-              endIcon={<CalendarIcon />}
+            <IconButton
+            color='primary'
               onClick={handleClickOpen}
               ref={ref} {...{ style }}
-            // sx={{display: 'inline', width: '20em'}}
             >
-              Select Time Range:
-            </Button>
+              <Today />
+            </IconButton>
           );
         }}
       />

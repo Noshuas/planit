@@ -23,19 +23,14 @@ export const EventWindow = ({ time }) => {
 
   return (
     <>
-      <Grid item onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} spacing={0} container direction='column' alignContent='stretch'>
+      <Grid item onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} spacing={0} container direction='column' alignContent='stretch' >
         <Box sx={{ display: 'flex', flexFlow: 'row wrap' }} ref={containerRef} >
           <Typography variant="h6" sx={{ display: 'inline-block', marginRight: '.75em' }}> Event Window: </Typography>
-          < Fade
-            timeout={400}
-            in={hovered}
-          >
+          <Fade timeout={350} in={hovered} >
             <DateRangePicker />
           </Fade>
         </Box>
-        <Grid item>
-          <Typography varient="subtitle1">{format(newStart)} - {format(newEnd)}</Typography>
-        </Grid>
+        <Typography variant="subtitle2">{format(newStart)} - {format(newEnd)}</Typography>
       </Grid>
     </>
   )

@@ -22,10 +22,9 @@ export const EventLocation = ({ location }) => {
           size='small'
         />
         :
-        <EditableLabel
-          label={`Event Location: ${newLocation || 'unset'}   `}
-          handleClick={handleClick}
-        />
+        <EditableLabel label='Event Location:' handleClick={handleClick}>
+          {newLocation || 'Enter a location'}
+        </EditableLabel>
       }
     </Grid>
   )
