@@ -14,9 +14,9 @@ const init = () => gapi.client.init({
 }).catch(console.log)
 
 
-export const GoogleCalendarButton = ({ formatEventList, setEvents }) => {
-  let [start, end] = useWatch({ name: 'time.timeFrame' });
-
+export const GoogleCalendarButton = ({ formatEventList, setEvents, timeFrame }) => {
+  const watchedTimeFrame = useWatch({ name: 'time.timeFrame' });
+  let [start, end] = watchedTimeFrame || timeFrame;
 
   const query = {
     calendarId: 'primary',

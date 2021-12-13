@@ -4,6 +4,9 @@ import { Box } from "@mui/system";
 import { useCallback, useEffect, useState } from "react";
 import Scheduler from "./Scheduler";
 import { GoogleCalendarButton } from './googleCalendarButton';
+import Input from "../EventDetails/Input";
+import { setNestedObjectValues } from "formik";
+import { useFormContext } from "react-hook-form";
 
 const formatEventList = (list, map = true, sort = true) => {
   console.log(list)
@@ -35,9 +38,12 @@ const formatEventList = (list, map = true, sort = true) => {
   }, [])
 }
 
-export const ScheduleModal = ({ email, open, handleClose }) => {
+export const ScheduleModal = ({ email, open, handleClose, timeFrame }) => {
   const [events, setEvents] = useState([]);
+  const { setValue } = useFormContext();
+
   const [calendar, setCalendar] = useState();
+  const format = useCallback(date => new Date(date).toLocaleDateString());
 
   const calendarRef = useCallback(node => node && setCalendar(node._calendarApi), [])
   const paginateRight = useCallback(() => calendar.next());
@@ -50,26 +56,27 @@ export const ScheduleModal = ({ email, open, handleClose }) => {
   })
 
   useEffect(() => {
-    console.log(events);
+    setValue('availability', events);
   }, [events])
 
   return (
-    <Dialog open={open} maxWidth='xl' fullWidth={true} sx={{ height: '97%' }}>
-      <DialogTitle> Enter your availability
-        <Box sx={{ float: 'right' }}>
-          <IconButton onClick={paginateLeft}><NavigateBefore /></IconButton>
-          <IconButton onClick={paginateRight}><NavigateNext /></IconButton>
-        </Box>
-      </DialogTitle>
-      <DialogContent ref={contentRef} dividers sx={{ paddingTop: 0 }}>
-        <Scheduler myref={calendarRef} events={events} />
-      </DialogContent>
-      <DialogActions>
-        <GoogleCalendarButton {...{ formatEventList, setEvents }} />
-        <Button onClick={submitEvents}>Submit Availability</Button>
-        <Button onClick={handleClose}>Exit</Button>
-      </DialogActions>
-    </Dialog>
+      <Dialog open={open} maxWidth='xl' fullWidth={true} sx={{ height: '97%' }}>
+        <DialogTitle>
+          Enter your {(timeFrame) ? `${format(timeFrame[0])} - ${format(timeFrame[1])}` : null} availability
+          <Box sx={{ float: 'right' }}>
+            <IconButton onClick={paginateLeft}><NavigateBefore /></IconButton>
+            <IconButton onClick={paginateRight}><NavigateNext /></IconButton>
+          </Box>
+        </DialogTitle>
+        <DialogContent ref={contentRef} dividers sx={{ paddingTop: 0 }}>
+          <Scheduler myref={calendarRef} events={events} timeFrame={timeFrame} />
+        </DialogContent>
+        <DialogActions>
+          <GoogleCalendarButton {...{ formatEventList, setEvents, timeFrame }} />
+          <Button onClick={submitEvents}>Submit Availability</Button>
+          <Button onClick={handleClose}>Exit</Button>
+        </DialogActions>
+      </Dialog>
   )
 }
 

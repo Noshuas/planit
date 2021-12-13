@@ -13,7 +13,7 @@ export const EditableLabel = ({ label, handleClick, disabled, variant = 'subtitl
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
-      sx={{ fontStyle: i ? 'italic' : 'normal', fontWeight: b ? 'bold' : 'normal' }}
+      sx={{ fontStyle: i ? 'italic' : 'normal', fontWeight: b ? 'bold' : 'normal', whiteSpace: 'pre-wrap'}}
     >
       {label}
       {!disabled &&

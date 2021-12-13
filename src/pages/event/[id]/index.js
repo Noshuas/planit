@@ -30,7 +30,7 @@ export const Event = ({ e }) => {
   });
 
 
-  const onSubmit = useCallback((test, e) => console.log(e));
+  const onSubmit = useCallback((test, e) => console.log(test));
   console.log(methods.getValues());
   const watchUrl = methods.watch("url", false)
 

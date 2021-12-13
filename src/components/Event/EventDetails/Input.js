@@ -2,12 +2,15 @@ import { Controller } from "react-hook-form";
 import { IconButton, TextField } from '@mui/material';
 import ImageIcon from '@mui/icons-material/Image';
 
-export const Input = ({ name, handlePhotoChange, required, value, ...props, }) => (
+export const Input = ({ name, handlePhotoChange, required, value, pattern, ...props }) => (
   <Controller
     name={name}
-    rules={{ required: !!required }}
+    rules={{
+      required: {value: !!required, message: 'this is required'},
+      pattern
+    }}
     defaultValue={value}
-    render={({ field }) => (
+    render={({ field, fieldState }) => (
       <>
         {props.type === 'file'
           ?
@@ -23,13 +26,15 @@ export const Input = ({ name, handlePhotoChange, required, value, ...props, }) =
           </IconButton>
           :
           <TextField
-            sx={{margin: '.5em 0 .5em 0'}}
+            sx={{ margin: '.5em 0 .5em 0', whiteSpace: 'pre-wrap' }}
             {...field}
             {...props}
             autoFocus
-            onFocus={(e)=>e.target.select()}
+            error={fieldState.error}
+            helperText={fieldState.error?.message}
+            onFocus={(e) => e.target.select()}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
+              if (e.key === 'Enter' && !props.multiline) {
                 e.preventDefault()
                 e.target.blur()
               }

@@ -42,7 +42,7 @@ export const Home = (props) => {
 
   console.log('Events:,',)
   return (
-    <Grid container direction="row" justifyContent="center" spacing={2} alignItems='center'>
+    <Grid container direction="row" justifyContent="center" spacing={4} alignItems='center'>
         <Grid item xs={6}>
           <TextField
             margin="dense"
