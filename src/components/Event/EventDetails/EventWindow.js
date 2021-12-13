@@ -25,7 +25,7 @@ export const EventWindow = ({ time }) => {
     <>
       <Grid item onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} spacing={0} container direction='column' alignContent='stretch' >
         <Box sx={{ display: 'flex', flexFlow: 'row wrap' }} ref={containerRef} >
-          <Typography variant="h6" sx={{ display: 'inline-block', marginRight: '.75em' }}> Event Window: </Typography>
+          <Typography variant="h6" >Event Window:</Typography>
           <Fade timeout={350} in={hovered} >
             <DateRangePicker />
           </Fade>

@@ -39,18 +39,18 @@ export const Event = ({ e }) => {
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Grid container columns={12} spacing={4} justifyContent='center'>
-          <Grid item sm={8} >
+          <Grid item sm={12} md={8}>
             <PhotoBanner url={watchUrl || e.info.image} />
           </Grid>
-          <Grid item container sm={8} columns={12} spacing={4}>
+          <Grid item container sm={12} md={8} columns={12} spacing={4}>
             <Grid item container xs={4} spacing={2} direction="column" >
-              <Card sx={{ padding: '3em' }}>
+              <Card sx={{ padding: '2em' }}>
                 <EventDetails {...{ time, status, location }} />
               </Card>
               <EventController id={e._id}resetForm={methods.reset}/>
             </Grid>
             <Grid item spacing={2} xs={8} colums={1} container direction="column" >
-              <Card sx={{ padding: '3em' }}>
+              <Card sx={{ padding: '2em' }}>
                 <EventContent title={title} {...{ description }} />
               </Card>
             </Grid>

@@ -28,6 +28,7 @@ export const AvailabilityForm = ({ timeFrame }) => {
               size='small'
               type='text'
               pattern={{ value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/, message: 'A valid email must be provided' }}
+              value=''
               required
             />
             <Button

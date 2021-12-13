@@ -4,19 +4,6 @@ import axios from 'axios';
 import Event from '../components/home/Event';
 import { useSession, getSession } from 'next-auth/react';
 
-export async function getServerSideProps(context) {
-  const session = await getSession(context)
-  const props = { session }
-  const redirect = {
-    destination: '/login',
-    permanent: false,
-  }
-
-  return (!session)
-    ? { redirect }
-    : { props }
-}
-
 export const Home = (props) => {
   const [events, setEvents] = useState();
   const [displayedEvents, setDisplayed] = useState();
@@ -25,7 +12,6 @@ export const Home = (props) => {
   useEffect(() => {
     axios.get(`/api/events/${session.user.email}`)
       .then(({ data }) => {
-        console.log(data);
         setEvents(data);
         setDisplayed(data);
       })
@@ -38,7 +24,6 @@ export const Home = (props) => {
       setDisplayed(newDisplayed);
   };
 
-  console.log('Events:,',)
   return (
     <Grid container direction="row" justifyContent="center" spacing={4} alignItems='center'>
         <Grid item xs={6}>
@@ -59,5 +44,18 @@ export const Home = (props) => {
     </Grid>
   );
 };
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+  const props = { session }
+  const redirect = {
+    destination: '/login',
+    permanent: false,
+  }
+
+  return (!session)
+    ? { redirect }
+    : { props }
+}
 
 export default Home;
