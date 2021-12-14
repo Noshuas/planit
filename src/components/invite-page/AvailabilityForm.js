@@ -45,7 +45,7 @@ export const AvailabilityForm = ({ timeFrame }) => {
               variant='contained'
             > RSVP </Button>
           </Stack>
-          <ScheduleModal open={isOpen} handleClose={closeModal} {...{ timeFrame }} />
+          <ScheduleModal open={isOpen} handleClose={closeModal} {...{ timeFrame }} onInvitePage/>
         </form>
       </FormProvider>
     </Card>

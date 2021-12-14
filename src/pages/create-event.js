@@ -44,9 +44,8 @@ export const createEvent = () => {
     console.log(info);
     getPhotoURL(info.imageUrl)
       .then(({ data }) => {
-        console.log('this is the data', data)
         event.info.imageUrl = data;
-        return postEvent(session.user.email, event)
+        return postEvent(event)
       })
       .then(() => { setPosted(true) })
       .catch(console.log)

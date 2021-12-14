@@ -14,10 +14,11 @@ import { getSession } from 'next-auth/react';
 import { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import Script from 'next/script';
+import axios from 'axios';
 
 export const Event = ({ e }) => {
-
   const { info: { time, location, title, description, imageUrl, status } } = e;
+
   const methods = useForm({
     mode: 'onBlur',
     defaultValues: {
@@ -30,24 +31,34 @@ export const Event = ({ e }) => {
   });
 
 
-  const onSubmit = useCallback((test, e) => console.log(test));
-  console.log(methods.getValues());
-  const watchUrl = methods.watch("url", false)
+  const onSubmit = formData => {
+    let body = {
+        id: e._id,
+        updateDocument: {
+          $set: {
+            info: formData
+          }
+        }
+      }
 
+    axios.patch('/api/events', body)
+      .then(console.log)
+      .catch(console.log)
+  };
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Grid container columns={12} spacing={4} justifyContent='center'>
           <Grid item sm={12} md={8}>
-            <PhotoBanner url={watchUrl || e.info.image} />
+            <PhotoBanner url={imageUrl} />
           </Grid>
           <Grid item container sm={12} md={8} columns={12} spacing={4}>
             <Grid item container xs={4} spacing={2} direction="column" >
               <Card sx={{ padding: '2em' }}>
                 <EventDetails {...{ time, status, location }} />
               </Card>
-              <EventController id={e._id}resetForm={methods.reset}/>
+              <EventController id={e._id} resetForm={methods.reset} />
             </Grid>
             <Grid item spacing={2} xs={8} colums={1} container direction="column" >
               <Card sx={{ padding: '2em' }}>

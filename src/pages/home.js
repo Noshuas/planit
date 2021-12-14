@@ -16,7 +16,7 @@ export const Home = (props) => {
         setDisplayed(data);
       })
       .catch(console.log);
-  }, [status, session]);
+  }, []);
 
   const search = (e) => {
       const query = e.target.value;

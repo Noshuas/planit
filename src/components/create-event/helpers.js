@@ -9,18 +9,9 @@ export const getPhotoURL = async (url, cb) => {
   return axios.post(`/api/events/photos/dataUrl`, { url })
 }
 
-// makes useState()[1] calls more like component.setState();
-export const upgradeHook = ([name, setState]) => [name, (val) => {
-  if ((typeof val === 'object' && !Array.isArray(val))) {
-    setState(prev => ({ ...prev, ...val }));
-    return;
-  }
-  setState(val)
-}];
-
-export const postEvent = async (email, form, cb) => {
+export const postEvent = async (form) => {
   return new Promise((resolve, reject) => {
-    axios.post(`/api/events/${email}`, form)
+    axios.post(`/api/events`, form)
       .then(resolve)
       .catch(reject)
   })

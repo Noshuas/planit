@@ -7,6 +7,7 @@ import { GoogleCalendarButton } from './googleCalendarButton';
 import Input from "../EventDetails/Input";
 import { setNestedObjectValues } from "formik";
 import { useFormContext } from "react-hook-form";
+import { useSession } from "next-auth/react";
 
 const formatEventList = (list, map = true, sort = true) => {
   console.log(list)
@@ -38,9 +39,9 @@ const formatEventList = (list, map = true, sort = true) => {
   }, [])
 }
 
-export const ScheduleModal = ({ email, open, handleClose, timeFrame }) => {
+export const ScheduleModal = ({ email, open, handleClose, timeFrame, onInvitePage }) => {
   const [events, setEvents] = useState([]);
-  const { setValue } = useFormContext();
+  const { setValue, getValues } = useFormContext();
 
   const [calendar, setCalendar] = useState();
   const format = useCallback(date => new Date(date).toLocaleDateString());
@@ -56,7 +57,10 @@ export const ScheduleModal = ({ email, open, handleClose, timeFrame }) => {
   })
 
   useEffect(() => {
-    setValue('availability', events);
+    const email = getValues('email')
+    if (onInvitePage) //only triggers on invite page.
+      setValue('attendees', [{email, events}]);
+
   }, [events])
 
   return (

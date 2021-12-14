@@ -1,59 +1,34 @@
-export const fetchEvents = (query, cb = () => { }) => {
-  console.log(query);
-  return global._mongoClientPromise.then((client) => {
-    let db = client.db();
-    let events = db.collection('events');
-    return events.find(query)
-      .toArray()
-      .then((result) => {
-        result.forEach((doc) => {
-          doc._id = doc._id.toString();
+export const fetchEvents = (query) => {
+  return global._mongoClientPromise
+    .then((client) => {
+      let db = client.db();
+      let events = db.collection('events');
+      return events.find(query)
+        .toArray()
+        .then((result) => {
+          result.forEach((doc) => {
+            doc._id = doc._id.toString();
+          })
+          console.log('inside db:', result)
+          return result
         })
-        console.log('inside db:', result)
-        cb(null, result)
-        return result
-      })
-      .catch(cb);
-  });
+    });
 }
 
-export const postEvent = (query, cb) => {
-  console.log('in postEvent, global:', global)
-  return global._mongoClientPromise.then((client) => {
-    let db = client.db();
-    let events = db.collection('events');
-    return events.insertOne(query)
-      .then((result) => {
-        cb(null, result)
-        return result;
-      })
-      .catch(cb);
-  });
+export const postEvent = (query) => {
+  return global._mongoClientPromise
+    .then((client) => {
+      let db = client.db();
+      let events = db.collection('events');
+      return events.insertOne(query)
+    });
 }
 
-export const timeStamp = (body) => {
-  console.log(body);
-  const {
-    name, duration, location, description, window,
-    owner, status, time, photo_url, attendees
-  } = body
-
-  return {
-    owner,
-    info: {
-      name,
-      status,
-      description,
-      location,
-      image: photo_url,
-      time: {
-        created: + Date.now(),
-        scheduled: time,
-        duration,
-        frameStart: window.start,
-        frameEnd: window.end,
-      },
-    },
-    attendees: []
-  }
+export const updateEvent = (filter, updateDocument) => {
+  return global._mongoClientPromise
+    .then((client) => {
+      let db = client.db();
+      let events = db.collection('events');
+      return events.updateOne(filter, updateDocument)
+    });
 }

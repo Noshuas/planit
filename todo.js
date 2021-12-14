@@ -5,6 +5,7 @@
    *  - Times should be initialized as so: Date.now()
    *  - Need to write an upset method for the backend for the invite-page
    *  - Need to implement node mailer
+   *  - add a password to the invite page so only trusted people can view the invitation
    *
    *
    *
