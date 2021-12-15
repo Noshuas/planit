@@ -1,0 +1,25 @@
+/*
+  ========================================
+  Containers
+  ========================================
+*/
+
+.window {
+  display: flex;
+  flex-flow: column;
+  background: #f4e3f5;
+}
+
+.container {
+  display: flex;
+  flex-flow: column;
+  align-self: center;
+  min-height: 45vh;
+  width: 100vh;
+}
+
+.photo {
+  align-self: center;
+  height: 175px;
+  border-radius: 5px;
+}

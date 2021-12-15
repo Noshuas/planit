@@ -1,0 +1,97 @@
+
+
+.container {
+  display: flex;
+  flex-flow: column;
+  align-self: center;
+  min-height: 45vh;
+  width: 50%;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+/*
+  ========================================
+  Body Structure
+  ========================================
+*/
+.mainsection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 35px;
+}
+.col {
+  width: 48.5%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+.col >* {
+  margin-top: 15px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 16px;
+}
+
+/*
+  ========================================
+  Box Styles
+  ========================================
+*/
+
+.header {
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  padding: 0px 30px 30px 30px;
+  opacity: .80;
+}
+
+/* More style to be added to modal*/
+.tempModal {
+  position: 'absolute';
+  width: 400;
+  border: '2px solid #000';
+}
+
+/*
+  ========================================
+  Button
+  ========================================
+*/
+
+.hidden{
+  display: none
+}
+.buttonlist {
+  display: grid;
+  justify-content: space-around;
+  grid-auto-rows: 40px;
+  grid-template-columns: 215px 215px 215px;
+  padding-bottom: 25px;
+}
+.test {
+  width: 198px;
+  height: 36px;
+}
+
+/*
+  ========================================
+  Update Event Form
+  ========================================
+*/
+.descriptionText {
+  width: 100%;
+  font-size: 16px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+}

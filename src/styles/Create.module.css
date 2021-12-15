@@ -1,0 +1,47 @@
+/*
+  ========================================
+  Containers
+  ========================================
+*/
+
+.window {
+  display: flex;
+  flex-flow: column;
+  background: #f4e3f5;
+}
+
+.container {
+  display: flex;
+  flex-flow: column;
+  align-self: center;
+  width: 100vh;
+}
+
+.uploadPhoto {
+  align-self: center;
+  height: 175px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: solid 2px rgba(0, 0, 0, 0.54);
+  border-style: dashed;
+}
+
+.uploadIcon {
+  color: rgba(0, 0, 0, 0.54);
+  opacity: 0.5;
+  font-size: 75px !important;
+}
+
+.mainsection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 35px;
+}
+
+.hidden{
+  display: none
+}

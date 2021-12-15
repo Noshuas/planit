@@ -1,0 +1,19 @@
+.timeBlock {
+  border: solid 1px #d3d3d3;
+  padding: 8px;
+  margin: 10px;
+}
+
+.datePicker {
+  margin-right: 20px !important;
+}
+
+.container {
+  width: 100%;
+}
+
+.submit {
+  padding: 10px 0;
+  justify-content: flex-end;
+  display: flex;
+}

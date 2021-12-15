@@ -1,0 +1,21 @@
+.parentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.container,
+.container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 400px;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+}
