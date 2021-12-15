@@ -1,16 +1,17 @@
 import { AccessTime, DeleteForever, Save, Share } from "@mui/icons-material";
 import { Button, Fade, Grid } from "@mui/material";
 import { useCallback, useState } from "react";
-import { useFormState } from "react-hook-form";
+import { useFormContext, useFormState } from "react-hook-form";
 import { copyInviteLink } from "components/helpers";
 import ScheduleModal from "./ScheduleModal";
 
 
-export const EventController = ({ id, resetForm, init }) => {
+export const EventController = ({ id, resetForm, init, attendees}) => {
   const { isDirty, isSubmitSuccessful } = useFormState();
   const [isOpen, setIsOpen] = useState(false);
-  const handleOpen = useCallback(() => setIsOpen(true));
-  const handleClose = useCallback(() => setIsOpen(false));
+  const timeFrame = useFormContext().getValues('time.timeFrame');
+  const handleOpen = useCallback(() => setIsOpen(true), []);
+  const handleClose = useCallback(() => setIsOpen(false), []);
 
   return (
     <Grid container spacing={2} direction="column" item alignItems='end' alignContent='end'>
@@ -55,7 +56,7 @@ export const EventController = ({ id, resetForm, init }) => {
           </Button>
         </Fade>
       </Grid>
-      <ScheduleModal open={isOpen} handleClose={handleClose} />
+      <ScheduleModal open={isOpen} {...{handleClose, attendees, timeFrame}} />
     </Grid >
   )
 }

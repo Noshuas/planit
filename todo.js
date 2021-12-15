@@ -6,7 +6,8 @@
    *  - Need to write an upset method for the backend for the invite-page
    *  - Need to implement node mailer
    *  - add a password to the invite page so only trusted people can view the invitation
-   *
+   *  - Need to add root variable --fc-bg-event-opacity to be .7 or higher
+   *  - Need to also add border radius, and 700 font weight, and text-size = 1.5em on fc-bg-event
    *
    *
    *

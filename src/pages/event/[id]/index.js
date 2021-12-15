@@ -17,7 +17,7 @@ import Script from 'next/script';
 import axios from 'axios';
 
 export const Event = ({ e }) => {
-  const { info: { time, location, title, description, imageUrl, status } } = e;
+  const { time, location, title, description, imageUrl, status  } = e.info
 
   const methods = useForm({
     mode: 'onBlur',
@@ -32,6 +32,7 @@ export const Event = ({ e }) => {
 
 
   const onSubmit = formData => {
+    console.log(formData)
     let body = {
         id: e._id,
         updateDocument: {
@@ -42,8 +43,12 @@ export const Event = ({ e }) => {
       }
 
     axios.patch('/api/events', body)
-      .then(console.log)
-      .catch(console.log)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => [
+        console.log(err)
+      ])
   };
 
   return (
@@ -58,7 +63,7 @@ export const Event = ({ e }) => {
               <Card sx={{ padding: '2em' }}>
                 <EventDetails {...{ time, status, location }} />
               </Card>
-              <EventController id={e._id} resetForm={methods.reset} />
+              <EventController id={e._id} resetForm={methods.reset} attendees={e.attendees}/>
             </Grid>
             <Grid item spacing={2} xs={8} colums={1} container direction="column" >
               <Card sx={{ padding: '2em' }}>

@@ -1,3 +1,5 @@
+import { Options } from "devextreme-react/color-box";
+
 export const fetchEvents = (query) => {
   return global._mongoClientPromise
     .then((client) => {
@@ -24,11 +26,19 @@ export const postEvent = (query) => {
     });
 }
 
-export const updateEvent = (filter, updateDocument) => {
+export const updateEvent = (filter, updateDocument, options) => {
   return global._mongoClientPromise
     .then((client) => {
       let db = client.db();
       let events = db.collection('events');
-      return events.updateOne(filter, updateDocument)
+      return events.updateOne(filter, updateDocument, options)
+        .then(res => {
+          console.log(res)
+          return res
+        })
+        .catch(err => {
+          console.log('err', err)
+          return err;
+        })
     });
 }

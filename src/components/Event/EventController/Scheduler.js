@@ -1,23 +1,28 @@
 import FullCalendar from "@fullcalendar/react";
 import Interaction from "@fullcalendar/interaction";
 import timeGrid from "@fullcalendar/timegrid";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from "@mui/material";
-import { createRef, useCallback, useEffect, useState } from "react";
-import { Box } from "@mui/system";
-import { NavigateBefore, NavigateNext } from "@mui/icons-material";
+import { useEffect, useState } from "react";
+import { useFormContext } from "react-hook-form";
 
 
-export const Scheduler = ({ start, end, myref, color = 'green', events}) => {
+export const Scheduler = (
+  { timeFrame, myref, color = 'green', events, scheduling, }
+) => {
 
-  const handleEventSelect = useCallback(({ event }) => event.remove())
-  const handleSelect = useCallback(({ start, end, view: { calendar } }) => {
+  const [start, end] = timeFrame
+  const [title, duration] = useFormContext().getValues(['title', 'time.duration'])
+  const handleEventSelect = ({ event }) => event.remove()
+
+  const handleSelect = ({ start, end, view: { calendar } }) => {
     calendar.unselect()
-    calendar.addEvent({
-      title: 'Unavailable',
-      start: new Date(start),
-      end: new Date(end),
-    })
-  })
+
+    if (!scheduling)
+      return calendar.addEvent({ title: 'Unavailable', start, end })
+
+    calendar.getEventById(-1)?.remove();
+    calendar.addEvent({ title, start, id: -1 })
+  }
+
 
   return (
     <FullCalendar
@@ -34,6 +39,9 @@ export const Scheduler = ({ start, end, myref, color = 'green', events}) => {
       allDaySlot={false}
       snapDuration='00:15:00'
       slotDuration='01:00:00'
+      forceEventDuration
+      duration={duration}
+      // defaultTimedEventDuration={duration}
       eventColor={color}
       validRange={{ start, end }}
       eventTimeFormat={{

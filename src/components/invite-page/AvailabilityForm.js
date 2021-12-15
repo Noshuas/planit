@@ -1,5 +1,6 @@
 import { CalendarToday, ScheduleRounded } from "@mui/icons-material";
 import { Button, Card, Stack } from "@mui/material";
+import axios from "axios";
 import ScheduleModal from "components/Event/EventController/ScheduleModal";
 import Input from "components/Event/EventDetails/Input";
 import { useCallback, useState } from "react";
@@ -11,14 +12,30 @@ export const AvailabilityForm = ({ timeFrame }) => {
   const [isOpen, setIsOpen] = useState(false);
   const openModal = useCallback(() => setIsOpen(true));
   const closeModal = useCallback(() => setIsOpen(false));
-  const submitAvail = useCallback(({ email, availability }) => {
-    console.log('todo: post formdata to the database', { email, conflicts: availability }, methods.formState)
+  const submitAvail = useCallback(({ email, conflicts }) => {
+    const body = {
+      id: window.location.pathname.split('/').pop(),
+      updateDocument: {
+        $set: {
+          'attendees.$[person]': {email, conflicts: conflicts}
+        }
+      },
+      options: {
+        arrayFilters: [{ 'person.email': email }],
+        upsert: true
+      }
+    }
+
+    axios.patch('/api/events', body)
+      .then(console.log)
+      .catch(console.log)
   })
+
 
   return (
     <Card sx={{ padding: '1em' }}>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(submitAvail, (a, b, c) => console.log(a, b, c))}>
+        <form onSubmit={methods.handleSubmit(submitAvail)}>
           <Stack spacing={2}>
 
             <Input
@@ -45,7 +62,7 @@ export const AvailabilityForm = ({ timeFrame }) => {
               variant='contained'
             > RSVP </Button>
           </Stack>
-          <ScheduleModal open={isOpen} handleClose={closeModal} {...{ timeFrame }} onInvitePage/>
+          <ScheduleModal open={isOpen} handleClose={closeModal} {...{ timeFrame }} onInvitePage />
         </form>
       </FormProvider>
     </Card>

@@ -2,12 +2,9 @@ import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from "@mui/material";
 import { Box } from "@mui/system";
 import { useCallback, useEffect, useState } from "react";
-import Scheduler from "./Scheduler";
-import { GoogleCalendarButton } from './googleCalendarButton';
-import Input from "../EventDetails/Input";
-import { setNestedObjectValues } from "formik";
 import { useFormContext } from "react-hook-form";
-import { useSession } from "next-auth/react";
+import { GoogleCalendarButton } from './googleCalendarButton';
+import Scheduler from "./Scheduler";
 
 const formatEventList = (list, map = true, sort = true) => {
   console.log(list)
@@ -39,48 +36,73 @@ const formatEventList = (list, map = true, sort = true) => {
   }, [])
 }
 
-export const ScheduleModal = ({ email, open, handleClose, timeFrame, onInvitePage }) => {
-  const [events, setEvents] = useState([]);
+const format = date => new Date(date).toLocaleDateString()
+
+
+export const ScheduleModal = ({ open, handleClose, attendees, timeFrame }) => {
+
   const { setValue, getValues } = useFormContext();
-
   const [calendar, setCalendar] = useState();
-  const format = useCallback(date => new Date(date).toLocaleDateString());
-
   const calendarRef = useCallback(node => node && setCalendar(node._calendarApi), [])
-  const paginateRight = useCallback(() => calendar.next());
-  const paginateLeft = useCallback(() => calendar.prev());
+  const paginateRight = useCallback(() => calendar.next(), [calendar]);
+  const paginateLeft = useCallback(() => calendar.prev(), [calendar]);
   const contentRef = useCallback(node => node && node.scroll(0, 750), [])
 
+  const scheduling = !!attendees
+  const [events, setEvents] = useState(
+    scheduling
+      ? (
+        attendees.map(person => person.conflicts.map(conflict => {
+          conflict.display = 'background';
+          conflict.title = person.email.slice(0, person.email.indexOf('@'))
+          conflict.className = 'fc-bg-event'
+          return conflict;
+        })).flat()
+      )
+      : []
+  );
+
   const submitEvents = useCallback(() => {
-    setEvents(formatEventList(calendar.getEvents()))
-    handleClose();
-  })
+    const calEvents = calendar.getEvents();
+    const lastAdded = calendar.getEventById(-1)
+    calEvents.forEach(e => e.remove());
+
+    scheduling
+      ? setEvents(calEvents)
+      : setEvents(formatEventList(calEvents));
+
+    lastAdded &&
+      setValue('time.scheduled', new Date(lastAdded.start).getTime(), { shouldDirty: true })
+    lastAdded?.remove()
+    handleClose()
+  }, [calendar])
 
   useEffect(() => {
-    const email = getValues('email')
-    if (onInvitePage) //only triggers on invite page.
-      setValue('attendees', [{email, events}]);
-
+    if (!scheduling)
+      setValue('conflicts', events)
   }, [events])
 
   return (
-      <Dialog open={open} maxWidth='xl' fullWidth={true} sx={{ height: '97%' }}>
-        <DialogTitle>
-          Enter your {(timeFrame) ? `${format(timeFrame[0])} - ${format(timeFrame[1])}` : null} availability
-          <Box sx={{ float: 'right' }}>
-            <IconButton onClick={paginateLeft}><NavigateBefore /></IconButton>
-            <IconButton onClick={paginateRight}><NavigateNext /></IconButton>
-          </Box>
-        </DialogTitle>
-        <DialogContent ref={contentRef} dividers sx={{ paddingTop: 0 }}>
-          <Scheduler myref={calendarRef} events={events} timeFrame={timeFrame} />
-        </DialogContent>
-        <DialogActions>
-          <GoogleCalendarButton {...{ formatEventList, setEvents, timeFrame }} />
-          <Button onClick={submitEvents}>Submit Availability</Button>
-          <Button onClick={handleClose}>Exit</Button>
-        </DialogActions>
-      </Dialog>
+    <Dialog open={open} maxWidth='xl' fullWidth={true} sx={{ height: '97%' }}>
+      <DialogTitle>
+        Enter your {(timeFrame) ? `${format(timeFrame[0])} - ${format(timeFrame[1])}` : null} availability
+        <Box sx={{ float: 'right' }}>
+          <IconButton onClick={paginateLeft}><NavigateBefore /></IconButton>
+          <IconButton onClick={paginateRight}><NavigateNext /></IconButton>
+        </Box>
+      </DialogTitle>
+      <DialogContent ref={contentRef} dividers sx={{ paddingTop: 0 }}>
+        <Scheduler
+          myref={calendarRef}
+          {...{ timeFrame, events, scheduling }}
+        />
+      </DialogContent>
+      <DialogActions>
+        {!scheduling && <GoogleCalendarButton {...{ formatEventList, setEvents, timeFrame }} />}
+        <Button onClick={submitEvents}>{scheduling ? 'Schedule Event' : 'Submit Availibility'}</Button>
+        <Button onClick={handleClose}>Exit</Button>
+      </DialogActions>
+    </Dialog>
   )
 }
 

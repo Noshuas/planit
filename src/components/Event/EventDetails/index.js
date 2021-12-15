@@ -4,21 +4,19 @@ import Input from "./Input";
 import EventLocation from "./EventLocation";
 import EventWindow from "./EventWindow";
 import { useWatch } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
+import EditableLabel from "./EditableLabel";
+import { grid } from "@mui/system";
+import ScheduledFor from "./ScheduledFor";
 
+export const EventDetails = ({ time, location }) => (
+  <Grid container direction='column' spacing={2}>
+    <ScheduledFor scheduled={time?.scheduled} />
+    <EventWindow time={time?.frame} />
+    <EventDuration duration={time?.duration} />
+    <EventLocation {...{ location }} />
+  </Grid>
+)
 
-export const EventDetails = ({ time, location }) => {
-  const newScheduled = useWatch('scheduled', time?.scheduled);
-
-  return (
-      <Grid container direction='column' spacing={2}>
-
-        {typeof newScheduled !== 'object' &&
-          <Typography>Scheduled for {new Date(newScheduled).toLocaleString()}</Typography>}
-        <EventWindow time={time?.frame} />
-        <EventDuration duration={time?.duration} />
-        <EventLocation {...{ location }} />
-      </Grid>
-  )
-}
 
 export default EventDetails;

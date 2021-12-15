@@ -1,14 +1,13 @@
 import { Card, Grid } from '@mui/material';
+import { getPhotoURL } from 'components/create-event/helpers';
 import EventContent from 'components/Event/EventContent';
 import EventController from 'components/Event/EventController';
 import EventDetails from 'components/Event/EventDetails';
 import { PhotoBanner } from 'components/Event/PhotoBanner';
 import { getSession, useSession } from 'next-auth/react';
-import React, { useCallback, useEffect, useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { getPhotoURL } from 'components/create-event/helpers';
-import { postEvent } from 'components/create-event/helpers'
 import router from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 
 export const createEvent = () => {
   const [posted, setPosted] = useState(false);
@@ -45,7 +44,7 @@ export const createEvent = () => {
     getPhotoURL(info.imageUrl)
       .then(({ data }) => {
         event.info.imageUrl = data;
-        return postEvent(event)
+        return axios.post(`/api/events`, event)
       })
       .then(() => { setPosted(true) })
       .catch(console.log)
