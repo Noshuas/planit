@@ -45,7 +45,7 @@ export var Home = function (props) {
         )).reverse()
         :
         <Grid item sm={12}>
-          <Typography textAlign={'center'} >Click "Create Event" in the toolbar to get started</Typography>
+          <Typography textAlign={'center'} >Click &quot;Create Event&quot; in the toolbar to get started</Typography>
           </Grid>
       }
     </Grid>
