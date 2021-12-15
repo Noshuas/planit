@@ -1,36 +1,40 @@
-import { Edit } from "@mui/icons-material";
-import { Grid, IconButton, Typography } from "@mui/material";
-import { useCallback, useState } from "react";
-import { useWatch } from "react-hook-form";
-import EditIcon, { EditableLabel } from "./EditableLabel";
-import { Input } from "./Input";
+import { Edit } from '@mui/icons-material';
+import { Grid, IconButton, Typography } from '@mui/material';
+import { useCallback, useState } from 'react';
+import { useWatch } from 'react-hook-form';
+import EditIcon, { EditableLabel } from './EditableLabel';
+import { Input } from './Input';
 
-export const EventDuration = ({ duration }) => {
+export var EventDuration = function ({ duration }) {
   const [editMode, setEditMode] = useState(!duration);
-  const handleClick = useCallback(() => setEditMode(true));
-  const handleBlur = useCallback(() => setEditMode(false));
-  const newDuration = useWatch({ name: 'time.duration', defaultValue: duration || 0})
+  const handleClick = useCallback(() => setEditMode(true),[]);
+  const handleBlur = useCallback(() => setEditMode(false),[]);
+  const newDuration = useWatch({ name: 'time.duration', defaultValue: duration || 0 });
 
   return (
     <Grid item>
       {editMode
-        ?
-        <Input
-          onBlur={handleBlur}
-          name="time.duration"
-          type='number'
-          label="Duration in hours"
-          value={newDuration || 0}
-          size='small'
-        />
-        :
-        <EditableLabel
-          label='Event Duration:'
-          handleClick={handleClick}
-        > {`${newDuration || 0} hours`}</EditableLabel>
-      }
-    </Grid >
-  )
-}
+        ? (
+          <Input
+            onBlur={handleBlur}
+            name="time.duration"
+            type="number"
+            label="Duration in hours"
+            value={newDuration || 0}
+            size="small"
+          />
+        )
+        : (
+          <EditableLabel
+            label="Event Duration:"
+            handleClick={handleClick}
+          >
+            {' '}
+            {`${newDuration || 0} hours`}
+          </EditableLabel>
+        )}
+    </Grid>
+  );
+};
 
 export default EventDuration;

@@ -1,7 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { Card, Dialog, DialogContent, DialogTitle, Grid } from '@mui/material';
+import {
+  Card, Dialog, DialogContent, DialogTitle, Grid,
+} from '@mui/material';
 import { Box } from '@mui/system';
 import EventContent from 'components/Event/EventContent';
 import EventController from 'components/Event/EventController';
@@ -16,56 +18,57 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Script from 'next/script';
 import axios from 'axios';
 
-export const Event = ({ e }) => {
-  const { time, location, title, description, imageUrl, status  } = e.info
+export var Event = function ({ e }) {
+  const {
+    time, location, title, description, imageUrl, status,
+  } = e.info;
 
   const methods = useForm({
     mode: 'onBlur',
     defaultValues: {
       title,
       imageUrl,
-      time: time,
+      time,
       description,
-      location
-    }
+      location,
+    },
   });
 
-
-  const onSubmit = formData => {
-    console.log(formData)
-    let body = {
-        id: e._id,
-        updateDocument: {
-          $set: {
-            info: formData
-          }
-        }
-      }
+  const onSubmit = (formData) => {
+    console.log(formData);
+    const body = {
+      id: e._id,
+      updateDocument: {
+        $set: {
+          info: formData,
+        },
+      },
+    };
 
     axios.patch('/api/events', body)
-      .then(res => {
-        console.log(res)
+      .then((res) => {
+        console.log(res);
       })
-      .catch(err => [
-        console.log(err)
-      ])
+      .catch((err) => [
+        console.log(err),
+      ]);
   };
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <Grid container columns={12} spacing={4} justifyContent='center'>
+        <Grid container columns={12} spacing={4} justifyContent="center">
           <Grid item sm={12} md={8}>
             <PhotoBanner url={imageUrl} />
           </Grid>
           <Grid item container sm={12} md={8} columns={12} spacing={4}>
-            <Grid item container xs={4} spacing={2} direction="column" >
+            <Grid item container xs={4} spacing={2} direction="column">
               <Card sx={{ padding: '2em' }}>
                 <EventDetails {...{ time, status, location }} />
               </Card>
-              <EventController id={e._id} resetForm={methods.reset} attendees={e.attendees}/>
+              <EventController id={e._id} resetForm={methods.reset} attendees={e.attendees} />
             </Grid>
-            <Grid item spacing={2} xs={8} colums={1} container direction="column" >
+            <Grid item spacing={2} xs={8} colums={1} container direction="column">
               <Card sx={{ padding: '2em' }}>
                 <EventContent title={title} {...{ description }} />
               </Card>
@@ -74,27 +77,24 @@ export const Event = ({ e }) => {
         </Grid>
       </form>
     </FormProvider>
-  )
-}
-
-
-
+  );
+};
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
   const redirect = {
     destination: '/login',
     permanent: false,
-  }
+  };
 
-  const query = ObjectId(ctx.params.id.toString())
-  let [event] = await fetchEvents(query)
-  console.log(event, session)
-  const props = { e: event, session }
+  const query = ObjectId(ctx.params.id.toString());
+  const [event] = await fetchEvents(query);
+  console.log(event, session);
+  const props = { e: event, session };
 
   return (!session)
     ? { redirect }
-    : { props }
+    : { props };
 }
 
 export default Event;

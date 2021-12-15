@@ -4,4 +4,4 @@ export const exportAll = (imports, cb) => {
       ? Object.entries(alias).forEach(cb)
       : cb([alias.name, alias]);
   });
-}
+};

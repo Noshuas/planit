@@ -1,20 +1,18 @@
-import { Card, Grid } from "@mui/material";
-import EventDescription from "./EventDescription";
-import EventTitle from "./EventTitle";
+import { Card, Grid } from '@mui/material';
+import EventDescription from './EventDescription';
+import EventTitle from './EventTitle';
 
-
-export const EventContent = ({ title, description }) => {
-
+export var EventContent = function ({ title, description }) {
   return (
-    <Grid container direction='column' spacing={1}>
-      <Grid item sx={{minHeight: '4em'}}>
+    <Grid container direction="column" spacing={1}>
+      <Grid item sx={{ minHeight: '4em' }}>
         <EventTitle {...{ title }} />
       </Grid>
-      <Grid item >
-        <EventDescription  {...{ description }} />
+      <Grid item>
+        <EventDescription {...{ description }} />
       </Grid>
     </Grid>
-  )
-}
+  );
+};
 
 export default EventContent;

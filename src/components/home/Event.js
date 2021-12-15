@@ -4,13 +4,13 @@ import { Edit, ExpandMore, Share } from '@mui/icons-material';
 import {
   Card, CardActions, CardContent,
   CardMedia, Collapse,
-  IconButton, Typography
+  IconButton, Typography,
 } from '@mui/material';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { copyInviteLink } from '../helpers';
 
-const Event = ({ _id, info }) => {
+const Event = function ({ _id, info }) {
   const { title, description, imageUrl } = info;
   const router = useRouter();
 
@@ -25,7 +25,7 @@ const Event = ({ _id, info }) => {
         image={imageUrl}
         sx={{ minHeight: '100px' }}
       />
-      <CardContent >
+      <CardContent>
         <Typography variant="h5">
           {title}
         </Typography>
@@ -38,7 +38,7 @@ const Event = ({ _id, info }) => {
         <IconButton onClick={() => { router.push(`/event/${_id}`); }}>
           <Edit />
         </IconButton>
-        <IconButton onClick={handleExpandClick} >
+        <IconButton onClick={handleExpandClick}>
           <ExpandMore />
         </IconButton>
       </CardActions>

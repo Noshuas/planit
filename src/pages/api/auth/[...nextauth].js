@@ -1,9 +1,7 @@
-import NextAuth from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
-import clientPromise from "lib/database/mongodb"
-
-
+import NextAuth from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
+import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
+import clientPromise from 'lib/database/mongodb';
 
 export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
@@ -15,9 +13,8 @@ export default NextAuth({
 
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET
+      clientSecret: process.env.GOOGLE_SECRET,
     }),
-
 
     // LinkedInProvider({
     //   clientId: process.env.LINKEDIN_CLIENT_ID,
@@ -39,4 +36,4 @@ export default NextAuth({
   //   }
   // },
   // debug: true,
-})
+});

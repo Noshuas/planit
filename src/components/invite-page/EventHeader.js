@@ -1,24 +1,27 @@
-import { Card, CardContent, CardHeader, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import { useCallback } from "react";
-import Label from "./Label";
+import {
+  Card, CardContent, CardHeader, Typography,
+} from '@mui/material';
+import { Box } from '@mui/system';
+import { useCallback } from 'react';
+import Label from './Label';
 
-
-export const EventHeader = ({ message, time, location, title }) => {
+export var EventHeader = function ({
+  message, time, location, title,
+}) {
   const { scheduled, timeFrame: [start, end], duration } = time;
-  const format = useCallback(time => new Date(time).toLocaleDateString());
+  const format = useCallback((time) => new Date(time).toLocaleDateString(),[]);
 
   return (
     <Card sx={{ padding: '1em' }}>
       <Typography variant="h4">{message}</Typography>
       <CardContent>
-        <Label label='What'>
+        <Label label="What">
           {title}
         </Label>
-        <Label label='When'>
+        <Label label="When">
           {scheduled || `${format(start)} - ${format(end)} (unscheduled)`}
         </Label>
-        <Label label='Duration'>
+        <Label label="Duration">
           {`${duration} hours`}
         </Label>
         <Label label="Where">
@@ -26,7 +29,7 @@ export const EventHeader = ({ message, time, location, title }) => {
         </Label>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
 
 export default EventHeader;

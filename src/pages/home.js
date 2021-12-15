@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { TextField, Grid } from '@mui/material';
 import axios from 'axios';
-import Event from '../components/home/Event';
 import { useSession, getSession } from 'next-auth/react';
+import Event from '../components/home/Event';
 
-export const Home = (props) => {
+export var Home = function (props) {
   const [events, setEvents] = useState();
   const [displayedEvents, setDisplayed] = useState();
   const { data: session, status } = useSession();
@@ -16,26 +16,26 @@ export const Home = (props) => {
         setDisplayed(data);
       })
       .catch(console.log);
-  }, []);
+  }, [session.user.email]);
 
   const search = (e) => {
-      const query = e.target.value;
-      const newDisplayed = events.filter((result) => result.info.title.includes(query));
-      setDisplayed(newDisplayed);
+    const query = e.target.value;
+    const newDisplayed = events.filter((result) => result.info.title.includes(query));
+    setDisplayed(newDisplayed);
   };
 
   return (
-    <Grid container direction="row" justifyContent="center" spacing={4} alignItems='center'>
-        <Grid item xs={6}>
-          <TextField
-            margin="dense"
-            id="search-bar"
-            label="Search"
-            variant="outlined"
-            onChange={search}
-            fullWidth
-          />
-        </Grid>
+    <Grid container direction="row" justifyContent="center" spacing={4} alignItems="center">
+      <Grid item xs={6}>
+        <TextField
+          margin="dense"
+          id="search-bar"
+          label="Search"
+          variant="outlined"
+          onChange={search}
+          fullWidth
+        />
+      </Grid>
       {displayedEvents && displayedEvents.map((event) => (
         <Grid item key={Math.random()} xs={8}>
           <Event {...event} />
@@ -46,16 +46,16 @@ export const Home = (props) => {
 };
 
 export async function getServerSideProps(context) {
-  const session = await getSession(context)
-  const props = { session }
+  const session = await getSession(context);
+  const props = { session };
   const redirect = {
     destination: '/login',
     permanent: false,
-  }
+  };
 
   return (!session)
     ? { redirect }
-    : { props }
+    : { props };
 }
 
 export default Home;

@@ -6,24 +6,26 @@ import React from 'react';
 import Head from 'next/head';
 
 import CssBaseline from '@mui/material/CssBaseline';
+import { SessionProvider } from 'next-auth/react';
 import Layout from '../components/layout/Layout';
-import { SessionProvider } from 'next-auth/react'
 
-const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => (
-  <>
-    <Head>
-      <title>My page</title>
-      <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-    </Head>
+const MyApp = function ({ Component, pageProps: { session, ...pageProps } }) {
+  return (
+    <>
+      <Head>
+        <title>My page</title>
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+      </Head>
 
-    <SessionProvider session={session}>
+      <SessionProvider session={session}>
         <CssBaseline />
         <Layout>
           <Component {...pageProps} />
         </Layout>
-    </SessionProvider>
+      </SessionProvider>
 
-  </>
-);
+    </>
+  );
+};
 
 export default MyApp;

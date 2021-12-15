@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from '../../styles/Login.module.css';
 
-export const LoginNav = ({ currentPage }) => {
+export var LoginNav = function ({ currentPage }) {
   const links = [
     {
       href: '/login',
@@ -30,4 +30,3 @@ export const LoginNav = ({ currentPage }) => {
     </div>
   );
 };
-

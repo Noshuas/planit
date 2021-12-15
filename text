@@ -1,0 +1,7 @@
+yarn remove eslint
+yarn remove eslint-config-airbnb
+yarn remove eslint-config-next
+yarn remove eslint-plugin-import
+yarn remove     eslint-plugin-jsx-a11y
+yarn remove eslint-plugin-react
+yarn remove     eslint-plugin-react-hooks

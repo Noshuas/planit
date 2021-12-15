@@ -1,28 +1,25 @@
 import {
   Card,
   Grid,
-  TextField
+  TextField,
 } from '@mui/material';
 
-
-
-export const EventDescription = ({ value, handleChange }) => {
-
+export var EventDescription = function ({ value, handleChange }) {
   return (
     <Grid item xs={8}>
       <Card>
-          <TextField
-            name="description"
-            placeholder="Event Description *"
-            multiline
-            rows={10}
-            fullWidth
-            inputProps={{ 'aria-label': 'naked' }}
-            required
-            value={value}
-            onChange={handleChange}
-          />
+        <TextField
+          name="description"
+          placeholder="Event Description *"
+          multiline
+          rows={10}
+          fullWidth
+          inputProps={{ 'aria-label': 'naked' }}
+          required
+          value={value}
+          onChange={handleChange}
+        />
       </Card>
     </Grid>
-  )
-}
+  );
+};

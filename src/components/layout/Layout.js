@@ -27,10 +27,10 @@ const useStyles = makeStyles(() => ({
 
 // eslint-disable-next-line react/function-component-definition
 export default function ButtonAppBar({ children }) {
-  const router = useRouter()
+  const router = useRouter();
   const classes = useStyles();
   const { data: session, status } = useSession();
-  const authenticated = status === 'authenticated'
+  const authenticated = status === 'authenticated';
 
   return (
     <div className={classes.root}>

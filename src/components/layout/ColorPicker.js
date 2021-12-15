@@ -84,7 +84,8 @@ const ColorPicker = () => {
         color="inherit"
         aria-label="menu"
         onClick={toggleDrawer()}
-        size="large">
+        size="large"
+      >
         <PlanitIcon />
       </IconButton>
       <SwipeableDrawer

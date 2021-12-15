@@ -1,28 +1,24 @@
-import FullCalendar from "@fullcalendar/react";
-import Interaction from "@fullcalendar/interaction";
-import timeGrid from "@fullcalendar/timegrid";
-import { useEffect, useState } from "react";
-import { useFormContext } from "react-hook-form";
+import FullCalendar from '@fullcalendar/react';
+import Interaction from '@fullcalendar/interaction';
+import timeGrid from '@fullcalendar/timegrid';
+import { useEffect, useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 
-
-export const Scheduler = (
-  { timeFrame, myref, color = 'green', events, scheduling, }
-) => {
-
-  const [start, end] = timeFrame
-  const [title, duration] = useFormContext().getValues(['title', 'time.duration'])
-  const handleEventSelect = ({ event }) => event.remove()
+export var Scheduler = function ({
+  timeFrame, myref, color = 'green', events, scheduling,
+}) {
+  const [start, end] = timeFrame;
+  const [title, duration] = useFormContext().getValues(['title', 'time.duration']);
+  const handleEventSelect = ({ event }) => event.remove();
 
   const handleSelect = ({ start, end, view: { calendar } }) => {
-    calendar.unselect()
+    calendar.unselect();
 
-    if (!scheduling)
-      return calendar.addEvent({ title: 'Unavailable', start, end })
+    if (!scheduling) return calendar.addEvent({ title: 'Unavailable', start, end });
 
     calendar.getEventById(-1)?.remove();
-    calendar.addEvent({ title, start, id: -1 })
-  }
-
+    calendar.addEvent({ title, start, id: -1 });
+  };
 
   return (
     <FullCalendar
@@ -33,12 +29,12 @@ export const Scheduler = (
       selectable
       selectMirror
       expandRows
-      height={1800}               // There is no way to maually size the rows
-      headerToolbar={false}       // so I have to fix the length, and the rows
-      stickyHeaderDates           // will expand to the correct height.
+      height={1800} // There is no way to maually size the rows
+      headerToolbar={false} // so I have to fix the length, and the rows
+      stickyHeaderDates // will expand to the correct height.
       allDaySlot={false}
-      snapDuration='00:15:00'
-      slotDuration='01:00:00'
+      snapDuration="00:15:00"
+      slotDuration="01:00:00"
       forceEventDuration
       duration={duration}
       // defaultTimedEventDuration={duration}
@@ -48,13 +44,13 @@ export const Scheduler = (
         hour: 'numeric',
         minute: '2-digit',
         omitZeroMinute: true,
-        meridiem: 'narrow'
+        meridiem: 'narrow',
       }}
       events={events}
       select={handleSelect}
       eventClick={handleEventSelect}
     />
-  )
-}
+  );
+};
 
 export default Scheduler;

@@ -1,7 +1,7 @@
-import { Button } from "@mui/material";
-import Script from "next/script";
-import { useCallback, useState } from "react";
-import { useWatch } from "react-hook-form";
+import { Button } from '@mui/material';
+import Script from 'next/script';
+import { useCallback, useState } from 'react';
+import { useWatch } from 'react-hook-form';
 
 // Variables for Google API authentication
 const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'];
@@ -11,12 +11,11 @@ const init = () => gapi.client.init({
   clientId: process.env.NEXT_PUBLIC_GOOGLE_ID,
   discoveryDocs: DISCOVERY_DOCS,
   scope: SCOPES,
-}).catch(console.log)
+}).catch(console.log);
 
-
-export const GoogleCalendarButton = ({ formatEventList, setEvents, timeFrame }) => {
+export var GoogleCalendarButton = function ({ formatEventList, setEvents, timeFrame }) {
   const watchedTimeFrame = useWatch({ name: 'time.timeFrame' });
-  let [start, end] = watchedTimeFrame || timeFrame;
+  const [start, end] = watchedTimeFrame || timeFrame;
 
   const query = {
     calendarId: 'primary',
@@ -25,25 +24,25 @@ export const GoogleCalendarButton = ({ formatEventList, setEvents, timeFrame }) 
     showDeleted: false,
     singleEvents: true,
     orderBy: 'startTime',
-  }
+  };
 
-  const fetchGoogleEvents = useCallback((clickEvent) => {
-    gapi.auth2.getAuthInstance().signIn()                  // sign in
+  const fetchGoogleEvents = (clickEvent) => {
+    gapi.auth2.getAuthInstance().signIn() // sign in
       .then(() => gapi.client.calendar.events.list(query)) // fetch events
       .then(({ result }) => {
-        setEvents((prevEvents) => {                        // Add result to existing events
+        setEvents((prevEvents) => { // Add result to existing events
           const newEvents = formatEventList(result.items);
           return formatEventList(prevEvents.concat(newEvents), false, false);
-        })
-        return gapi.auth2.getAuthInstance().signOut();     // sign out
+        });
+        return gapi.auth2.getAuthInstance().signOut(); // sign out
       })
-      .catch(console.log)
-  });
+      .catch(console.log);
+  }
 
   return (
     <>
       <Script src="https://apis.google.com/js/api.js" onLoad={() => gapi.load('client:auth2', init)} />
       <Button onClick={fetchGoogleEvents}>Import Google Calendar</Button>
     </>
-  )
-}
+  );
+};

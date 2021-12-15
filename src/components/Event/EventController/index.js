@@ -1,12 +1,15 @@
-import { AccessTime, DeleteForever, Save, Share } from "@mui/icons-material";
-import { Button, Fade, Grid } from "@mui/material";
-import { useCallback, useState } from "react";
-import { useFormContext, useFormState } from "react-hook-form";
-import { copyInviteLink } from "components/helpers";
-import ScheduleModal from "./ScheduleModal";
+import {
+  AccessTime, DeleteForever, Save, Share,
+} from '@mui/icons-material';
+import { Button, Fade, Grid } from '@mui/material';
+import { useCallback, useState } from 'react';
+import { useFormContext, useFormState } from 'react-hook-form';
+import { copyInviteLink } from 'components/helpers';
+import ScheduleModal from './ScheduleModal';
 
-
-export const EventController = ({ id, resetForm, init, attendees}) => {
+export var EventController = function ({
+  id, resetForm, init, attendees,
+}) {
   const { isDirty, isSubmitSuccessful } = useFormState();
   const [isOpen, setIsOpen] = useState(false);
   const timeFrame = useFormContext().getValues('time.timeFrame');
@@ -14,12 +17,13 @@ export const EventController = ({ id, resetForm, init, attendees}) => {
   const handleClose = useCallback(() => setIsOpen(false), []);
 
   return (
-    <Grid container spacing={2} direction="column" item alignItems='end' alignContent='end'>
-      {!init &&
+    <Grid container spacing={2} direction="column" item alignItems="end" alignContent="end">
+      {!init
+        && (
         <>
           <Grid item>
             <Button
-              variant='outlined'
+              variant="outlined"
               endIcon={<AccessTime />}
               onClick={handleOpen}
             >
@@ -27,17 +31,20 @@ export const EventController = ({ id, resetForm, init, attendees}) => {
             </Button>
           </Grid>
           <Grid item>
-            <Button variant='outlined'
+            <Button
+              variant="outlined"
               endIcon={<Share />}
               onClick={copyInviteLink(id)}
             >
               Copy Invite Link
             </Button>
           </Grid>
-        </>}
+        </>
+        )}
       <Grid item>
         <Fade in={isDirty} timeout={800}>
-          <Button variant='contained'
+          <Button
+            variant="contained"
             endIcon={<DeleteForever />}
             onClick={() => resetForm()}
           >
@@ -48,17 +55,17 @@ export const EventController = ({ id, resetForm, init, attendees}) => {
       <Grid item>
         <Fade in={isDirty} timeout={1500}>
           <Button
-            type='submit'
-            variant='contained'
+            type="submit"
+            variant="contained"
             endIcon={<Save />}
           >
             Save
           </Button>
         </Fade>
       </Grid>
-      <ScheduleModal open={isOpen} {...{handleClose, attendees, timeFrame}} />
-    </Grid >
-  )
-}
+      <ScheduleModal open={isOpen} {...{ handleClose, attendees, timeFrame }} />
+    </Grid>
+  );
+};
 
 export default EventController;
