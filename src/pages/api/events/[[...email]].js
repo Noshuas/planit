@@ -1,11 +1,10 @@
 import {
-  fetchEvents, postEvent, updateEvent, timeStamp,
+  fetchEvents, postEvent, updateEvent
 } from 'lib/database/controllers';
 import { ObjectId } from 'mongodb';
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
-    console.log(req.query);
     const query = { 'owner.email': req.query.email[0] };
     fetchEvents(query)
       .then((result) => res.status(200).send(result))
@@ -19,9 +18,12 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'PATCH') {
-    const { id, updateDocument, options } = req.body;
-    updateEvent({ _id: ObjectId(id) }, updateDocument, options)
+    const { id, updateDocument, insertingConflicts } = req.body;
+    updateEvent({ _id: ObjectId(id) }, updateDocument, insertingConflicts)
       .then((result) => res.status(200).send(result))
-      .catch((err) => res.status(500).send(err));
+      .catch((err) => {
+        console.log('here is the erreerere', err)
+        res.status(500).send(err)
+      });
   }
 }

@@ -5,6 +5,5 @@ export const getPhotoURL = async (url) => {
   if (url === defaultUrl) {
     return { data: defaultUrl };
   }
-  console.log('here is our url:', url);
   return axios.post('/api/events/photos/dataUrl', { url });
 };

@@ -9,7 +9,6 @@ import { GoogleCalendarButton } from './googleCalendarButton';
 import Scheduler from './Scheduler';
 
 const formatEventList = (list, map = true, sort = true) => {
-  console.log(list);
   if (map) {
     list = list.map(({ start, end }) => ((start.dateTime)
       ? {

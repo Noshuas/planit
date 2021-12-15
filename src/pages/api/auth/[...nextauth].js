@@ -21,9 +21,7 @@ export default NextAuth({
     //   clientSecret: process.env.LINKEDIN_CLIENT_SECRET
     // })
   ],
-  events: {
-
-  },
+  secret: 'lWwgJYQeNk3PqH0LN4PbPzwZV4azpDcxmQ13QcrIl3E='
   // callbacks: {
   //   async signIn({ user, account, profile, email, credentials }) {
   //     return true

@@ -37,7 +37,7 @@ export var Scheduler = function ({
       slotDuration="01:00:00"
       forceEventDuration
       duration={duration}
-      // defaultTimedEventDuration={duration}
+      defaultTimedEventDuration={`0${duration}:00`}
       eventColor={color}
       validRange={{ start, end }}
       eventTimeFormat={{

@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "lint": "next lint"
+    "lint": "next lint",
+    "production": "next build && next start"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",

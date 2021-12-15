@@ -17,12 +17,13 @@ import { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import Script from 'next/script';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 export var Event = function ({ e }) {
   const {
     time, location, title, description, imageUrl, status,
   } = e.info;
-
+  const router = useRouter();
   const methods = useForm({
     mode: 'onBlur',
     defaultValues: {
@@ -35,7 +36,6 @@ export var Event = function ({ e }) {
   });
 
   const onSubmit = (formData) => {
-    console.log(formData);
     const body = {
       id: e._id,
       updateDocument: {
@@ -46,12 +46,8 @@ export var Event = function ({ e }) {
     };
 
     axios.patch('/api/events', body)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => [
-        console.log(err),
-      ]);
+      .then(res => router.push('/home'))
+      .catch(console.log)
   };
 
   return (
@@ -89,7 +85,6 @@ export async function getServerSideProps(ctx) {
 
   const query = ObjectId(ctx.params.id.toString());
   const [event] = await fetchEvents(query);
-  console.log(event, session);
   const props = { e: event, session };
 
   return (!session)

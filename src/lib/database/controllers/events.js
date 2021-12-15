@@ -1,6 +1,6 @@
-import { Options } from 'devextreme-react/color-box';
+import _mongoClientPromise from '../mongodb'
 
-export const fetchEvents = (query) => global._mongoClientPromise
+export const fetchEvents = (query) => _mongoClientPromise
   .then((client) => {
     const db = client.db();
     const events = db.collection('events');
@@ -10,29 +10,25 @@ export const fetchEvents = (query) => global._mongoClientPromise
         result.forEach((doc) => {
           doc._id = doc._id.toString();
         });
-        console.log('inside db:', result);
         return result;
       });
   });
 
-export const postEvent = (query) => global._mongoClientPromise
+export const postEvent = (query) => _mongoClientPromise
   .then((client) => {
     const db = client.db();
     const events = db.collection('events');
     return events.insertOne(query);
   });
 
-export const updateEvent = (filter, updateDocument, options) => global._mongoClientPromise
+export const updateEvent = (filter, updateDocument, insertingConflicts) => _mongoClientPromise
   .then((client) => {
     const db = client.db();
     const events = db.collection('events');
-    return events.updateOne(filter, updateDocument, options)
-      .then((res) => {
-        console.log(res);
-        return res;
-      })
-      .catch((err) => {
-        console.log('err', err);
-        return err;
-      });
+    if (insertingConflicts)
+      return Promise.all([
+        events.updateOne(filter, updateDocument.pull),
+        events.updateOne(filter, updateDocument.push)
+      ])
+    return events.updateOne(filter, updateDocument)
   });

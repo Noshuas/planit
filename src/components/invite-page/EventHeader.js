@@ -19,7 +19,7 @@ export var EventHeader = function ({
           {title}
         </Label>
         <Label label="When">
-          {scheduled || `${format(start)} - ${format(end)} (unscheduled)`}
+          {scheduled ? new Date(scheduled).toLocaleString() : `${format(start)} - ${format(end)} (unscheduled)`}
         </Label>
         <Label label="Duration">
           {`${duration} hours`}

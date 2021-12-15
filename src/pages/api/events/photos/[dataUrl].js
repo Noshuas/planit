@@ -16,13 +16,8 @@ const formatURL = ({ secure_url }) => {
 
 export default async function handler({ body }, res) {
   return new Promise((resolve) => {
-    console.log(`recieved this: ${body}, sending the url`);
     cloudinary.uploader.upload(body.url, (err, result) => {
-      console.log('Err:', err);
-      console.log('Result:', result);
-
       if (err) res.status(400).send(err);
-
       res.status(200).send(formatURL(result));
       resolve();
     });

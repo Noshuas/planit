@@ -4,7 +4,7 @@ import { Edit, ExpandMore, Share } from '@mui/icons-material';
 import {
   Card, CardActions, CardContent,
   CardMedia, Collapse,
-  IconButton, Typography,
+  IconButton, Tooltip, Typography,
 } from '@mui/material';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -32,15 +32,21 @@ const Event = function ({ _id, info }) {
       </CardContent>
 
       <CardActions>
-        <IconButton onClick={copyInviteLink(_id)}>
-          <Share />
-        </IconButton>
-        <IconButton onClick={() => { router.push(`/event/${_id}`); }}>
-          <Edit />
-        </IconButton>
-        <IconButton onClick={handleExpandClick}>
-          <ExpandMore />
-        </IconButton>
+        <Tooltip title='Copy Invite Link'>
+          <IconButton onClick={copyInviteLink(_id)}>
+            <Share />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Edit" >
+          <IconButton onClick={() => { router.push(`/event/${_id}`); }}>
+            <Edit />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Expand" >
+          <IconButton onClick={handleExpandClick}>
+            <ExpandMore />
+          </IconButton>
+        </Tooltip>
       </CardActions>
 
       <Collapse in={expanded}>

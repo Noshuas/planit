@@ -8,6 +8,7 @@ import { getSession, useSession } from 'next-auth/react';
 import router from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import axios from 'axios'
 
 export const CreateEvent = () => {
   const [posted, setPosted] = useState(false);
@@ -33,14 +34,16 @@ export const CreateEvent = () => {
     const info = methods.getValues();
     const [start, end] = info.time.timeFrame;
     info.time.created = Date.now();
-    info.time.timeFrame = [start.getTime(), end.setHours(23, 59, 59, 999)];
+
+    info.time.timeFrame = (typeof start === 'number')
+      ? [start, end]
+      : [start.getTime(), end.setHours(23, 59, 59, 999)];
 
     const event = {
       owner: session.user,
       info,
       attendees: [],
     };
-    console.log(info);
     getPhotoURL(info.imageUrl)
       .then(({ data }) => {
         event.info.imageUrl = data;

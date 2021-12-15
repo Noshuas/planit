@@ -34,7 +34,7 @@ export default function ButtonAppBar({ children }) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="sticky" >
         <Toolbar>
           {/* <ColorPicker /> */}
           <Typography variant="h3" className={classes.title} onClick={() => { router.push('/home'); }}>
@@ -42,12 +42,9 @@ export default function ButtonAppBar({ children }) {
           </Typography>
           {authenticated && <Button color="inherit"><Link href="/create-event">Create Event</Link></Button>}
           {authenticated && <Button color="inherit" onClick={signOut}>Logout</Button>}
-          {authenticated && <Avatar src={session.user.image} />}
+          {authenticated && <Avatar src={session.user.image} alt='user profile photo'/>}
         </Toolbar>
       </AppBar>
-      <br />
-      <br />
-      <br />
       {children}
     </div>
   );

@@ -9,20 +9,24 @@ import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 export var AvailabilityForm = function ({ timeFrame }) {
   const methods = useForm();
   const [isOpen, setIsOpen] = useState(false);
-  const openModal = useCallback(() => setIsOpen(true)  ,[]);
-  const closeModal = useCallback(() => setIsOpen(false),[]);
+  const openModal = useCallback(() => setIsOpen(true), []);
+  const closeModal = useCallback(() => setIsOpen(false), []);
   const submitAvail = ({ email, conflicts }) => {
     const body = {
       id: window.location.pathname.split('/').pop(),
       updateDocument: {
-        $set: {
-          'attendees.$[person]': { email, conflicts },
+        pull: {
+          $pull: {
+            attendees: { email }
+          }
         },
+        push: {
+          $push: {
+            attendees: { email, conflicts }
+          }
+        }
       },
-      options: {
-        arrayFilters: [{ 'person.email': email }],
-        upsert: true,
-      },
+      insertingConflicts: true
     };
 
     axios.patch('/api/events', body)

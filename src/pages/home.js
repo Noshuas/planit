@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { TextField, Grid } from '@mui/material';
+import { TextField, Grid, Typography } from '@mui/material';
 import axios from 'axios';
 import { useSession, getSession } from 'next-auth/react';
 import Event from '../components/home/Event';
@@ -25,7 +25,7 @@ export var Home = function (props) {
   };
 
   return (
-    <Grid container direction="row" justifyContent="center" spacing={4} alignItems="center">
+    <Grid container direction="row" justifyContent="center" spacing={4} alignItems="center" sx={{ marginTop: '2em' }}>
       <Grid item xs={6}>
         <TextField
           margin="dense"
@@ -36,11 +36,18 @@ export var Home = function (props) {
           fullWidth
         />
       </Grid>
-      {displayedEvents && displayedEvents.map((event) => (
-        <Grid item key={Math.random()} xs={8}>
-          <Event {...event} />
-        </Grid>
-      )).reverse()}
+      {displayedEvents?.length
+        ?
+        displayedEvents.map((event) => (
+          <Grid item key={Math.random()} xs={8}>
+            <Event {...event} />
+          </Grid>
+        )).reverse()
+        :
+        <Grid item sm={12}>
+          <Typography textAlign={'center'} >Click "Create Event" in the toolbar to get started</Typography>
+          </Grid>
+      }
     </Grid>
   );
 };

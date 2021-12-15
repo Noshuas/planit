@@ -9,7 +9,6 @@ const copyInviteLink = (id) =>
     const link = document.createElement('input');
     document.body.appendChild(link);
     link.value = inviteLink;
-    link.focus();
     link.select();
     document.execCommand('copy');
     link.remove();
