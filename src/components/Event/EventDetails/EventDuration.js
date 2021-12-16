@@ -20,7 +20,7 @@ export var EventDuration = function ({ duration }) {
             name="time.duration"
             type="number"
             label="Duration in hours"
-            value={newDuration || 0}
+            value={newDuration || 1}
             size="small"
           />
         )
@@ -30,7 +30,7 @@ export var EventDuration = function ({ duration }) {
             handleClick={handleClick}
           >
             {' '}
-            {`${newDuration || 0} hours`}
+            {`${newDuration || 1} hour(s)`}
           </EditableLabel>
         )}
     </Grid>
