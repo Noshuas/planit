@@ -23,3 +23,11 @@ export default async function handler({ body }, res) {
     });
   });
 }
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '5mb',
+    },
+  },
+}

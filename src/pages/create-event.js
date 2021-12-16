@@ -50,7 +50,12 @@ export const CreateEvent = () => {
         return axios.post('/api/events', event);
       })
       .then(() => { setPosted(true); })
-      .catch(console.log);
+      .catch(err => {
+        if (err.response.status === 413) {
+          alert('Please upload a photo less than 4 mb in size')
+          methods.setValue('imageUrl', defaultImage)
+        }
+      })
   };
 
   return (

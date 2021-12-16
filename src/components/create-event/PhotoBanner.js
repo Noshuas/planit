@@ -13,7 +13,7 @@ const PhotoUploadCard = function ({ onUpload }) {
           onChange={onUpload}
           accept=".jpg, .jpeg, .png, .svg"
         />
-        Click to upload file
+        Click to upload photo (limit: 4mb)
       </Card>
     </label>
   );
