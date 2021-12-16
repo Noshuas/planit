@@ -18,6 +18,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Script from 'next/script';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { getPhotoURL } from 'components/create-event/helpers';
 
 export var Event = function ({ e }) {
   const {
@@ -36,16 +37,18 @@ export var Event = function ({ e }) {
   });
 
   const onSubmit = (formData) => {
-    const body = {
-      id: e._id,
-      updateDocument: {
-        $set: {
-          info: formData,
-        },
-      },
-    };
-
-    axios.patch('/api/events', body)
+    getPhotoURL(formData.imageUrl, methods.setValue)
+      .then(({ data }) => {
+        formData.imageUrl = data;
+        return axios.patch('/api/events', {
+            id: e._id,
+            updateDocument: {
+              $set: {
+                info: formData,
+              },
+            },
+          })
+      })
       .then(res => router.push('/home'))
       .catch(console.log)
   };

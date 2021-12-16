@@ -12,7 +12,7 @@ import axios from 'axios'
 
 export const CreateEvent = () => {
   const [posted, setPosted] = useState(false);
-  const { data: session, status } = useSession();
+  const { data: { user: owner } = {}} = useSession();
 
   const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/2/23/Mars_Wikivoyage_banner.jpg';
   const methods = useForm({
@@ -25,10 +25,6 @@ export const CreateEvent = () => {
     },
   });
 
-  useEffect(() => {
-    if (posted) router.push('/home');
-  }, [posted]);
-
   const createNewEvent = async (e) => {
     e.preventDefault();
     const info = methods.getValues();
@@ -39,23 +35,13 @@ export const CreateEvent = () => {
       ? [start, end]
       : [start.getTime(), end.setHours(23, 59, 59, 999)];
 
-    const event = {
-      owner: session.user,
-      info,
-      attendees: [],
-    };
-    getPhotoURL(info.imageUrl)
+    getPhotoURL(info.imageUrl, methods.setValue)
       .then(({ data }) => {
-        event.info.imageUrl = data;
-        return axios.post('/api/events', event);
+        info.imageUrl = data;
+        return axios.post('/api/events', {owner, info, attendees: []});
       })
-      .then(() => { setPosted(true); })
-      .catch(err => {
-        if (err.response.status === 413) {
-          alert('Please upload a photo less than 4 mb in size')
-          methods.setValue('imageUrl', defaultImage)
-        }
-      })
+      .then(() => { router.push('/home') })
+      .catch(console.log)
   };
 
   return (
