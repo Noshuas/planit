@@ -3,6 +3,7 @@ import { TextField, Grid, Typography } from '@mui/material';
 import axios from 'axios';
 import { useSession, getSession } from 'next-auth/react';
 import Event from '../components/home/Event';
+import { get } from 'react-hook-form';
 
 export var Home = function (props) {
   const [events, setEvents] = useState();
@@ -10,7 +11,7 @@ export var Home = function (props) {
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    axios.get(`/api/events/${session.user.email}`)
+    axios.post(`/api/events/`, {email: session.user.email})
       .then(({ data }) => {
         setEvents(data);
         setDisplayed(data);
