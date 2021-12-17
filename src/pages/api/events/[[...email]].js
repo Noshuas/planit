@@ -1,6 +1,7 @@
 import {
   fetchEvents, postEvent, updateEvent
 } from 'lib/database/controllers';
+import { deleteEvent } from 'lib/database/controllers/events';
 import { ObjectId } from 'mongodb';
 
 export default async function handler(req, res) {
@@ -25,5 +26,18 @@ export default async function handler(req, res) {
         console.log('here is the erreerere', err)
         res.status(500).send(err)
       });
+  }
+
+  if (req.method === 'DELETE') {
+    console.log('in the delete method', req.body, req.data)
+    deleteEvent({_id: ObjectId(req.body.id)})
+      .then((result) => {
+        console.log(result, 'this is the result')
+        res.status(200).send(result)
+      })
+      .catch((err) => {
+        console.log(err, 'this is the error')
+        res.status(500).send(err);
+      })
   }
 }

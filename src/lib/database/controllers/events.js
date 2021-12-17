@@ -32,3 +32,10 @@ export const updateEvent = (filter, updateDocument, insertingConflicts) => _mong
       ])
     return events.updateOne(filter, updateDocument)
   });
+
+export const deleteEvent = (query) => _mongoClientPromise
+.then((client) => {
+  const db = client.db();
+  const events = db.collection('events');
+  return events.deleteOne(query);
+});

@@ -11,13 +11,21 @@ export var Home = function (props) {
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    axios.post(`/api/events/`, {email: session.user.email})
+    axios.post(`/api/events/`, { email: session.user.email })
       .then(({ data }) => {
         setEvents(data);
         setDisplayed(data);
       })
       .catch(console.log);
   }, [session.user.email]);
+
+  const removeEvent = (i) => {
+    const newEvents = events.slice()
+    newEvents.splice(i, 1);
+
+    setEvents(newEvents);
+    setDisplayed(newEvents);
+  }
 
   const search = (e) => {
     const query = e.target.value;
@@ -39,9 +47,9 @@ export var Home = function (props) {
       </Grid>
       {displayedEvents?.length
         ?
-        displayedEvents.map((event) => (
+        displayedEvents.map((event, i) => (
           <Grid item key={Math.random()} xs={11} md={8}>
-            <Event {...event} />
+            <Event {...event} key={event._id} {...{removeEvent, i}}/>
           </Grid>
         )).reverse()
         :
