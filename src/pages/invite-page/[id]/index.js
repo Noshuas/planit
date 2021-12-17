@@ -1,4 +1,4 @@
-import { Card, Grid, Typography } from '@mui/material';
+import { Card, Container, Grid, Typography } from '@mui/material';
 import { fetchEvents } from 'lib/database/controllers/events';
 import { ObjectId } from 'mongodb';
 import { getSession } from 'next-auth/react';
@@ -14,35 +14,35 @@ export var InvitePage = function ({ e }) {
   } = e.info;
 
   return (
-    <Grid container justifyContent="center" spacing={2}>
-      <Grid item sm={8}>
-        <Card>
-          <Image
-            priority
-            src={imageUrl}
-            layout="responsive"
-            height={144}
-            width={1050}
-            alt="event-image"
-            objectFit="cover"
-          />
-        </Card>
-      </Grid>
-      <Grid item sm={6} container direction="column" wrap="nowrap" spacing={2}>
-        <Grid item>
-          <EventHeader
-            message={`You've been invited to ${name.split(' ')[0]}'s event!`}
-            {...{ location, time, title }}
-          />
+    <Container maxWidth='lg'>
+      <Grid container justifyContent="center" spacing={2} sx={{marginTop: '2em'}}>
+        <Grid item xs={12}>
+          <Card style={{ overflow: 'hidden', position: 'relative', minHeight: 144, width: '100%' }}>
+            <Image
+              priority
+              src={imageUrl}
+              layout="fill"
+              alt="event-image"
+              objectFit="cover"
+            />
+          </Card>
         </Grid>
-        <Grid item>
-          <EventDescription {...{ description }} />
+        <Grid item xs={12}  md={8} container direction="column" wrap="nowrap" spacing={2}>
+          <Grid item>
+            <EventHeader
+              message={`You've been invited to ${name.split(' ')[0]}'s event!`}
+              {...{ location, time, title }}
+            />
+          </Grid>
+          <Grid item>
+            <EventDescription {...{ description }} />
+          </Grid>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <AvailabilityForm timeFrame={time.timeFrame} />
         </Grid>
       </Grid>
-      <Grid item sm={2}>
-        <AvailabilityForm timeFrame={time.timeFrame} />
-      </Grid>
-    </Grid>
+    </Container >
   );
 };
 

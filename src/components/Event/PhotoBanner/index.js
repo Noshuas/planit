@@ -32,8 +32,6 @@ export var PhotoBanner = function ({ url }) {
           priority
           src={newUrl}
           layout="fill"
-          // height={144}
-          // width={1050}
           alt="event-image"
           objectFit="cover"
         />
