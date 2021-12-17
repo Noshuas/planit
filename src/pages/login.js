@@ -1,9 +1,7 @@
 import { Google } from '@mui/icons-material';
 import { Button, Container, Typography } from '@mui/material';
-import { getProviders, signIn } from 'next-auth/react';
+import { getProviders, getSession, signIn } from 'next-auth/react';
 import React from 'react';
-import { getSession } from 'next-auth/react';
-import { LoginLayout, LoginNav, LoginForm } from '../components/login';
 
 const Login = function () {
   return (

@@ -25,7 +25,7 @@ export var EventWindow = function ({ time }) {
   const containerRef = useRef(null);
 
   return (
-    <Grid item onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} spacing={0} container direction="column" alignContent="stretch">
+    <Grid item onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} sm={3} md={12} container direction="column" alignContent="stretch" minWidth='12em'>
       <Box sx={{ display: 'flex', flexFlow: 'row wrap' }} ref={containerRef}>
         <Typography variant="h6">Event Window:</Typography>
         <Fade timeout={350} in={hovered}>

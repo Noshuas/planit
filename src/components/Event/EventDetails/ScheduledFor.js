@@ -8,7 +8,7 @@ export var ScheduledFor = function ({ scheduled }) {
   return (!newScheduled)
     ? ''
     : (
-      <Grid item>
+      <Grid item sm={3} md={12}>
         <EditableLabel label="Event Time:">
           {new Date(newScheduled).toLocaleString()}
         </EditableLabel>

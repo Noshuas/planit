@@ -10,7 +10,7 @@ import ScheduledFor from './ScheduledFor';
 
 export var EventDetails = function ({ time, location }) {
   return (
-    <Grid container direction="column" spacing={2}>
+    <Grid container direction="row" spacing={2}>
       <ScheduledFor scheduled={time?.scheduled} />
       <EventWindow time={time?.frame} />
       <EventDuration duration={time?.duration} />

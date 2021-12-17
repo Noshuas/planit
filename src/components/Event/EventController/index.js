@@ -1,7 +1,7 @@
 import {
   AccessTime, DeleteForever, Save, Share,
 } from '@mui/icons-material';
-import { Button, Fade, Grid } from '@mui/material';
+import { Button, Fade, Grid, Stack } from '@mui/material';
 import { useCallback, useState } from 'react';
 import { useFormContext, useFormState } from 'react-hook-form';
 import { copyInviteLink } from 'components/helpers';
@@ -17,32 +17,39 @@ export var EventController = function ({
   const handleClose = useCallback(() => setIsOpen(false), []);
 
   return (
-    <Grid container spacing={2} direction="column" item alignItems="end" alignContent="end">
+    < Stack
+      direction={{ md: 'column', sm: 'row', xs: 'row' }}
+      spacing={{ md: 2, sm: 1, xs: 1 }}
+      alignItems='flex-end'
+      justifyContent='center'
+      flexWrap='wrap'
+      marginTop='1em'
+    >
       {!init
         && (
-        <>
-          <Grid item>
-            <Button
-              variant="outlined"
-              endIcon={<AccessTime />}
-              onClick={handleOpen}
-            >
-              Schedule Event
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant="outlined"
-              endIcon={<Share />}
-              onClick={copyInviteLink(id)}
-            >
-              Copy Invite Link
-            </Button>
-          </Grid>
-        </>
+          <>
+            <div>
+              <Button
+                variant="outlined"
+                endIcon={<AccessTime />}
+                onClick={handleOpen}
+              >
+                Schedule Event
+              </Button>
+            </div>
+            <div>
+              <Button
+                variant="outlined"
+                endIcon={<Share />}
+                onClick={copyInviteLink(id)}
+              >
+                Copy Invite Link
+              </Button>
+            </div>
+          </>
         )}
-      <Grid item>
-        <Fade in={isDirty} timeout={800}>
+      <Fade in={isDirty} timeout={800} mountOnEnter>
+        <div>
           <Button
             variant="contained"
             endIcon={<DeleteForever />}
@@ -50,10 +57,10 @@ export var EventController = function ({
           >
             Cancel
           </Button>
-        </Fade>
-      </Grid>
-      <Grid item>
-        <Fade in={isDirty} timeout={1500}>
+        </div>
+      </Fade>
+      <Fade in={isDirty} timeout={1500} mountOnEnter>
+        <div >
           <Button
             type="submit"
             variant="contained"
@@ -61,10 +68,10 @@ export var EventController = function ({
           >
             Save
           </Button>
-        </Fade>
-      </Grid>
+        </div>
+      </Fade>
       <ScheduleModal open={isOpen} {...{ handleClose, attendees, timeFrame }} />
-    </Grid>
+    </Stack>
   );
 };
 

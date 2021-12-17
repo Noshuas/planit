@@ -22,8 +22,8 @@ export var PhotoBanner = function ({ url }) {
   };
 
   return (
-    <Grid item xs={12}>
-      <Card onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ overflow: 'hidden', position: 'relative' }}>
+    <Grid item xs={12} >
+      <Card onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ overflow: 'hidden', position: 'relative', minHeight: 144, width: '100%' }}>
 
         <Fade in={hovered} timeout={450}>
           <PhotoUploadCard handlePhotoChange={handlePhotoChange} />
@@ -31,9 +31,9 @@ export var PhotoBanner = function ({ url }) {
         <Image
           priority
           src={newUrl}
-          layout="responsive"
-          height={144}
-          width={1050}
+          layout="fill"
+          // height={144}
+          // width={1050}
           alt="event-image"
           objectFit="cover"
         />

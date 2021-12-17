@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import {
-  Card, Dialog, DialogContent, DialogTitle, Grid,
+  Card, Container, Dialog, DialogContent, DialogTitle, Grid,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import EventContent from 'components/Event/EventContent';
@@ -41,13 +41,13 @@ export var Event = function ({ e }) {
       .then(({ data }) => {
         formData.imageUrl = data;
         return axios.patch('/api/events', {
-            id: e._id,
-            updateDocument: {
-              $set: {
-                info: formData,
-              },
+          id: e._id,
+          updateDocument: {
+            $set: {
+              info: formData,
             },
-          })
+          },
+        })
       })
       .then(res => router.push('/home'))
       .catch(console.log)
@@ -56,24 +56,22 @@ export var Event = function ({ e }) {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <Grid container columns={12} spacing={4} justifyContent="center">
-          <Grid item sm={12} md={8}>
+        <Container maxWidth="lg" >
+          <Grid container item sm={12} spacing={2} >
             <PhotoBanner url={imageUrl} />
-          </Grid>
-          <Grid item container sm={12} md={8} columns={12} spacing={4}>
-            <Grid item container xs={4} spacing={2} direction="column">
+            <Grid item container xs={12} md={4} direction="column" >
               <Card sx={{ padding: '2em' }}>
                 <EventDetails {...{ time, status, location }} />
               </Card>
               <EventController id={e._id} resetForm={methods.reset} attendees={e.attendees} />
             </Grid>
-            <Grid item spacing={2} xs={8} colums={1} container direction="column">
+            <Grid item xs={12} md={8} colums={1} container direction="column">
               <Card sx={{ padding: '2em' }}>
                 <EventContent title={title} {...{ description }} />
               </Card>
             </Grid>
           </Grid>
-        </Grid>
+        </Container>
       </form>
     </FormProvider>
   );

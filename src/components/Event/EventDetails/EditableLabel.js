@@ -16,6 +16,7 @@ export var EditableLabel = function ({
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      minWidth={'11em'}
     >
       <Typography sx={{ whiteSpace: 'pre-wrap' }} variant={variant}>
         {label}

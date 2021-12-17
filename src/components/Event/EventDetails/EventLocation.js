@@ -11,7 +11,7 @@ export var EventLocation = function ({ location }) {
   const newLocation = useWatch({ name: 'location', defaultValue: location });
 
   return (
-    <Grid item>
+    <Grid item sm={3} md={12}>
       {editMode
         ? (
           <Input

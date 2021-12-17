@@ -12,7 +12,7 @@ export var EventDuration = function ({ duration }) {
   const newDuration = useWatch({ name: 'time.duration', defaultValue: duration || 0 });
 
   return (
-    <Grid item>
+    <Grid item sm={3} md={12}>
       {editMode
         ? (
           <Input

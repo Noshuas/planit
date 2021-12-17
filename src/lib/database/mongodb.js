@@ -1,7 +1,10 @@
 // This approach is taken from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
 import { MongoClient } from 'mongodb';
 
-const uri = process.env.MONGODB_URI;
+const uri = process.env.NODE_ENV === 'development'
+  ? process.env.MONGODB_URI_DEV
+  : process.env.MONGODB_URI;
+
 const options = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
