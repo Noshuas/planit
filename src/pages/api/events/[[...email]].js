@@ -7,20 +7,20 @@ import { ObjectId } from 'mongodb';
 export default async function handler(req, res) {
   if (req.method === 'POST' && req.body.email) {
     const query = { 'owner.email': req.body.email };
-    fetchEvents(query)
+    return fetchEvents(query)
       .then((result) => res.status(200).send(result))
       .catch((err) => res.status(500).send(err));
   }
 
   if (req.method === 'POST' && !req.body.email) {
-    postEvent(req.body)
+    return postEvent(req.body)
       .then((result) => res.status(200).send(result))
       .catch((err) => res.status(500).send(err));
   }
 
   if (req.method === 'PATCH') {
     const { id, updateDocument, insertingConflicts } = req.body;
-    updateEvent({ _id: ObjectId(id) }, updateDocument, insertingConflicts)
+    return updateEvent({ _id: ObjectId(id) }, updateDocument, insertingConflicts)
       .then((result) => res.status(200).send(result))
       .catch((err) => {
         console.log('here is the erreerere', err)
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
 
   if (req.method === 'DELETE') {
     console.log('in the delete method', req.body, req.data)
-    deleteEvent({_id: ObjectId(req.body.id)})
+    return deleteEvent({ _id: ObjectId(req.body.id) })
       .then((result) => {
         console.log(result, 'this is the result')
         res.status(200).send(result)

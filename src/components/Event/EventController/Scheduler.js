@@ -1,6 +1,7 @@
 import FullCalendar from '@fullcalendar/react';
-import Interaction from '@fullcalendar/interaction';
 import timeGrid from '@fullcalendar/timegrid';
+import Interaction from '@fullcalendar/interaction';
+import scrollGrid from '@fullcalendar/scrollgrid'
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -11,19 +12,20 @@ export var Scheduler = function ({
   const [title, duration] = useFormContext().getValues(['title', 'time.duration']);
   const handleEventSelect = ({ event }) => event.remove();
 
-  const handleSelect = ({ start, end, view: { calendar } }) => {
+  const handleSelect = ({ start, end, view: { calendar }}) => {
     calendar.unselect();
 
     if (!scheduling) return calendar.addEvent({ title: 'Unavailable', start, end });
 
     calendar.getEventById(-1)?.remove();
+    console.log(duration);
     calendar.addEvent({ title, start, id: -1 });
   };
 
   return (
     <FullCalendar
       ref={myref}
-      plugins={[timeGrid, Interaction]}
+      plugins={[timeGrid, Interaction, scrollGrid]}
       initialView="timeGridWeek"
       editable
       selectable
@@ -37,9 +39,10 @@ export var Scheduler = function ({
       slotDuration="01:00:00"
       forceEventDuration
       duration={duration}
-      defaultTimedEventDuration={`0${duration}:00`}
+      defaultTimedEventDuration={`0${duration || 1}:00`}
       eventColor={color}
       validRange={{ start, end }}
+      visibleRange={{start, end }}
       eventTimeFormat={{
         hour: 'numeric',
         minute: '2-digit',
@@ -49,6 +52,10 @@ export var Scheduler = function ({
       events={events}
       select={handleSelect}
       eventClick={handleEventSelect}
+      longPressDelay={100}
+      dayMinWidth={100}
+      schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
+      stickyFooterScrollbar
     />
   );
 };
