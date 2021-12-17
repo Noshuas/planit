@@ -48,7 +48,7 @@ export const CreateEvent = () => {
     <FormProvider {...methods}>
       <form onSubmit={createNewEvent}>
         <Container maxWidth='lg'>
-          <Fade in={!methods.formState.isDirty} out={methods.formState.isDirty} timeout={{ enter: 3000, exit: 500 }}>
+          <Fade in={!methods.formState.isDirty} timeout={{ enter: 3000, exit: 500 }}>
             <Grid item margin='.75em'>
               <Typography textAlign='center'>Click on any field to start editing</Typography>
             </Grid>
