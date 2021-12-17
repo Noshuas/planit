@@ -5,7 +5,7 @@ import EditableLabel from './EditableLabel';
 import { Input } from './Input';
 
 export var EventLocation = function ({ location }) {
-  const [editMode, setEditMode] = useState(!location);
+  const [editMode, setEditMode] = useState(false);
   const handleClick = useCallback(() => setEditMode(true),[]);
   const handleBlur = useCallback(() => setEditMode(false),[]);
   const newLocation = useWatch({ name: 'location', defaultValue: location });

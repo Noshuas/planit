@@ -26,11 +26,11 @@ export var Home = function (props) {
 
   return (
     <Grid container direction="row" justifyContent="center" spacing={4} alignItems="center" sx={{ marginTop: '2em' }}>
-      <Grid item xs={6}>
+      <Grid item xs={8} md={6}>
         <TextField
           margin="dense"
           id="search-bar"
-          label="Search"
+          label="Filter Events"
           variant="outlined"
           onChange={search}
           fullWidth
@@ -39,7 +39,7 @@ export var Home = function (props) {
       {displayedEvents?.length
         ?
         displayedEvents.map((event) => (
-          <Grid item key={Math.random()} xs={8}>
+          <Grid item key={Math.random()} xs={11} md={8}>
             <Event {...event} />
           </Grid>
         )).reverse()

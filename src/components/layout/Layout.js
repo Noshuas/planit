@@ -37,8 +37,8 @@ export default function ButtonAppBar({ children }) {
       <AppBar position="sticky" >
         <Toolbar>
           {/* <ColorPicker /> */}
-          <Typography variant="h3" className={classes.title} onClick={() => { router.push('/home'); }}>
-            P L A N . I T
+          <Typography variant='h4' component='h1' className={classes.title} onClick={() => { router.push('/home'); }}>
+            PLAN.IT
           </Typography>
           {authenticated && <Button color="inherit"><Link href="/create-event">Create Event</Link></Button>}
           {authenticated && <Button color="inherit" onClick={signOut}>Logout</Button>}

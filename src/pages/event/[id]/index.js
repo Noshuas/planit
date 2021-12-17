@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import {
-  Card, Container, Dialog, DialogContent, DialogTitle, Grid,
+  Card, Container, Dialog, DialogContent, DialogTitle, Fade, Grid, Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import EventContent from 'components/Event/EventContent';
@@ -57,7 +57,12 @@ export var Event = function ({ e }) {
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Container maxWidth="lg" >
-          <Grid container item sm={12} spacing={2} >
+          <Fade in={!methods.formState.isDirty} out={methods.formState.isDirty} timeout={{enter: 3000, exit: 500}}>
+            <Grid item margin='.75em'>
+              <Typography textAlign='center'>Click on any field to start editing</Typography>
+            </Grid>
+          </Fade>
+          <Grid container spacing={4} >
             <PhotoBanner url={imageUrl} />
             <Grid item container xs={12} md={4} direction="column" >
               <Card sx={{ padding: '2em' }}>

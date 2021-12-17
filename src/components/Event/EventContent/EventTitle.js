@@ -4,7 +4,7 @@ import EditableLabel from '../EventDetails/EditableLabel';
 import { Input } from '../EventDetails/Input';
 
 export var EventTitle = function ({ title }) {
-  const [editMode, setEditMode] = useState(!title);
+  const [editMode, setEditMode] = useState(false);
   const handleClick = useCallback(() => setEditMode(true),[]);
   const handleBlur = useCallback(() => setEditMode(false),[]);
   const newTitle = useWatch({ name: 'title', defaultValue: title });

@@ -1,4 +1,4 @@
-import { Card, Grid } from '@mui/material';
+import { Card, Container, Fade, Grid, Typography } from '@mui/material';
 import { getPhotoURL } from 'components/create-event/helpers';
 import EventContent from 'components/Event/EventContent';
 import EventController from 'components/Event/EventController';
@@ -12,7 +12,7 @@ import axios from 'axios'
 
 export const CreateEvent = () => {
   const [posted, setPosted] = useState(false);
-  const { data: { user: owner } = {}} = useSession();
+  const { data: { user: owner } = {} } = useSession();
 
   const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/2/23/Mars_Wikivoyage_banner.jpg';
   const methods = useForm({
@@ -38,7 +38,7 @@ export const CreateEvent = () => {
     getPhotoURL(info.imageUrl, methods.setValue)
       .then(({ data }) => {
         info.imageUrl = data;
-        return axios.post('/api/events', {owner, info, attendees: []});
+        return axios.post('/api/events', { owner, info, attendees: [] });
       })
       .then(() => { router.push('/home') })
       .catch(console.log)
@@ -47,24 +47,27 @@ export const CreateEvent = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={createNewEvent}>
-        <Grid container columns={12} spacing={4} justifyContent="center">
-          <Grid item sm={8}>
+        <Container maxWidth='lg'>
+          <Fade in={!methods.formState.isDirty} out={methods.formState.isDirty} timeout={{ enter: 3000, exit: 500 }}>
+            <Grid item margin='.75em'>
+              <Typography textAlign='center'>Click on any field to start editing</Typography>
+            </Grid>
+          </Fade>
+          <Grid container spacing={4} >
             <PhotoBanner url={defaultImage} />
-          </Grid>
-          <Grid item container sm={8} columns={12} spacing={4}>
-            <Grid item container xs={5} spacing={2} direction="column">
-              <Card sx={{ padding: '3em' }}>
+            <Grid item container xs={12} md={4} direction="column" >
+              <Card sx={{ padding: '2em' }}>
                 <EventDetails />
               </Card>
               <EventController resetForm={methods.reset} init />
             </Grid>
-            <Grid item spacing={2} xs={7} colums={1} container direction="column">
-              <Card sx={{ padding: '3em', minHeight: '1' }}>
+            <Grid item xs={12} md={8} colums={1} container direction="column">
+              <Card sx={{ padding: '2em' }}>
                 <EventContent />
               </Card>
             </Grid>
           </Grid>
-        </Grid>
+        </Container>
       </form>
     </FormProvider>
   );

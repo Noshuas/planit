@@ -6,7 +6,7 @@ import EditIcon, { EditableLabel } from './EditableLabel';
 import { Input } from './Input';
 
 export var EventDuration = function ({ duration }) {
-  const [editMode, setEditMode] = useState(!duration);
+  const [editMode, setEditMode] = useState(false);
   const handleClick = useCallback(() => setEditMode(true),[]);
   const handleBlur = useCallback(() => setEditMode(false),[]);
   const newDuration = useWatch({ name: 'time.duration', defaultValue: duration || 0 });
