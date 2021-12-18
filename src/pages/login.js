@@ -3,6 +3,7 @@ import { Button, Container, Typography } from '@mui/material';
 import { getServerSession } from 'next-auth';
 import { getProviders, signIn, } from 'next-auth/react';
 import React from 'react';
+import { nextOptions } from './api/auth/[...nextauth]';
 
 const Login = function () {
   return (
@@ -56,7 +57,7 @@ const Login = function () {
 export default Login;
 
 export async function getServerSideProps(context) {
-  const session = await getServerSession(context);
+  const session = await getServerSession(context, nextOptions);
 
   if (session) {
     return {

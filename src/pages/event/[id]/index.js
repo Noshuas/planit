@@ -14,6 +14,7 @@ import { fetchEvents } from 'lib/database/controllers/events';
 import { ObjectId } from 'mongodb';
 import { getServerSession } from 'next-auth';
 import { useRouter } from 'next/router';
+import { nextOptions } from 'pages/api/auth/[...nextauth]';
 import { FormProvider, useForm } from 'react-hook-form';
 
 export var Event = function ({ e }) {
@@ -79,7 +80,7 @@ export var Event = function ({ e }) {
 };
 
 export async function getServerSideProps(ctx) {
-  const session = await getServerSession(ctx);
+  const session = await getServerSession(ctx, nextOptions);
   const redirect = {
     destination: '/login',
     permanent: false,

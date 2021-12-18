@@ -4,6 +4,7 @@ import { getServerSession } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import Event from '../components/home/Event';
+import { nextOptions } from './api/auth/[...nextauth]';
 
 export var Home = function (props) {
   const [events, setEvents] = useState();
@@ -62,7 +63,7 @@ export var Home = function (props) {
 };
 
 export async function getServerSideProps(context) {
-  const session = await getServerSession(context);
+  const session = await getServerSession(context, nextOptions);
   const props = { session };
   const redirect = {
     destination: '/login',

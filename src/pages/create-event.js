@@ -10,6 +10,7 @@ import { useSession } from 'next-auth/react';
 import router from 'next/router';
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { nextOptions } from './api/auth/[...nextauth]';
 
 export const CreateEvent = () => {
   const [posted, setPosted] = useState(false);
@@ -75,7 +76,7 @@ export const CreateEvent = () => {
 };
 
 export async function getServerSideProps(context) {
-  const session = await getServerSession(context);
+  const session = await getServerSession(context, nextOptions);
   const props = { session };
   const redirect = {
     destination: '/login',
