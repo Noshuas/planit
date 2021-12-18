@@ -12,7 +12,7 @@ export const nextOptions = {
       clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
-  secret: 'lWwgJYQeNk3PqH0LN4PbPzwZV4azpDcxmQ13QcrIl3E='
+  secret: process.env.SECRET
 }
 
 export default NextAuth(nextOptions);
