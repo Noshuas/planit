@@ -21,7 +21,6 @@
     "@mui/material": "^5.2.4",
     "@mui/styles": "^5.2.3",
     "@next-auth/mongodb-adapter": "^0.0.2-next.298",
-    "add": "^2.0.6",
     "axios": "^0.24.0",
     "cloudinary": "^1.26.2",
     "date-fns": "^2.27.0",
