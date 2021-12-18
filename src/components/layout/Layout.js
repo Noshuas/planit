@@ -1,15 +1,14 @@
 /* eslint-disable @next/next/link-passhref */
-import React, { useState, useEffect } from 'react';
-import makeStyles from '@mui/styles/makeStyles';
 import AppBar from '@mui/material/AppBar';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
-import { useRouter } from 'next/router';
+import makeStyles from '@mui/styles/makeStyles';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-// import ColorPicker from './ColorPicker';
-import { useSession, signOut } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import React from 'react';
 
 const useStyles = makeStyles(() => ({
   root: {

@@ -2,23 +2,19 @@
 /* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import {
-  Card, Container, Dialog, DialogContent, DialogTitle, Fade, Grid, Typography,
+  Card, Container, Fade, Grid, Typography
 } from '@mui/material';
-import { Box } from '@mui/system';
+import axios from 'axios';
+import { getPhotoURL } from 'components/create-event/helpers';
 import EventContent from 'components/Event/EventContent';
 import EventController from 'components/Event/EventController';
-import ScheduleModal from 'components/Event/EventController/Scheduler';
 import EventDetails from 'components/Event/EventDetails';
 import { PhotoBanner } from 'components/Event/PhotoBanner';
 import { fetchEvents } from 'lib/database/controllers/events';
 import { ObjectId } from 'mongodb';
-import { getSession } from 'next-auth/react';
-import { useCallback } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import Script from 'next/script';
-import axios from 'axios';
+import { getServerSession } from 'next-auth';
 import { useRouter } from 'next/router';
-import { getPhotoURL } from 'components/create-event/helpers';
+import { FormProvider, useForm } from 'react-hook-form';
 
 export var Event = function ({ e }) {
   const {
@@ -83,7 +79,7 @@ export var Event = function ({ e }) {
 };
 
 export async function getServerSideProps(ctx) {
-  const session = await getSession(ctx);
+  const session = await getServerSession(ctx);
   const redirect = {
     destination: '/login',
     permanent: false,

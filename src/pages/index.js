@@ -1,9 +1,9 @@
-import { getSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 
 export const Index = ({ Props }) => ''
 
 export async function getServerSideProps(context) {
-  let session = await getSession(context)
+  let session = await getServerSession(context)
 
   return {
     redirect: {

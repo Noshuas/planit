@@ -1,11 +1,10 @@
-import { Card, Container, Grid, Typography } from '@mui/material';
+import { Card, Container, Grid } from '@mui/material';
+import { AvailabilityForm } from 'components/invite-page/AvailabilityForm';
+import { EventDescription } from 'components/invite-page/EventDescription';
+import { EventHeader } from 'components/invite-page/EventHeader';
 import { fetchEvents } from 'lib/database/controllers/events';
 import { ObjectId } from 'mongodb';
-import { getSession } from 'next-auth/react';
 import Image from 'next/image';
-import { EventHeader } from 'components/invite-page/EventHeader';
-import { EventDescription } from 'components/invite-page/EventDescription';
-import { AvailabilityForm } from 'components/invite-page/AvailabilityForm';
 
 export var InvitePage = function ({ e }) {
   const { name } = e.owner;

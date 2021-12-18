@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { TextField, Grid, Typography } from '@mui/material';
+import { Grid, TextField, Typography } from '@mui/material';
 import axios from 'axios';
-import { useSession, getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { useSession } from 'next-auth/react';
+import React, { useEffect, useState } from 'react';
 import Event from '../components/home/Event';
-import { get } from 'react-hook-form';
 
 export var Home = function (props) {
   const [events, setEvents] = useState();
@@ -62,7 +62,7 @@ export var Home = function (props) {
 };
 
 export async function getServerSideProps(context) {
-  const session = await getSession(context);
+  const session = await getServerSession(context);
   const props = { session };
   const redirect = {
     destination: '/login',

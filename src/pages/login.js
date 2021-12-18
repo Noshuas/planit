@@ -1,6 +1,7 @@
 import { Google } from '@mui/icons-material';
 import { Button, Container, Typography } from '@mui/material';
-import { getProviders, getSession, signIn } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { getProviders, signIn, } from 'next-auth/react';
 import React from 'react';
 
 const Login = function () {
@@ -13,7 +14,7 @@ const Login = function () {
         <Button
           variant='contained'
           size='large'
-          onClick={() => signIn('google', { callbackUrl: `${window.location.origin}/home` })}
+          onClick={() => signIn('google')}
           endIcon={<Google />}
         >
           Sign in
@@ -55,7 +56,7 @@ const Login = function () {
 export default Login;
 
 export async function getServerSideProps(context) {
-  const session = await getSession(context);
+  const session = await getServerSession(context);
 
   if (session) {
     return {

@@ -1,13 +1,13 @@
 import '@fullcalendar/common/main.css';
 import '@fullcalendar/daygrid/main.css';
 import '@fullcalendar/timegrid/main.css';
-import '../styles/globals.css';
-import React from 'react';
-import Head from 'next/head';
-
 import CssBaseline from '@mui/material/CssBaseline';
 import { SessionProvider } from 'next-auth/react';
+import Head from 'next/head';
+import React from 'react';
 import Layout from '../components/layout/Layout';
+import '../styles/globals.css';
+
 
 const MyApp = function ({ Component, pageProps: { session, ...pageProps } }) {
   return (

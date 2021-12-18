@@ -1,14 +1,15 @@
 import { Card, Container, Fade, Grid, Typography } from '@mui/material';
+import axios from 'axios';
 import { getPhotoURL } from 'components/create-event/helpers';
 import EventContent from 'components/Event/EventContent';
 import EventController from 'components/Event/EventController';
 import EventDetails from 'components/Event/EventDetails';
 import { PhotoBanner } from 'components/Event/PhotoBanner';
-import { getSession, useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { useSession } from 'next-auth/react';
 import router from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import axios from 'axios'
 
 export const CreateEvent = () => {
   const [posted, setPosted] = useState(false);
@@ -74,7 +75,7 @@ export const CreateEvent = () => {
 };
 
 export async function getServerSideProps(context) {
-  const session = await getSession(context);
+  const session = await getServerSession(context);
   const props = { session };
   const redirect = {
     destination: '/login',
