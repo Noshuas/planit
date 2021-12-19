@@ -17,7 +17,7 @@ import { nextOptions } from 'pages/api/auth/[...nextauth]'
 import { FormProvider, useForm } from 'react-hook-form'
 
 
-export var Event = function ({ e }) {
+export const Event = function ({ e }) {
   const {
     time, location, title, description, imageUrl, status,
   } = e.info;

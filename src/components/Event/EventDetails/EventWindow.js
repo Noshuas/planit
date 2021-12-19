@@ -6,7 +6,7 @@ import { useCallback, useRef, useState } from 'react';
 import { useWatch } from 'react-hook-form';
 import DateRangePicker from './DateRangePicker';
 
-export var EventWindow = function ({ time }) {
+export const EventWindow = function ({ time }) {
   const [editMode, setEditMode] = useState(!time);
   const handleClick = useCallback(() => setEditMode(true),[]);
   const handleBlur = useCallback(() => setEditMode(false),[]);

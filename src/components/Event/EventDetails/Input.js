@@ -3,7 +3,7 @@ import IconButton from '@mui/material/IconButton'
 import TextField from '@mui/material/TextField'
 import ImageIcon from '@mui/icons-material/Image';
 
-export var Input = function ({
+export const Input = function ({
   name, handlePhotoChange, required, value, pattern, ...props
 }) {
   return (

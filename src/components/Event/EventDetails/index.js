@@ -4,7 +4,7 @@ import EventLocation from './EventLocation';
 import EventWindow from './EventWindow';
 import ScheduledFor from './ScheduledFor';
 
-export var EventDetails = function ({ time, location }) {
+export const EventDetails = function ({ time, location }) {
   return (
     <Grid container direction="row" spacing={2}>
       <ScheduledFor scheduled={time?.scheduled} />

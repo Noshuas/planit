@@ -4,7 +4,7 @@ import Interaction from '@fullcalendar/interaction';
 import scrollGrid from '@fullcalendar/scrollgrid'
 import { useFormContext } from 'react-hook-form';
 
-export var Scheduler = function ({
+export const Scheduler = function ({
   timeFrame, myref, color = 'green', events, scheduling,
 }) {
   const [start, end] = timeFrame;

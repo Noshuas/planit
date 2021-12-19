@@ -6,7 +6,7 @@ import { useCallback, useState } from 'react';
 import { useWatch } from 'react-hook-form';
 import { PhotoUploadCard } from './PhotoUploadCard';
 
-export var PhotoBanner = function ({ url }) {
+export const PhotoBanner = function ({ url }) {
   const [hovered, setHovered] = useState(false);
   const handleMouseEnter = useCallback(() => setHovered(true) ,[]);
   const handleMouseLeave = useCallback(() => setHovered(false),[]);

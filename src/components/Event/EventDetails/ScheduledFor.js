@@ -2,7 +2,7 @@ import Grid from '@mui/material/Grid';
 import { useWatch } from 'react-hook-form';
 import EditableLabel from './EditableLabel';
 
-export var ScheduledFor = function ({ scheduled }) {
+export const ScheduledFor = function ({ scheduled }) {
   const newScheduled = useWatch({ name: 'time.scheduled', defaultValue: scheduled });
 
   return (!newScheduled)

@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 import { useCallback } from 'react';
 import Label from './Label';
 
-export var EventHeader = function ({
+export const EventHeader = function ({
   message, time, location, title,
 }) {
   const { scheduled, timeFrame: [start, end], duration } = time;

@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/system/Box';
 import { useCallback, useState } from 'react';
 
-export var EditableLabel = function ({
+export const EditableLabel = function ({
   label, handleClick, disabled, variant = 'h6', i, b, children, style,
 }) {
   const [hovered, setHovered] = useState(false);

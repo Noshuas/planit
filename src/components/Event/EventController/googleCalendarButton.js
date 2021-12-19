@@ -12,7 +12,7 @@ const init = () => gapi.client.init({
   scope: SCOPES,
 }).catch(console.log);
 
-export var GoogleCalendarButton = function ({ formatEventList, setEvents, timeFrame }) {
+export const GoogleCalendarButton = function ({ formatEventList, setEvents, timeFrame }) {
   const watchedTimeFrame = useWatch({ name: 'time.timeFrame' });
   const [start, end] = watchedTimeFrame || timeFrame;
 

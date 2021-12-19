@@ -27,7 +27,7 @@ const Login = function () {
           </Typography>
           <Typography variant='h6' paragraph>
             <strong>Planit is a web app designed to make scheduling events around many busy schedules easier. </strong>If you have
-            a time frame in mind for when you&apos;ld like to organize an event, but figuring out <a>when is good</a> amidst Arden&apos;s college classes,
+            a time frame in mind for when you&apos;d like to organize an event, but figuring out <a>when is good</a> amidst Arden&apos;s college classes,
             Maya&apos;s work schedule, Brooke&apos;s hiking trip, etc. is becoming a beast of burden, let us help you out.
           </Typography>
           <Typography variant='h6' paragraph>

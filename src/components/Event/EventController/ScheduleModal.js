@@ -1,5 +1,5 @@
-import NavigateBefore from '@mui/icons-material'
-import NavigateNext from '@mui/icons-material';
+import NavigateBefore from '@mui/icons-material/NavigateBefore'
+import NavigateNext from '@mui/icons-material/NavigateNext';
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
@@ -40,7 +40,7 @@ const formatEventList = (list, map = true, sort = true) => {
 
 const format = (date) => new Date(date).toLocaleDateString();
 
-export var ScheduleModal = function ({
+export const ScheduleModal = function ({
   open, handleClose, attendees, timeFrame,
 }) {
   const { setValue, getValues } = useFormContext();

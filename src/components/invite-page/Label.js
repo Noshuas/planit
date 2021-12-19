@@ -1,7 +1,7 @@
-import { Grid, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid'
 
-export var Label = function ({ label, children }) {
+export const Label = function ({ label, children }) {
   return (
     <Grid item>
       <Typography variant="body1">

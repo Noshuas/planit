@@ -7,7 +7,7 @@ import { ObjectId } from 'mongodb';
 import Image from 'next/image';
 
 
-export var InvitePage = function ({ e }) {
+export const InvitePage = function ({ e }) {
   const { name } = e.owner;
   const {
     imageUrl, title, time, location, description,

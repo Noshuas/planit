@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import Event from '../components/home/Event';
 import { nextOptions } from './api/auth/[...nextauth]';
 
-export var Home = function (props) {
+export const Home = function (props) {
   const [events, setEvents] = useState();
   const [displayedEvents, setDisplayed] = useState();
   const { data: session, status } = useSession();

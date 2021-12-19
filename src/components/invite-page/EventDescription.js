@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from '@mui/material';
 
-export var EventDescription = function ({ description }) {
+export const EventDescription = function ({ description }) {
   return (
     <Card>
       <CardContent>

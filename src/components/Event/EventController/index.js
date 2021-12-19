@@ -10,7 +10,7 @@ import { useCallback, useState } from 'react';
 import { useFormContext, useFormState } from 'react-hook-form';
 import ScheduleModal from './ScheduleModal';
 
-export var EventController = function ({
+export const EventController = function ({
   id, resetForm, init, attendees,
 }) {
   const { isDirty, isSubmitSuccessful } = useFormState();

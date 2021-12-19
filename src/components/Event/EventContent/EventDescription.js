@@ -3,7 +3,7 @@ import { useWatch } from 'react-hook-form';
 import EditableLabel from '../EventDetails/EditableLabel';
 import { Input } from '../EventDetails/Input';
 
-export var EventDescription = function ({ description }) {
+export const EventDescription = function ({ description }) {
   const [editMode, setEditMode] = useState(false);
   const handleClick = useCallback(() => setEditMode(true), []);
   const handleBlur = useCallback(() => setEditMode(false), []);

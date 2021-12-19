@@ -4,7 +4,7 @@ import { useWatch } from 'react-hook-form';
 import { EditableLabel } from './EditableLabel';
 import { Input } from './Input';
 
-export var EventDuration = function ({ duration }) {
+export const EventDuration = function ({ duration }) {
   const [editMode, setEditMode] = useState(false);
   const handleClick = useCallback(() => setEditMode(true),[]);
   const handleBlur = useCallback(() => setEditMode(false),[]);
