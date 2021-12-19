@@ -5,9 +5,10 @@ import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import makeStyles from '@mui/styles/makeStyles';
-import { signOut, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -29,7 +30,6 @@ export default function ButtonAppBar({ children }) {
   const classes = useStyles();
   const { data: session, status } = useSession();
   const authenticated = status === 'authenticated';
-
   return (
     <div className={classes.root}>
       <AppBar position="sticky" >
@@ -38,6 +38,7 @@ export default function ButtonAppBar({ children }) {
           <Typography variant='h4' component='h1' className={classes.title} onClick={() => { router.push('/home'); }}>
             PLAN.IT
           </Typography>
+          {!authenticated && !children.type.signIn && <Button color='inherit' onClick={signIn}>Sign In</Button>}
           {authenticated && <Button color="inherit"><Link href="/create-event">Create Event</Link></Button>}
           {authenticated && <Button color="inherit" onClick={signOut}>Logout</Button>}
           {authenticated && <Avatar src={session.user.image} alt='user profile photo'/>}

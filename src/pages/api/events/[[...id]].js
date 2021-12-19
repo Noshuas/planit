@@ -5,6 +5,13 @@ import { deleteEvent } from 'lib/database/controllers/events';
 import { ObjectId } from 'mongodb';
 
 export default async function handler(req, res) {
+  if (req.method === 'GET') {
+    const query = { _id: ObjectId(req.query.id[0]) }
+    return fetchEvents(query)
+      .then((result) => res.status(200).send(result))
+      .catch((err) => res.status(500).send(err));
+  }
+
   if (req.method === 'POST' && req.body.email) {
     const query = { 'owner.email': req.body.email };
     return fetchEvents(query)
@@ -22,22 +29,12 @@ export default async function handler(req, res) {
     const { id, updateDocument, insertingConflicts } = req.body;
     return updateEvent({ _id: ObjectId(id) }, updateDocument, insertingConflicts)
       .then((result) => res.status(200).send(result))
-      .catch((err) => {
-        console.log('here is the erreerere', err)
-        res.status(500).send(err)
-      });
+      .catch((err) => res.status(500).send(err));
   }
 
   if (req.method === 'DELETE') {
-    console.log('in the delete method', req.body, req.data)
     return deleteEvent({ _id: ObjectId(req.body.id) })
-      .then((result) => {
-        console.log(result, 'this is the result')
-        res.status(200).send(result)
-      })
-      .catch((err) => {
-        console.log(err, 'this is the error')
-        res.status(500).send(err);
-      })
+      .then((result) => res.status(200).send(result))
+      .catch((err) => res.status(500).send(err));
   }
 }

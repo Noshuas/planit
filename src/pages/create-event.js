@@ -6,16 +6,13 @@ import Typography from '@mui/material/Typography'
 import axios from 'axios'
 import { getPhotoURL } from 'components/create-event/helpers'
 import { EventContent, EventController, EventDetails, PhotoBanner } from 'components/Event'
-import { getServerSession } from 'next-auth'
-import { useSession } from 'next-auth/react'
+import LoadingSkeleton from 'components/LoadingSkeleton'
+import { signIn, useSession } from 'next-auth/react'
 import router from 'next/router'
-import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { nextOptions } from './api/auth/[...nextauth]'
 
 export const CreateEvent = () => {
-  const [posted, setPosted] = useState(false);
-  const { data: { user: owner } = {} } = useSession();
+  const { data: { user: owner } = {}, status } = useSession({ required: true, onUnauthenticated: signIn });
 
   const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/2/23/Mars_Wikivoyage_banner.jpg';
   const methods = useForm({
@@ -47,6 +44,9 @@ export const CreateEvent = () => {
       .catch(console.log)
   };
 
+  if (status === 'loading')
+    return <LoadingSkeleton />
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={createNewEvent}>
@@ -75,18 +75,5 @@ export const CreateEvent = () => {
     </FormProvider>
   );
 };
-
-export async function getServerSideProps(context) {
-  const session = await getServerSession(context, nextOptions);
-  const props = { session };
-  const redirect = {
-    destination: '/login',
-    permanent: false,
-  };
-
-  return (!session)
-    ? { redirect }
-    : { props };
-}
 
 export default CreateEvent;

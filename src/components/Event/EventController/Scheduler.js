@@ -17,9 +17,10 @@ export const Scheduler = function ({
     if (!scheduling) return calendar.addEvent({ title: 'Unavailable', start, end });
 
     calendar.getEventById(-1)?.remove();
-    console.log(duration);
     calendar.addEvent({ title, start, id: -1 });
   };
+
+  const handleResize = (info) => info.revert()
 
   return (
     <FullCalendar
@@ -55,6 +56,7 @@ export const Scheduler = function ({
       dayMinWidth={100}
       schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
       stickyFooterScrollbar
+      eventDurationEditable={!scheduling}
     />
   );
 };

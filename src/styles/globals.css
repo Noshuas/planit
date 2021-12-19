@@ -15,3 +15,14 @@ a {
   box-sizing: border-box;
 }
 
+.fc-bg-event {
+  opacity: .6 !important;
+  border-radius: 4px;
+  user-select: none;
+  font-weight: bold;
+}
+
+.fc-timegrid-event-harness-inset .fc-timegrid-event, .fc-timegrid-event.fc-event-mirror, .fc-timegrid-more-link {
+  box-shadow: 1px 1px 4px -1px #444;
+  resize: none;
+}

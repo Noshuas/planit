@@ -1,16 +1,15 @@
-import { getServerSession } from "next-auth";
-import { nextOptions } from "./api/auth/[...nextauth]";
+import LoadingSkeleton from 'components/LoadingSkeleton';
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from 'next/router';
 
-export const Index = ({ Props }) => ''
+export const Index = () => {
+  const { status } = useSession({required: true, onUnauthenticated: signIn})
+  const router = useRouter();
 
-export async function getServerSideProps(context) {
-  let session = await getServerSession(context, nextOptions)
+  if (status === 'authenticated')
+    router.push('./home')
 
-  return {
-    redirect: {
-      destination: session ? '/home' : '/login',
-      permanent: false,
-    }
-  }
+  return <LoadingSkeleton />
 }
+
 export default Index;

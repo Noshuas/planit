@@ -6,7 +6,7 @@ import Input from 'components/Event/EventDetails/Input';
 import { useCallback, useState } from 'react';
 import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
-export const AvailabilityForm = function ({ timeFrame }) {
+export const AvailabilityForm = function ({ timeFrame, email }) {
   const methods = useForm();
   const [isOpen, setIsOpen] = useState(false);
   const openModal = useCallback(() => setIsOpen(true), []);
@@ -47,7 +47,7 @@ export const AvailabilityForm = function ({ timeFrame }) {
               size="small"
               type="text"
               pattern={{ value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/, message: 'A valid email must be provided' }}
-              value=""
+              value={email || ''}
               required
             />
             <Button
