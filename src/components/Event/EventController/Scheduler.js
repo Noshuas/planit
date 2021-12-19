@@ -2,7 +2,6 @@ import FullCalendar from '@fullcalendar/react';
 import timeGrid from '@fullcalendar/timegrid';
 import Interaction from '@fullcalendar/interaction';
 import scrollGrid from '@fullcalendar/scrollgrid'
-import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 export var Scheduler = function ({

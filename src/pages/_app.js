@@ -4,7 +4,6 @@ import '@fullcalendar/timegrid/main.css';
 import CssBaseline from '@mui/material/CssBaseline';
 import { SessionProvider } from 'next-auth/react';
 import Head from 'next/head';
-import React from 'react';
 import Layout from '../components/layout/Layout';
 import '../styles/globals.css';
 

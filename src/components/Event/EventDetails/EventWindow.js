@@ -1,12 +1,9 @@
-import { Grid, Fade } from '@mui/material';
-import {
-  forwardRef, useCallback, useMemo, useRef, useState,
-} from 'react';
-import { useWatch } from 'react-hook-form';
+import Fade from '@mui/material/Fade'
+import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
-import { ImportantDevices } from '@mui/icons-material';
-import EditableLabel from './EditableLabel';
+import { useCallback, useRef, useState } from 'react';
+import { useWatch } from 'react-hook-form';
 import DateRangePicker from './DateRangePicker';
 
 export var EventWindow = function ({ time }) {

@@ -1,22 +1,29 @@
 /* eslint-disable no-undef */
 /* eslint-disable camelcase */
-import { Delete, DeleteForever, Edit, ExpandMore, Share } from '@mui/icons-material';
-import {
-  Card, CardActions, CardContent,
-  CardMedia, Collapse,
-  IconButton, Tooltip, Typography,
-} from '@mui/material';
+
+import Delete from '@mui/icons-material/Delete'
+import Edit from '@mui/icons-material/Edit'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import Share from '@mui/icons-material/Share'
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import Collapse from '@mui/material/Collapse'
+import IconButton from '@mui/material/IconButton'
+import Tooltip from '@mui/material/Tooltip'
+import Typography from '@mui/material/Typography'
 import axios from 'axios';
 import EventHeader from 'components/invite-page/EventHeader';
 import { useRouter } from 'next/router';
-import React from 'react';
+import { useState } from 'react'
 import { copyInviteLink } from '../helpers';
 
 const Event = function ({ _id, info, i, removeEvent }) {
   const { title, description, imageUrl } = info;
   const router = useRouter();
 
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };

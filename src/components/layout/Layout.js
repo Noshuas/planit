@@ -8,7 +8,6 @@ import makeStyles from '@mui/styles/makeStyles';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
 
 const useStyles = makeStyles(() => ({
   root: {

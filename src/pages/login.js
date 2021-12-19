@@ -1,8 +1,9 @@
 import { Google } from '@mui/icons-material';
-import { Button, Container, Typography } from '@mui/material';
+import Button from '@mui/material/Button'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
 import { getServerSession } from 'next-auth';
 import { getProviders, signIn, } from 'next-auth/react';
-import React from 'react';
 import { nextOptions } from './api/auth/[...nextauth]';
 
 const Login = function () {

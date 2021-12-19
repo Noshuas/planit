@@ -1,4 +1,3 @@
-import { Grid, Typography } from '@mui/material';
 import { useCallback, useState } from 'react';
 import { useWatch } from 'react-hook-form';
 import EditableLabel from '../EventDetails/EditableLabel';

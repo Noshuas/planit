@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import { useWatch } from 'react-hook-form';
 import EditableLabel from './EditableLabel';
 

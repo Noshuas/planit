@@ -1,5 +1,6 @@
 import { Controller } from 'react-hook-form';
-import { IconButton, TextField } from '@mui/material';
+import IconButton from '@mui/material/IconButton'
+import TextField from '@mui/material/TextField'
 import ImageIcon from '@mui/icons-material/Image';
 
 export var Input = function ({

@@ -1,8 +1,7 @@
-import { Edit } from '@mui/icons-material';
-import { Grid, IconButton, Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import { useCallback, useState } from 'react';
 import { useWatch } from 'react-hook-form';
-import EditIcon, { EditableLabel } from './EditableLabel';
+import { EditableLabel } from './EditableLabel';
 import { Input } from './Input';
 
 export var EventDuration = function ({ duration }) {

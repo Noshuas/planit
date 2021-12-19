@@ -1,11 +1,7 @@
-import { Grid, Typography } from '@mui/material';
-import { useWatch, useFormContext } from 'react-hook-form';
-import { grid } from '@mui/system';
+import Grid from '@mui/material/Grid';
 import EventDuration from './EventDuration';
-import Input from './Input';
 import EventLocation from './EventLocation';
 import EventWindow from './EventWindow';
-import EditableLabel from './EditableLabel';
 import ScheduledFor from './ScheduledFor';
 
 export var EventDetails = function ({ time, location }) {

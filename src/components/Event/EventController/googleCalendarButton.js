@@ -1,6 +1,5 @@
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 import Script from 'next/script';
-import { useCallback, useState } from 'react';
 import { useWatch } from 'react-hook-form';
 
 // Variables for Google API authentication

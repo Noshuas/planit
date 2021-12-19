@@ -1,5 +1,5 @@
 import { Input } from 'components/Event/EventDetails/Input';
-import { Card } from '@mui/material';
+import Card from '@mui/material/Card';
 import { forwardRef } from 'react';
 
 export const PhotoUploadCard = forwardRef(function PhotoUploadCard({ handlePhotoChange, style }, ref) {

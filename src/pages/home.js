@@ -1,8 +1,10 @@
-import { Grid, TextField, Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import { getServerSession } from 'next-auth';
 import { useSession } from 'next-auth/react';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Event from '../components/home/Event';
 import { nextOptions } from './api/auth/[...nextauth]';
 

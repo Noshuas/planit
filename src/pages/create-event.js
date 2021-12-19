@@ -1,16 +1,17 @@
-import { Card, Container, Fade, Grid, Typography } from '@mui/material';
-import axios from 'axios';
-import { getPhotoURL } from 'components/create-event/helpers';
-import EventContent from 'components/Event/EventContent';
-import EventController from 'components/Event/EventController';
-import EventDetails from 'components/Event/EventDetails';
-import { PhotoBanner } from 'components/Event/PhotoBanner';
-import { getServerSession } from 'next-auth';
-import { useSession } from 'next-auth/react';
-import router from 'next/router';
-import React, { useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { nextOptions } from './api/auth/[...nextauth]';
+import Card from '@mui/material/Card'
+import Container from '@mui/material/Container'
+import Fade from '@mui/material/Fade'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import axios from 'axios'
+import { getPhotoURL } from 'components/create-event/helpers'
+import { EventContent, EventController, EventDetails, PhotoBanner } from 'components/Event'
+import { getServerSession } from 'next-auth'
+import { useSession } from 'next-auth/react'
+import router from 'next/router'
+import { useState } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
+import { nextOptions } from './api/auth/[...nextauth]'
 
 export const CreateEvent = () => {
   const [posted, setPosted] = useState(false);

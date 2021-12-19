@@ -6,7 +6,7 @@ import Input from 'components/Event/EventDetails/Input';
 import { useCallback, useState } from 'react';
 import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
-export var AvailabilityForm = function ({ timeFrame }) {
+export const AvailabilityForm = function ({ timeFrame }) {
   const methods = useForm();
   const [isOpen, setIsOpen] = useState(false);
   const openModal = useCallback(() => setIsOpen(true), []);

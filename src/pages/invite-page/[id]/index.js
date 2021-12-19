@@ -1,10 +1,11 @@
-import { Card, Container, Grid } from '@mui/material';
-import { AvailabilityForm } from 'components/invite-page/AvailabilityForm';
-import { EventDescription } from 'components/invite-page/EventDescription';
-import { EventHeader } from 'components/invite-page/EventHeader';
+import Card from '@mui/material/Card';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import { AvailabilityForm, EventDescription, EventHeader } from 'components/invite-page/';
 import { fetchEvents } from 'lib/database/controllers/events';
 import { ObjectId } from 'mongodb';
 import Image from 'next/image';
+
 
 export var InvitePage = function ({ e }) {
   const { name } = e.owner;

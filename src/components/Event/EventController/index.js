@@ -1,10 +1,13 @@
-import {
-  AccessTime, DeleteForever, Save, Share,
-} from '@mui/icons-material';
-import { Button, Fade, Grid, Stack } from '@mui/material';
+import AccessTime from '@mui/icons-material/AccessTime'
+import DeleteForever from '@mui/icons-material/DeleteForever'
+import Save from '@mui/icons-material/Save'
+import Share from '@mui/icons-material/Share'
+import Button from '@mui/material/Button'
+import Fade from '@mui/material/Fade'
+import Stack from '@mui/material/Stack'
+import { copyInviteLink } from 'components/helpers';
 import { useCallback, useState } from 'react';
 import { useFormContext, useFormState } from 'react-hook-form';
-import { copyInviteLink } from 'components/helpers';
 import ScheduleModal from './ScheduleModal';
 
 export var EventController = function ({

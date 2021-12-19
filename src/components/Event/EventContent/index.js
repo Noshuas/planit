@@ -1,4 +1,4 @@
-import { Card, Grid } from '@mui/material';
+import Grid from '@mui/material/Grid'
 import EventDescription from './EventDescription';
 import EventTitle from './EventTitle';
 

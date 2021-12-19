@@ -1,5 +1,6 @@
-import { Card, Fade, Grid } from '@mui/material';
-import { Box, minHeight } from '@mui/system';
+import Card from '@mui/material/Card'
+import Fade from '@mui/material/Fade'
+import Grid from '@mui/material/Grid'
 import Image from 'next/image';
 import { useCallback, useState } from 'react';
 import { useWatch } from 'react-hook-form';
