@@ -1,4 +1,4 @@
-import { Google } from '@mui/icons-material';
+import Google from '@mui/icons-material/Google';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -64,9 +64,8 @@ export default Login;
 
 
 export async function getServerSideProps(context) {
+  const providers = await getProviders()
   return {
-    props: {
-      providers: await getProviders(),
-    },
+    props: { providers }
   };
 }
