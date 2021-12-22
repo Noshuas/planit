@@ -21,7 +21,7 @@ const Login = function () {
       <Button
         variant='contained'
         size='large'
-        onClick={() => signIn('google', { callbackUrl: window.location.orign +'/home' })}
+        onClick={() => signIn('google', { callbackUrl: window.location.origin +'/home' })}
         endIcon={<Google />}
       >
         Sign in
