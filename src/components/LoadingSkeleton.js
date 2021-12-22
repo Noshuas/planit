@@ -8,7 +8,7 @@ export const LoadingSkeleton = ({ Props }) => (
     <Typography variant='h2'>Planit</Typography>
     <br />
     <Typography variant='h6'>
-      Vercel has tightend restrictions on serverless function response times for free accounts which in tandem with
+      Vercel has tightened restrictions on serverless function response times for free accounts which in tandem with
       long cold start times may result in a 504 error.
     </Typography>
     <Typography>
