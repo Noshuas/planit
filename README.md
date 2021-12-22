@@ -1,5 +1,30 @@
 # This is [Plan.it](https://github.com/Noshuas/planit)
 
+> This was originally a group project tackled by a team of 7 people where I was origianlly responsible for the UI and UX. Since project completion, I have refactored nearly the entire project. In addition to the regular code cleanup and bug fixes, I've changed the tech stack considerably, made several implementation and and design changes, and deployed the project [here on vercel](https://deployment-planit.vercel.app). 
+>
+> Lastly, while functionality of the project has not changed very much, here is a diff of end-user features:
+> - \- The theme switcher
+> - \+ Responsive design
+> - \+ Event Deletion
+> - \+ More event information added to cards on the homescreen
+> - \+ A GUI for selecting the event time range. 
+> - \+ A GUI for sheduling the event
+> - \- Account creation with username and password
+> - \+ Sign in with Google OAUTH (more secure)
+> - \+ Sign in button has been added to the header 
+> - \+ Multiple page animations helping convey valuable information
+> 
+> And here is a diff of changes made to the back end:
+> - /- Express server 
+> - /+ Next.js serverless 
+> - /- Auth handled with Cookie.js and a custom react context provider for account information
+> - /+ Auth handled with next-auth
+> - /- Mongoose used for db calls
+> - /+ Mongo connection is handled with standard mongo driver for compatibility with next-auth
+> 
+> The following readme is outdated, but kept here to illustrate the project as it was. This is mostly for people not interested in diving through commit history. There are demos of the project in use before revision [at the bottom of the readme](#media). If you would like to view examples of the project as it is now, it is mostly the same with the exception of the changes listed above, but I encourage you to visit the deployed app anyway.
+
+
 This is a slightly groomed fork of [a repository that I worked on with a team](https://github.com/Kirk-Blue-Ocean/planit)! This web app is quite similar to whenisgood.net if you are familiar, but if you are not, that's okay too. **The problem that this application solves is planning an event around multiple schedules.** It can be difficult and sometimes *impossible* as an event organizer to find a time that works well for everyone, so we made a tool built on Next.js and React to help.
 
 ## To set up the repository
@@ -51,3 +76,6 @@ https://user-images.githubusercontent.com/80430998/143349367-e49f159f-6309-478f-
 ### Event Time Confirmation:
 
 https://user-images.githubusercontent.com/80430998/143350040-478f7c50-71af-42ee-bc96-5979a0594fda.mp4
+
+
+##
